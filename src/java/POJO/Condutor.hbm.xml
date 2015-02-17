@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/02/2015 18:08:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="tcc" name="POJO.Condutor" optimistic-lock="version" table="condutor">
+    <id name="condutorCodigo" type="int">
+      <column name="condutor_codigo"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="POJO.Logradouro" fetch="select" name="logradouro">
+      <column name="logradouro_codigo"/>
+    </many-to-one>
+    <property name="condutorHabilitacao" type="string">
+      <column length="10" name="condutor_habilitacao"/>
+    </property>
+    <property name="condutorCpf" type="string">
+      <column length="14" name="condutor_cpf"/>
+    </property>
+    <property name="condutorDataNascimento" type="date">
+      <column length="10" name="condutor_data_nascimento"/>
+    </property>
+    <property name="condutorNome" type="string">
+      <column length="40" name="condutor_nome"/>
+    </property>
+    <property name="condutorNumeroLogradouro" type="string">
+      <column length="10" name="condutor_numero_logradouro"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="veiculos" table="veiculo">
+      <key>
+        <column name="condutor_codigo"/>
+      </key>
+      <one-to-many class="POJO.Veiculo"/>
+    </set>
+  </class>
+</hibernate-mapping>

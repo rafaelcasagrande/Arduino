@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/02/2015 18:08:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="tcc" name="POJO.Sensor" optimistic-lock="version" table="sensor">
+    <id name="sensorCodigo" type="int">
+      <column name="sensor_codigo"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="POJO.Logradouro" fetch="select" name="logradouro">
+      <column name="logradouro_codigo"/>
+    </many-to-one>
+    <property name="sensorLongitude" type="string">
+      <column length="20" name="sensor_longitude"/>
+    </property>
+    <property name="sensorLatitude" type="string">
+      <column length="20" name="sensor_latitude"/>
+    </property>
+  </class>
+</hibernate-mapping>
