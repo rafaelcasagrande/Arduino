@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/02/2015 18:08:12 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/02/2015 16:40:54 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="tcc" name="POJO.Modelo" optimistic-lock="version" table="modelo">
-    <id name="modeloCodigo" type="string">
-      <column length="8" name="modelo_codigo"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="POJO.Marca" fetch="select" name="marca">
-      <column length="5" name="marca_codigo"/>
-    </many-to-one>
-    <property name="modeloNome" type="string">
-      <column length="100" name="modelo_nome"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="veiculos" table="veiculo">
-      <key>
-        <column length="8" name="modelo_codigo"/>
-      </key>
-      <one-to-many class="POJO.Veiculo"/>
-    </set>
-  </class>
+    <class name="POJO.Modelo" table="modelo" catalog="tcc" optimistic-lock="version">
+        <id name="modeloCodigo" type="string">
+            <column name="modelo_codigo" length="8" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="marca" class="POJO.Marca" fetch="select">
+            <column name="marca_codigo" length="5" />
+        </many-to-one>
+        <property name="modeloNome" type="string">
+            <column name="modelo_nome" length="100" />
+        </property>
+        <set name="veiculos" table="veiculo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="modelo_codigo" length="8" />
+            </key>
+            <one-to-many class="POJO.Veiculo" />
+        </set>
+    </class>
 </hibernate-mapping>

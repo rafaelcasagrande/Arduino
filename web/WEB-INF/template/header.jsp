@@ -9,10 +9,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         
-        <script src="../jquery/jquery-1.11.1.min.js"></script>
+        <script src="jquery/jquery-1.11.1.min.js"></script>
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
-        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
 
         <div class="container">
             
@@ -31,7 +31,7 @@
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Condutor <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="#">Cadastrar</a></li>
+                              <li><a href="cadastroCondutor.jsp">Cadastrar</a></li>
                               <li><a href="#">Consultar</a></li>
                               <li><a href="#">Alterar</a></li>
                               <li><a href="#">Excluir</a></li>
@@ -43,7 +43,7 @@
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veículo <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="#">Cadastrar</a></li>
+                              <li><a href="ServletListarMarca">Cadastrar</a></li>
                               <li><a href="#">Consultar</a></li>
                               <li><a href="#">Alterar</a></li>
                               <li><a href="#">Excluir</a></li>
@@ -55,7 +55,7 @@
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tag <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="#">Cadastrar</a></li>
+                              <li><a href="cadastroTag.jsp">Cadastrar</a></li>
                               <li><a href="#">Consultar</a></li>
                               <li><a href="#">Alterar</a></li>
                               <li><a href="#">Excluir</a></li>
@@ -67,7 +67,7 @@
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sensor <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="#">Cadastrar</a></li>
+                              <li><a href="cadastroSensor.jsp">Cadastrar</a></li>
                               <li><a href="#">Consultar</a></li>
                               <li><a href="#">Alterar</a></li>
                               <li><a href="#">Excluir</a></li>

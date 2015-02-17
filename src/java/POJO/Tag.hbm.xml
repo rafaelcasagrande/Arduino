@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/02/2015 18:08:12 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/02/2015 16:40:54 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="tcc" name="POJO.Tag" optimistic-lock="version" table="tag">
-    <id name="tagCodigo" type="int">
-      <column name="tag_codigo"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="POJO.Veiculo" fetch="select" name="veiculo">
-      <column name="veiculo_codigo"/>
-    </many-to-one>
-    <property name="tagId" type="string">
-      <column length="50" name="tag_id"/>
-    </property>
-  </class>
+    <class name="POJO.Tag" table="tag" catalog="tcc" optimistic-lock="version">
+        <id name="tagCodigo" type="int">
+            <column name="tag_codigo" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="veiculo" class="POJO.Veiculo" fetch="select">
+            <column name="veiculo_codigo" />
+        </many-to-one>
+        <property name="tagId" type="string">
+            <column name="tag_id" length="50" />
+        </property>
+    </class>
 </hibernate-mapping>

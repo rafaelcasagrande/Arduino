@@ -1,20 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/02/2015 18:08:12 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/02/2015 16:40:54 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="tcc" name="POJO.Marca" optimistic-lock="version" table="marca">
-    <id name="marcaCodigo" type="string">
-      <column length="5" name="marca_codigo"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="marcaNome" type="string">
-      <column length="100" name="marca_nome"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="modelos" table="modelo">
-      <key>
-        <column length="5" name="marca_codigo"/>
-      </key>
-      <one-to-many class="POJO.Modelo"/>
-    </set>
-  </class>
+    <class name="POJO.Marca" table="marca" catalog="tcc" optimistic-lock="version">
+        <id name="marcaCodigo" type="string">
+            <column name="marca_codigo" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="marcaNome" type="string">
+            <column name="marca_nome" length="100" />
+        </property>
+        <set name="modelos" table="modelo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="marca_codigo" length="5" />
+            </key>
+            <one-to-many class="POJO.Modelo" />
+        </set>
+    </class>
 </hibernate-mapping>

@@ -1,35 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/02/2015 18:08:12 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/02/2015 16:40:54 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="tcc" name="POJO.Logradouro" optimistic-lock="version" table="logradouro">
-    <id name="logradouroCodigo" type="int">
-      <column name="logradouro_codigo"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="POJO.Bairro" fetch="select" name="bairro">
-      <column name="bairro_codigo"/>
-    </many-to-one>
-    <property name="logradouroTipo" type="string">
-      <column length="50" name="logradouro_tipo"/>
-    </property>
-    <property name="logradouroNome" type="string">
-      <column length="200" name="logradouro_nome"/>
-    </property>
-    <property name="logradouroCep" type="string">
-      <column length="8" name="logradouro_cep"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="sensors" table="sensor">
-      <key>
-        <column name="logradouro_codigo"/>
-      </key>
-      <one-to-many class="POJO.Sensor"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="condutors" table="condutor">
-      <key>
-        <column name="logradouro_codigo"/>
-      </key>
-      <one-to-many class="POJO.Condutor"/>
-    </set>
-  </class>
+    <class name="POJO.Logradouro" table="logradouro" catalog="tcc" optimistic-lock="version">
+        <id name="logradouroCodigo" type="int">
+            <column name="logradouro_codigo" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="bairro" class="POJO.Bairro" fetch="select">
+            <column name="bairro_codigo" length="10" />
+        </many-to-one>
+        <property name="logradouroTipo" type="java.lang.Integer">
+            <column name="logradouro_tipo" />
+        </property>
+        <property name="logradouroNome" type="string">
+            <column name="logradouro_nome" length="200" />
+        </property>
+        <property name="logradouroCep" type="string">
+            <column name="logradouro_cep" length="12" />
+        </property>
+        <set name="sensors" table="sensor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="logradouro_codigo" />
+            </key>
+            <one-to-many class="POJO.Sensor" />
+        </set>
+        <set name="condutors" table="condutor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="logradouro_codigo" />
+            </key>
+            <one-to-many class="POJO.Condutor" />
+        </set>
+    </class>
 </hibernate-mapping>

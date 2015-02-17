@@ -2,14 +2,14 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="tcc"/>
-  <table-filter match-name="condutor"/>
   <table-filter match-name="cidade"/>
   <table-filter match-name="veiculo"/>
-  <table-filter match-name="modelo"/>
   <table-filter match-name="bairro"/>
-  <table-filter match-name="logradouro"/>
-  <table-filter match-name="tag"/>
-  <table-filter match-name="marca"/>
+  <table-filter match-name="condutor"/>
   <table-filter match-name="sensor"/>
+  <table-filter match-name="modelo"/>
+  <table-filter match-name="marca"/>
+  <table-filter match-name="logradouro"/>
   <table-filter match-name="estado"/>
+  <table-filter match-name="tag"/>
 </hibernate-reverse-engineering>

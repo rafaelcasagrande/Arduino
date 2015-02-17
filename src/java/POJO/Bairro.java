@@ -1,5 +1,5 @@
 package POJO;
-// Generated 16/02/2015 18:08:10 by Hibernate Tools 4.3.1
+// Generated 17/02/2015 16:40:52 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Bairro  implements java.io.Serializable {
 
 
-     private int bairroCodigo;
+     private String bairroCodigo;
      private Cidade cidade;
      private String bairroNome;
      private Set logradouros = new HashSet(0);
@@ -20,21 +20,21 @@ public class Bairro  implements java.io.Serializable {
     }
 
 	
-    public Bairro(int bairroCodigo) {
+    public Bairro(String bairroCodigo) {
         this.bairroCodigo = bairroCodigo;
     }
-    public Bairro(int bairroCodigo, Cidade cidade, String bairroNome, Set logradouros) {
+    public Bairro(String bairroCodigo, Cidade cidade, String bairroNome, Set logradouros) {
        this.bairroCodigo = bairroCodigo;
        this.cidade = cidade;
        this.bairroNome = bairroNome;
        this.logradouros = logradouros;
     }
    
-    public int getBairroCodigo() {
+    public String getBairroCodigo() {
         return this.bairroCodigo;
     }
     
-    public void setBairroCodigo(int bairroCodigo) {
+    public void setBairroCodigo(String bairroCodigo) {
         this.bairroCodigo = bairroCodigo;
     }
     public Cidade getCidade() {

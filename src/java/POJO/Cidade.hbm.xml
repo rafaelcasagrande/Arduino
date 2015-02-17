@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/02/2015 18:08:12 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/02/2015 16:40:54 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="tcc" name="POJO.Cidade" optimistic-lock="version" table="cidade">
-    <id name="cidadeCodigo" type="int">
-      <column name="cidade_codigo"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="POJO.Estado" fetch="select" name="estado">
-      <column name="estado_codigo"/>
-    </many-to-one>
-    <property name="cidadeNome" type="string">
-      <column length="100" name="cidade_nome"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="bairros" table="bairro">
-      <key>
-        <column name="cidade_codigo"/>
-      </key>
-      <one-to-many class="POJO.Bairro"/>
-    </set>
-  </class>
+    <class name="POJO.Cidade" table="cidade" catalog="tcc" optimistic-lock="version">
+        <id name="cidadeCodigo" type="string">
+            <column name="cidade_codigo" length="6" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="estado" class="POJO.Estado" fetch="select">
+            <column name="estado_codigo" />
+        </many-to-one>
+        <property name="cidadeNome" type="string">
+            <column name="cidade_nome" length="100" />
+        </property>
+        <set name="bairros" table="bairro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cidade_codigo" length="6" />
+            </key>
+            <one-to-many class="POJO.Bairro" />
+        </set>
+    </class>
 </hibernate-mapping>
