@@ -13,24 +13,20 @@
         
         <div align="center">
             <h1> Cadastrar Condutor </h1>   
-            <form role="form" class="form-inline" method="GET" action="ServletConsultaEndereco">
+            <form role="form" class="form-inline">
                 <input style="width: 300px;" class="form-control" placeholder="Nome" type="text" id="txtCondutorNome" name="txtCondutorNome"><br>
                 <input style="width: 300px;" class="form-control" placeholder="CPF" type="text" id="txtCondutorCpf" name="txtCondutorCpf"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Habilitação" type="text" id="txtCondutorHabilitacao" name="txtCondutorHabilitacao"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Data de Nascimento" type="text" id="txtCondutorNascimento" name="txtCondutorNascimento"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Numero Logradouro" type="text" id="txtCondutorNumeroLogradouro" name="txtCondutorNumeroLogradouro"><br> 
-                <input style="width: 300px;" class="form-control" placeholder="CEP" type="text" id="txtCondutorCep" name="txtCondutorCep"><br>
-                
-                <button type="submit" class="btn btn-default" name="btnCondutorConsultarCep" id="btnCondutorConsultarCep"> Consultar </button><br>
-                
+                <input style="width: 300px;" class="form-control" placeholder="CEP" type="text" id="txtCondutorCep" name="txtCondutorCep" onblur="consultarCep()" ><br>
+
                 <input style="width: 300px;" class="form-control" placeholder="Estado" type="text" id="txtCondutorEstado" name="txtCondutorEstado" value="${logradouro.getBairro().getCidade().getEstado().getEstadoNome()}"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Logradouro" type="text" id="txtCondutorLogradouro" name="txtCondutorLogradouro" value="${logradouro.getLogradouroNome()}" ><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Bairro" type="text" id="txtCondutorBairro" name="txtCondutorBairro" value="${logradouro.getBairro().getBairroNome()}" ><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Cidade" type="text" id="txtCondutorCidade" name="txtCondutorCidade" value="${logradouro.getBairro().getCidade().getCidadeNome()}" ><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Estado" type="text" id="txtCondutorEstado" name="txtCondutorEstado" value="${logradouro.getBairro().getCidade().getEstado().getEstadoNome()}"><br> 
-            
-                <label hidden id="txtIdLogradouro"> ${logradouro.getLogradouroCodigo()} </label>
-                
+ 
                 <button type="button" onclick="cadastrarCondutor()" class="btn btn-default" name="btnCondutorSalvar" id="btnCondutorSalvar">
                     Salvar
                 </button>
@@ -48,6 +44,62 @@
                 
         <script>
         
+        
+        function getXMLHttpRequest() 
+            {
+                var xmlHttpReq = false;
+                // to create XMLHttpRequest object in non-Microsoft browsers
+                if (window.XMLHttpRequest) {
+                        xmlHttpReq = new XMLHttpRequest();
+                } else if (window.ActiveXObject) {
+                        try {
+                                // to create XMLHttpRequest object in later versions
+                                // of Internet Explorer
+                                xmlHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+                        } catch (exp1) {
+                                try {
+                                        // to create XMLHttpRequest object in older versions
+                                        // of Internet Explorer
+                                        xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+                                } catch (exp2) {
+                                        xmlHttpReq = false;
+                                }
+                        }
+                }
+                return xmlHttpReq;
+            }
+            
+
+            function consultarCep()
+            {
+               var xmlHttpRequest = getXMLHttpRequest();
+               var cep = document.getElementById("txtCondutorCep").value;
+               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest);
+               xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
+               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+               xmlHttpRequest.send("cep=" + cep);              
+            }
+            
+            function getReadyStateHandler(xmlHttpRequest) {
+            // an anonymous function returned
+            // it listens to the XMLHttpRequest instance
+            return function() {
+                if (xmlHttpRequest.readyState == 4) {
+                    if (xmlHttpRequest.status == 200) {
+    
+                        var jsonObjetos = xmlHttpRequest.responseText;
+                        var arr = JSON.parse(jsonObjetos);
+
+                        alert(jsonObjetos);
+
+                    } else {
+                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                            }
+                        }
+                    };
+                }
+        
+  
         
         function limparDador()
         {
