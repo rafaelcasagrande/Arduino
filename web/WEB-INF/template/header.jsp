@@ -43,7 +43,7 @@
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veículo <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="ServletListarMarca">Cadastrar</a></li>
+                              <li><a href="cadastroVeiculo.jsp">Cadastrar</a></li>
                               <li><a href="#">Consultar</a></li>
                               <li><a href="#">Alterar</a></li>
                               <li><a href="#">Excluir</a></li>

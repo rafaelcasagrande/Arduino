@@ -7,6 +7,7 @@ package SERVLET;
 
 import DAO.MarcaDAO;
 import POJO.Marca;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
@@ -24,8 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletListarMarca extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         MarcaDAO marcaDao = new MarcaDAO();
         
@@ -33,9 +33,18 @@ public class ServletListarMarca extends HttpServlet {
         
         marcas = marcaDao.listarMarcas();
         
-        RequestDispatcher rd = request.getRequestDispatcher("cadastroVeiculo.jsp");
-        request.setAttribute("marcas", marcas);
-        rd.forward(request, response);
+        List<Marca> marcasRefatorado = new LinkedList<>();
         
+        for(Marca marca:marcas)
+        {
+            Marca marcaTemp = new Marca();
+            marcaTemp.setMarcaCodigo(marca.getMarcaCodigo());
+            marcaTemp.setMarcaNome(marca.getMarcaNome());
+            marcasRefatorado.add(marcaTemp);
+        }
+        
+        Gson json = new Gson();
+        String jsonMarcas = json.toJson(marcasRefatorado);           
+        resp.getWriter().write(jsonMarcas);
     }
 }

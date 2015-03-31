@@ -8,6 +8,14 @@
         <servlet-name>ServletListarMarca</servlet-name>
         <servlet-class>SERVLET.ServletListarMarca</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCadastrarCondutor</servlet-name>
+        <servlet-class>SERVLET.ServletCadastrarCondutor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletListarModelo</servlet-name>
+        <servlet-class>SERVLET.ServletListarModelo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>ServletListarMarca</servlet-name>
         <url-pattern>/ServletListarMarca</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCadastrarCondutor</servlet-name>
+        <url-pattern>/ServletCadastrarCondutor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarModelo</servlet-name>
+        <url-pattern>/ServletListarModelo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

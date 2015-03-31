@@ -1,6 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,24 +6,114 @@
         <title>Cadastrar Veículo</title>
     </head>
     <body>
+        <script>
+            window.onload = listarMarcas();
+            
+            function getXMLHttpRequest() 
+            {
+                var xmlHttpReq = false;
+                // to create XMLHttpRequest object in non-Microsoft browsers
+                if (window.XMLHttpRequest) {
+                        xmlHttpReq = new XMLHttpRequest();
+                } else if (window.ActiveXObject) {
+                        try {
+                                // to create XMLHttpRequest object in later versions
+                                // of Internet Explorer
+                                xmlHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+                        } catch (exp1) {
+                                try {
+                                        // to create XMLHttpRequest object in older versions
+                                        // of Internet Explorer
+                                        xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+                                } catch (exp2) {
+                                        xmlHttpReq = false;
+                                }
+                        }
+                }
+                return xmlHttpReq;
+            }
+            
+            function listarMarcas()
+            {
+               var tipo = "marca";
+               var xmlHttpRequest = getXMLHttpRequest();
+               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, tipo);
+               xmlHttpRequest.open("POST","ServletListarMarca",true);
+               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+               xmlHttpRequest.send(null);
+            }
+            
+            function listarModelos()
+            {
+               var tipo = "modelo";
+               var xmlHttpRequest = getXMLHttpRequest();
+               var idMarca = document.getElementById("cbxMarca").value;
+               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, tipo);
+               xmlHttpRequest.open("POST","ServletListarModelo",true);
+               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+               xmlHttpRequest.send("idMarca=" + idMarca);              
+            }
+            
+            function getReadyStateHandler(xmlHttpRequest, tipo) {
+            // an anonymous function returned
+            // it listens to the XMLHttpRequest instance
+            return function() {
+                if (xmlHttpRequest.readyState == 4) {
+                    if (xmlHttpRequest.status == 200) {
+    
+                        var jsonObjetos = xmlHttpRequest.responseText;
+                        var arr = JSON.parse(jsonObjetos);
+                        var i;
+                        var combobox;
+                        
+                        if(tipo === 'modelo')
+                        {
+                            combobox = document.getElementById("cbxModelo");
+                            $('#cbxModelo').empty();
+                            for (i = 0; i < arr.length; i++)
+                            {
+                                var option = document.createElement('option');
+                                option.value = arr[i].modeloCodigo;
+                                option.text = arr[i].modeloNome;
+                                combobox.add(option, 0);
+                            }
+                        }
+                        else
+                        {
+                            combobox = document.getElementById("cbxMarca");
+                            $('#cbxMarca').empty();
+                            for (i = 0; i < arr.length; i++)
+                            {
+                                var option = document.createElement('option');
+                                option.value = arr[i].marcaCodigo;
+                                option.text = arr[i].marcaNome;
+                                combobox.add(option, 0);
+                            }
+                        }
+                    } else {
+                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                            }
+                        }
+                    };
+                }
+        </script>
         
         <div align="center">
             <h1> Cadastrar Veículo </h1>   
             <form role="form" class="form-inline">
+                
                 <input style="width: 300px;" class="form-control" placeholder="Placa" type="text" id="txtVeiculoPlaca" name="txtVeiculoPlaca"><br>
                 <input style="width: 300px;" class="form-control" placeholder="Cor" type="text" id="txtVeiculoCor" name="txtVeiculoCor"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Ano" type="text" id="txtVeiculoAno" name="txtVeiculoAno"><br> 
                 
-                <select>
-                    <c:forEach var="marca" items="${marcas}" varStatus="loop">
-                        <option value="${marca.getMarcaCodigo()}"> ${marca.getMarcaNome()} </option>
-                    </c:forEach>  
+                <select id="cbxMarca" onchange="listarModelos()" >  
                 </select>
                 
                 <br> 
 
-                <input style="width: 300px;" class="form-control" placeholder="Modelo" type="text" id="txtVeiculoModelo" name="txtVeiculoModelo"><br> 
-            
+                <select id="cbxModelo" name="cbxModelo" >
+                </select>
+                
                 <select>
                     <option value="cpf" > CPF </option>
                     <option value="habilitacao" > Habilitação </option>
@@ -38,7 +125,7 @@
                     Buscar
                 </button>
                 
-                <button type="button" class="btn btn-default" id="btnCondutorSalvar" name="btnCondutorSalvar">
+                <button type="button" class="btn btn-default" id="btnCondutorSalvar" name="btnCondutorSalvar" >
                     Salvar
                 </button>
                 
@@ -52,6 +139,5 @@
                 
             </form>
         </div>
-        
     </body>
 </html>
