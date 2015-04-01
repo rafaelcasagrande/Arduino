@@ -7,6 +7,7 @@ package DAO;
 
 import POJO.Condutor;
 import UTIL.HibernateUtil;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -33,5 +34,27 @@ public class CondutorDAO {
             System.out.println(ex.getMessage());
             return false;
         }
+    }
+    
+    public Condutor consultarDocumentos(String numeroDocumento, String tipo)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Condutor condutor = new Condutor();
+        
+        if (tipo.equals("cpf"))
+        {
+            Query query = session.createQuery("from Condutor Where condutorCpf = :condutorCpf");
+            query.setParameter("condutorCpf", numeroDocumento);
+            condutor = (Condutor)query.list().get(0);
+        }
+        else
+        {
+            Query query = session.createQuery("from Condutor Where condutorHabilitacao = :condutorHabilitacao");
+            query.setParameter("condutorHabilitacao", numeroDocumento);
+            condutor = (Condutor)query.list().get(0);
+        }
+        return condutor;
     }
 }

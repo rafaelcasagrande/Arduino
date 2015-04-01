@@ -2,11 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <title>Cadastrar Condutor</title>
     </head>
     <body>
@@ -16,17 +15,16 @@
             <form role="form" class="form-inline">
                 <input style="width: 300px;" class="form-control" placeholder="Nome" type="text" id="txtCondutorNome" name="txtCondutorNome"><br>
                 <input style="width: 300px;" class="form-control" placeholder="CPF" type="text" id="txtCondutorCpf" name="txtCondutorCpf"><br> 
-                <input style="width: 300px;" class="form-control" placeholder="HabilitaÃ§Ã£o" type="text" id="txtCondutorHabilitacao" name="txtCondutorHabilitacao"><br> 
+                <input style="width: 300px;" class="form-control" placeholder="Habilitação" type="text" id="txtCondutorHabilitacao" name="txtCondutorHabilitacao"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Data de Nascimento" type="text" id="txtCondutorNascimento" name="txtCondutorNascimento"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Numero Logradouro" type="text" id="txtCondutorNumeroLogradouro" name="txtCondutorNumeroLogradouro"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="CEP" type="text" id="txtCondutorCep" name="txtCondutorCep" onblur="consultarCep()" ><br>
 
-                <input style="width: 300px;" class="form-control" placeholder="Estado" type="text" id="txtCondutorEstado" name="txtCondutorEstado" value="${logradouro.getBairro().getCidade().getEstado().getEstadoNome()}"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Logradouro" type="text" id="txtCondutorLogradouro" name="txtCondutorLogradouro" value="${logradouro.getLogradouroNome()}" ><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Bairro" type="text" id="txtCondutorBairro" name="txtCondutorBairro" value="${logradouro.getBairro().getBairroNome()}" ><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Cidade" type="text" id="txtCondutorCidade" name="txtCondutorCidade" value="${logradouro.getBairro().getCidade().getCidadeNome()}" ><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Estado" type="text" id="txtCondutorEstado" name="txtCondutorEstado" value="${logradouro.getBairro().getCidade().getEstado().getEstadoNome()}"><br> 
- 
+
                 <button type="button" onclick="cadastrarCondutor()" class="btn btn-default" name="btnCondutorSalvar" id="btnCondutorSalvar">
                     Salvar
                 </button>
@@ -72,11 +70,12 @@
 
             function consultarCep()
             {
+
                var xmlHttpRequest = getXMLHttpRequest();
                var cep = document.getElementById("txtCondutorCep").value;
                xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest);
                xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
                xmlHttpRequest.send("cep=" + cep);              
             }
             
@@ -89,8 +88,13 @@
     
                         var jsonObjetos = xmlHttpRequest.responseText;
                         var arr = JSON.parse(jsonObjetos);
+      
+                        document.getElementById("txtCondutorLogradouro").value = arr[0].logradouroNome;
+                        document.getElementById("txtCondutorCep").value = arr[0].logradouroCep;
+                        document.getElementById("txtCondutorBairro").value = arr[0].logradouroBairro;
+                        document.getElementById("txtCondutorCidade").value = arr[0].logradouroCidade;
+                        document.getElementById("txtCondutorEstado").value = arr[0].logradouroEstado;
 
-                        alert(jsonObjetos);
 
                     } else {
                                 alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
@@ -118,7 +122,7 @@
                     
                     if((nomeCondutor || cpfCondutor || habilitacaoCondutor || dataNascimentoCondutor || numeroLogradouroCondutor || idLogradouro) === "")
                     {
-                        alert("Preenchimento obrigatÃ³rio");
+                        alert("Preenchimento obrigatório");
                     }
                     else
                     {

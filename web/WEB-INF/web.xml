@@ -16,6 +16,10 @@
         <servlet-name>ServletListarModelo</servlet-name>
         <servlet-class>SERVLET.ServletListarModelo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletConsultarDocumentosCondutor</servlet-name>
+        <servlet-class>SERVLET.ServletConsultarDocumentosCondutor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>ServletListarModelo</servlet-name>
         <url-pattern>/ServletListarModelo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarDocumentosCondutor</servlet-name>
+        <url-pattern>/ServletConsultarDocumentosCondutor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

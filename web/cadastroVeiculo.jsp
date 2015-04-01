@@ -54,6 +54,18 @@
                xmlHttpRequest.send("idMarca=" + idMarca);              
             }
             
+            function buscarCondutor()
+            {
+               var tipo = "condutor";
+               var xmlHttpRequest = getXMLHttpRequest();
+               var numeroDocumento = document.getElementById("txtDocumentoCondutor").value;
+               var tipoDocumento = document.getElementById("cbxDocumento").value;
+               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, tipo);
+               xmlHttpRequest.open("POST","ServletConsultarDocumentosCondutor",true);
+               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+               xmlHttpRequest.send("numeroDocumento=" + numeroDocumento + "&" + "tipoDocumento=" + tipoDocumento);              
+            }
+            
             function getReadyStateHandler(xmlHttpRequest, tipo) {
             // an anonymous function returned
             // it listens to the XMLHttpRequest instance
@@ -65,6 +77,7 @@
                         var arr = JSON.parse(jsonObjetos);
                         var i;
                         var combobox;
+
                         
                         if(tipo === 'modelo')
                         {
@@ -78,8 +91,9 @@
                                 combobox.add(option, 0);
                             }
                         }
-                        else
+                        if(tipo === 'marca')
                         {
+                            
                             combobox = document.getElementById("cbxMarca");
                             $('#cbxMarca').empty();
                             for (i = 0; i < arr.length; i++)
@@ -88,6 +102,19 @@
                                 option.value = arr[i].marcaCodigo;
                                 option.text = arr[i].marcaNome;
                                 combobox.add(option, 0);
+                            }
+                        }
+                        else
+                        {
+                            document.getElementById("txtNomeCondutor").value = arr[0].condutorNome;
+                            document.getElementById("txtDataNascimentoCondutor").value = arr[0].condutorDataNascimento;
+                            if(document.getElementById("cbxDocumento").value === 'cpf')
+                            {
+                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].condutorHabilitacao;
+                            }
+                            else
+                            {
+                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].condutorCpf;
                             }
                         }
                     } else {
@@ -109,17 +136,25 @@
                 <select id="cbxMarca" onchange="listarModelos()" >  
                 </select>
                 
-                <br> 
+                
 
                 <select id="cbxModelo" name="cbxModelo" >
                 </select>
-                
-                <select>
+                <br>
+                <select id="cbxDocumento" >
                     <option value="cpf" > CPF </option>
                     <option value="habilitacao" > Habilitação </option>
                 </select>
                 
-                <input style="width: 300px;" class="form-control" placeholder="Condutor" type="text" id="txtCondutor" name="txtCondutor"><br> 
+                <input style="width: 300px;" class="form-control" placeholder="Condutor" type="text" onblur="buscarCondutor()" id="txtDocumentoCondutor" name="txtCondutor"><br> 
+                
+                <br>
+                <input style="width: 300px;" class="form-control" placeholder="Condutor" type="text" id="txtNomeCondutor" name="txtNomeCondutor"><br> 
+                <br>
+                <input style="width: 300px;" class="form-control" placeholder="Data Nascimento" type="text"  id="txtDataNascimentoCondutor" name="txtDataNascimentoCondutor"><br> 
+                <br>
+                <input style="width: 300px;" class="form-control" placeholder="Documento" type="text" id="txtDocumentoCondutorResultado" name="txtDocumentoCondutorResultado"><br> 
+                <br>
                 
                 <button type="button" class="btn btn-default" id="btnCondutorBuscar" name="btnCondutorBuscar">
                     Buscar

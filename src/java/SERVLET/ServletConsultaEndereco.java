@@ -5,11 +5,14 @@ import POJO.Bairro;
 import POJO.Cidade;
 import POJO.Estado;
 import POJO.Logradouro;
+import POJO.Modelo;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,17 +29,19 @@ public class ServletConsultaEndereco extends HttpServlet {
         EndereoDAO enderecoDao = new EndereoDAO();
         Logradouro logradouro = new Logradouro();
         logradouro = enderecoDao.buscarLogradouro(cep);
+        
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("logradouroNome", logradouro.getLogradouroNome());
+        jsonObject.addProperty("logradouroCep", logradouro.getLogradouroCep());
+        jsonObject.addProperty("logradouroBairro", logradouro.getBairro().getBairroNome());
+        jsonObject.addProperty("logradouroCidade", logradouro.getBairro().getCidade().getCidadeNome());
+        jsonObject.addProperty("logradouroEstado", logradouro.getBairro().getCidade().getEstado().getEstadoNome());
 
-        JsonObject jsonLogradouro = new JsonObject();
-        jsonLogradouro.addProperty("logradouroCep", logradouro.getLogradouroCep());
-        jsonLogradouro.addProperty("logradouroId", logradouro.getLogradouroCodigo());
-        jsonLogradouro.addProperty("logradouroNome", logradouro.getLogradouroNome());
-        jsonLogradouro.addProperty("logradouroBairro", logradouro.getBairro().getBairroNome());
-        jsonLogradouro.addProperty("logradouroCidade", logradouro.getBairro().getCidade().getCidadeNome());
-        jsonLogradouro.addProperty("logradouroEstado", logradouro.getBairro().getCidade().getEstado().getEstadoNome());
-             
         Gson json = new Gson();
-        String stringJson = json.toJson(jsonLogradouro);
+        List<JsonObject> jsons = new LinkedList<JsonObject>();
+        jsons.add(jsonObject);
+        String stringJson = json.toJson(jsons);
+        resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(stringJson);
     } 
 }
