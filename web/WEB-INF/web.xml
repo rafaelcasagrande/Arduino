@@ -20,6 +20,10 @@
         <servlet-name>ServletConsultarDocumentosCondutor</servlet-name>
         <servlet-class>SERVLET.ServletConsultarDocumentosCondutor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCadastrarVeiculo</servlet-name>
+        <servlet-class>SERVLET.ServletCadastrarVeiculo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ServletConsultarDocumentosCondutor</servlet-name>
         <url-pattern>/ServletConsultarDocumentosCondutor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCadastrarVeiculo</servlet-name>
+        <url-pattern>/ServletCadastrarVeiculo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

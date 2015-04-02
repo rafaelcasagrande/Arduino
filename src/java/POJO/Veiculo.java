@@ -1,5 +1,5 @@
 package POJO;
-// Generated 17/02/2015 16:40:52 by Hibernate Tools 4.3.1
+// Generated 01/04/2015 21:00:11 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Veiculo  implements java.io.Serializable {
 
 
-     private int veiculoCodigo;
+     private Integer veiculoCodigo;
      private Condutor condutor;
      private Modelo modelo;
      private String veiculoStatus;
@@ -23,12 +23,7 @@ public class Veiculo  implements java.io.Serializable {
     public Veiculo() {
     }
 
-	
-    public Veiculo(int veiculoCodigo) {
-        this.veiculoCodigo = veiculoCodigo;
-    }
-    public Veiculo(int veiculoCodigo, Condutor condutor, Modelo modelo, String veiculoStatus, String veiculoPlaca, String veiculoCor, Integer veiculoAno, Set tags) {
-       this.veiculoCodigo = veiculoCodigo;
+    public Veiculo(Condutor condutor, Modelo modelo, String veiculoStatus, String veiculoPlaca, String veiculoCor, Integer veiculoAno, Set tags) {
        this.condutor = condutor;
        this.modelo = modelo;
        this.veiculoStatus = veiculoStatus;
@@ -38,11 +33,11 @@ public class Veiculo  implements java.io.Serializable {
        this.tags = tags;
     }
    
-    public int getVeiculoCodigo() {
+    public Integer getVeiculoCodigo() {
         return this.veiculoCodigo;
     }
     
-    public void setVeiculoCodigo(int veiculoCodigo) {
+    public void setVeiculoCodigo(Integer veiculoCodigo) {
         this.veiculoCodigo = veiculoCodigo;
     }
     public Condutor getCondutor() {

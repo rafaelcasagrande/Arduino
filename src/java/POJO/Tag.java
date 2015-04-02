@@ -1,5 +1,5 @@
 package POJO;
-// Generated 17/02/2015 16:40:52 by Hibernate Tools 4.3.1
+// Generated 01/04/2015 21:00:11 by Hibernate Tools 4.3.1
 
 
 
@@ -9,28 +9,23 @@ package POJO;
 public class Tag  implements java.io.Serializable {
 
 
-     private int tagCodigo;
+     private Integer tagCodigo;
      private Veiculo veiculo;
      private String tagId;
 
     public Tag() {
     }
 
-	
-    public Tag(int tagCodigo) {
-        this.tagCodigo = tagCodigo;
-    }
-    public Tag(int tagCodigo, Veiculo veiculo, String tagId) {
-       this.tagCodigo = tagCodigo;
+    public Tag(Veiculo veiculo, String tagId) {
        this.veiculo = veiculo;
        this.tagId = tagId;
     }
    
-    public int getTagCodigo() {
+    public Integer getTagCodigo() {
         return this.tagCodigo;
     }
     
-    public void setTagCodigo(int tagCodigo) {
+    public void setTagCodigo(Integer tagCodigo) {
         this.tagCodigo = tagCodigo;
     }
     public Veiculo getVeiculo() {

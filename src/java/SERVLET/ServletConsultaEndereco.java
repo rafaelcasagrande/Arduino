@@ -31,6 +31,7 @@ public class ServletConsultaEndereco extends HttpServlet {
         logradouro = enderecoDao.buscarLogradouro(cep);
         
         JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("logradouroCodigo", logradouro.getLogradouroCodigo());
         jsonObject.addProperty("logradouroNome", logradouro.getLogradouroNome());
         jsonObject.addProperty("logradouroCep", logradouro.getLogradouroCep());
         jsonObject.addProperty("logradouroBairro", logradouro.getBairro().getBairroNome());

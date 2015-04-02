@@ -20,19 +20,17 @@
                 <input style="width: 300px;" class="form-control" placeholder="Numero Logradouro" type="text" id="txtCondutorNumeroLogradouro" name="txtCondutorNumeroLogradouro"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="CEP" type="text" id="txtCondutorCep" name="txtCondutorCep" onblur="consultarCep()" ><br>
 
-                <input style="width: 300px;" class="form-control" placeholder="Logradouro" type="text" id="txtCondutorLogradouro" name="txtCondutorLogradouro" value="${logradouro.getLogradouroNome()}" ><br> 
-                <input style="width: 300px;" class="form-control" placeholder="Bairro" type="text" id="txtCondutorBairro" name="txtCondutorBairro" value="${logradouro.getBairro().getBairroNome()}" ><br> 
-                <input style="width: 300px;" class="form-control" placeholder="Cidade" type="text" id="txtCondutorCidade" name="txtCondutorCidade" value="${logradouro.getBairro().getCidade().getCidadeNome()}" ><br> 
-                <input style="width: 300px;" class="form-control" placeholder="Estado" type="text" id="txtCondutorEstado" name="txtCondutorEstado" value="${logradouro.getBairro().getCidade().getEstado().getEstadoNome()}"><br> 
+                <input style="width: 300px;" class="form-control" placeholder="Logradouro" type="text" id="txtCondutorLogradouro" name="txtCondutorLogradouro"><br> 
+                <input style="width: 300px;" class="form-control" placeholder="Bairro" type="text" id="txtCondutorBairro" name="txtCondutorBairro"><br> 
+                <input style="width: 300px;" class="form-control" placeholder="Cidade" type="text" id="txtCondutorCidade" name="txtCondutorCidade"><br> 
+                <input style="width: 300px;" class="form-control" placeholder="Estado" type="text" id="txtCondutorEstado" name="txtCondutorEstado"><br> 
 
                 <button type="button" onclick="cadastrarCondutor()" class="btn btn-default" name="btnCondutorSalvar" id="btnCondutorSalvar">
                     Salvar
                 </button>
-                
                 <button type="button" onclick="limparDador()" class="btn btn-default" name="btnCondutorLimpar" id="btnCondutorLimpar">
                     Limpar
                 </button>   
-
                 <button type="button" class="btn btn-default" name="btnCondutorVoltar" id="btnCondutorVoltar">
                     Voltar
                 </button>    
@@ -41,6 +39,9 @@
                 
                 
         <script>
+        
+        var logradouroCodigo;
+        var xmlHttpRequest;
         
         
         function getXMLHttpRequest() 
@@ -71,30 +72,38 @@
             function consultarCep()
             {
 
-               var xmlHttpRequest = getXMLHttpRequest();
+               xmlHttpRequest = getXMLHttpRequest();
                var cep = document.getElementById("txtCondutorCep").value;
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest);
+               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaCep");
                xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
                xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
                xmlHttpRequest.send("cep=" + cep);              
             }
             
-            function getReadyStateHandler(xmlHttpRequest) {
+            function getReadyStateHandler(xmlHttpRequest, tipo) {
             // an anonymous function returned
             // it listens to the XMLHttpRequest instance
             return function() {
                 if (xmlHttpRequest.readyState == 4) {
                     if (xmlHttpRequest.status == 200) {
     
-                        var jsonObjetos = xmlHttpRequest.responseText;
-                        var arr = JSON.parse(jsonObjetos);
-      
-                        document.getElementById("txtCondutorLogradouro").value = arr[0].logradouroNome;
-                        document.getElementById("txtCondutorCep").value = arr[0].logradouroCep;
-                        document.getElementById("txtCondutorBairro").value = arr[0].logradouroBairro;
-                        document.getElementById("txtCondutorCidade").value = arr[0].logradouroCidade;
-                        document.getElementById("txtCondutorEstado").value = arr[0].logradouroEstado;
+                        var respostaServelet = xmlHttpRequest.responseText;
+                        
+                        if(tipo === "consultaCep")
+                        {
+                            var arr = JSON.parse(respostaServelet);
 
+                            document.getElementById("txtCondutorLogradouro").value = arr[0].logradouroNome;
+                            document.getElementById("txtCondutorCep").value = arr[0].logradouroCep;
+                            document.getElementById("txtCondutorBairro").value = arr[0].logradouroBairro;
+                            document.getElementById("txtCondutorCidade").value = arr[0].logradouroCidade;
+                            document.getElementById("txtCondutorEstado").value = arr[0].logradouroEstado;
+                            logradouroCodigo = arr[0].logradouroCodigo;
+                        }
+                        else
+                        {
+                            alert(respostaServelet);
+                        }
 
                     } else {
                                 alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
@@ -118,17 +127,18 @@
                     var habilitacaoCondutor = document.getElementById("txtCondutorHabilitacao").value;
                     var dataNascimentoCondutor = document.getElementById("txtCondutorNascimento").value;
                     var numeroLogradouroCondutor = document.getElementById("txtCondutorNumeroLogradouro").value;
-                    var idLogradouro = document.getElementById("txtIdLogradouro").value;
-                    
-                    if((nomeCondutor || cpfCondutor || habilitacaoCondutor || dataNascimentoCondutor || numeroLogradouroCondutor || idLogradouro) === "")
+  
+                    if((nomeCondutor || cpfCondutor || habilitacaoCondutor || dataNascimentoCondutor || numeroLogradouroCondutor || logradouroCodigo) === "")
                     {
                         alert("Preenchimento obrigatório");
                     }
                     else
                     {
-                        $.get('ServletCadastrarCondutor',{nomeCondutor:nomeCondutor, cpfCondutor:cpfCondutor, habilitacaoCondutor:habilitacaoCondutor, dataNascimentoCondutor:dataNascimentoCondutor, numeroLogradouroCondutor:numeroLogradouroCondutor, idLogradouro:idLogradouro}, function(){
-                            alert("Cadastro Realizado com Sucesso.");
-                        });
+                        xmlHttpRequest = getXMLHttpRequest();
+                        xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "cadastroCondutor");
+                        xmlHttpRequest.open("POST","ServletCadastrarCondutor",true);
+                        xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                        xmlHttpRequest.send("nomeCondutor=" + nomeCondutor + "&" + "cpfCondutor=" + cpfCondutor + "&" + "habilitacaoCondutor=" + habilitacaoCondutor + "&" + "dataNascimentoCondutor=" + dataNascimentoCondutor + "&" + "numeroLogradouroCondutor=" + numeroLogradouroCondutor + "&" + "idLogradouro=" + logradouroCodigo);    
                     }
                 }
         

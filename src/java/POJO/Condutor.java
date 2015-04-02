@@ -1,5 +1,5 @@
 package POJO;
-// Generated 17/02/2015 16:40:52 by Hibernate Tools 4.3.1
+// Generated 01/04/2015 21:00:11 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Condutor  implements java.io.Serializable {
 
 
-     private int condutorCodigo;
+     private Integer condutorCodigo;
      private Logradouro logradouro;
      private String condutorHabilitacao;
      private String condutorCpf;
@@ -24,12 +24,7 @@ public class Condutor  implements java.io.Serializable {
     public Condutor() {
     }
 
-	
-    public Condutor(int condutorCodigo) {
-        this.condutorCodigo = condutorCodigo;
-    }
-    public Condutor(int condutorCodigo, Logradouro logradouro, String condutorHabilitacao, String condutorCpf, Date condutorDataNascimento, String condutorNome, String condutorNumeroLogradouro, Set veiculos) {
-       this.condutorCodigo = condutorCodigo;
+    public Condutor(Logradouro logradouro, String condutorHabilitacao, String condutorCpf, Date condutorDataNascimento, String condutorNome, String condutorNumeroLogradouro, Set veiculos) {
        this.logradouro = logradouro;
        this.condutorHabilitacao = condutorHabilitacao;
        this.condutorCpf = condutorCpf;
@@ -39,11 +34,11 @@ public class Condutor  implements java.io.Serializable {
        this.veiculos = veiculos;
     }
    
-    public int getCondutorCodigo() {
+    public Integer getCondutorCodigo() {
         return this.condutorCodigo;
     }
     
-    public void setCondutorCodigo(int condutorCodigo) {
+    public void setCondutorCodigo(Integer condutorCodigo) {
         this.condutorCodigo = condutorCodigo;
     }
     public Logradouro getLogradouro() {

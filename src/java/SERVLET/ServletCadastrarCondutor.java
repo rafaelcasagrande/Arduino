@@ -22,22 +22,20 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletCadastrarCondutor extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
- 
         Date dataNascimento = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                 
-        String nome = request.getParameter("nomeCondutor");
-        String cpf = request.getParameter("cpfCondutor");
-        String habilitacao = request.getParameter("habilitacaoCondutor");
-        String numeroLogradouro = request.getParameter("numeroLogradouroCondutor");
-        String idLogradouro = request.getParameter("idLogradouro");
+        String nome = req.getParameter("nomeCondutor");
+        String cpf = req.getParameter("cpfCondutor");
+        String habilitacao = req.getParameter("habilitacaoCondutor");
+        String numeroLogradouro = req.getParameter("numeroLogradouroCondutor");
+        String idLogradouro = req.getParameter("idLogradouro");
 
         try
         {
-            dataNascimento = formatter.parse(request.getParameter("dataNascimentoCondutor").toString());  
+            dataNascimento = formatter.parse(req.getParameter("dataNascimentoCondutor").toString());  
         }
         catch(ParseException ex)
         {
@@ -58,5 +56,14 @@ public class ServletCadastrarCondutor extends HttpServlet {
         CondutorDAO dao = new CondutorDAO();
         boolean resultado = dao.cadastrarCondutor(condutor);
         
+        if(resultado)
+        {
+            resp.getWriter().write("true");
+        }
+        else
+        {
+            resp.getWriter().write("false");
+        }
+
     }
 }
