@@ -9,7 +9,6 @@ import DAO.TagDao;
 import POJO.Tag;
 import POJO.Veiculo;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +46,5 @@ public class ServletCadastrarTag extends HttpServlet {
         {
             response.getWriter().write("false");
         }
-        
-        
-        
     }
 }

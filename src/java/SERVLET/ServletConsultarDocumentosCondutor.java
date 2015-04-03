@@ -7,9 +7,8 @@ package SERVLET;
 
 import DAO.CondutorDAO;
 import POJO.Condutor;
-import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -33,22 +32,18 @@ public class ServletConsultarDocumentosCondutor extends HttpServlet {
         Condutor condutor = new Condutor();
         CondutorDAO condutorDao = new CondutorDAO();
         condutor = condutorDao.consultarDocumentos(numeroDocumento, tipoDocumento);
-        
-        Condutor condutorTemp = new Condutor();
-        condutorTemp.setCondutorCodigo(condutor.getCondutorCodigo());
-        condutorTemp.setCondutorCpf(condutor.getCondutorCpf());
-        condutorTemp.setCondutorDataNascimento(condutor.getCondutorDataNascimento());
-        condutorTemp.setCondutorNome(condutor.getCondutorNome());
-        condutorTemp.setCondutorHabilitacao(condutor.getCondutorHabilitacao());
-        
-        
-        List<Condutor> condutores = new LinkedList<Condutor>();
-        condutores.add(condutorTemp);
-        
-        Gson json = new Gson();
-        String jsonModelos = json.toJson(condutores);           
-        response.getWriter().write(jsonModelos);
-        
-    }
 
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("condutorNome", condutor.getCondutorNome());
+        jsonObject.addProperty("condutorDataNascimento", condutor.getCondutorDataNascimento().toString());
+        jsonObject.addProperty("condutorCodigo", condutor.getCondutorCodigo());
+        jsonObject.addProperty("condutorHabilitacao", condutor.getCondutorHabilitacao());
+        jsonObject.addProperty("condutorCpf", condutor.getCondutorCpf());
+ 
+        List<JsonObject> listJson = new LinkedList<JsonObject>();
+        listJson.add(jsonObject);
+        
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(listJson.toString());
+    }
 }

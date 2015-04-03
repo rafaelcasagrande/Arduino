@@ -6,16 +6,12 @@
 package SERVLET;
 
 import DAO.ModeloDAO;
-import POJO.Condutor;
 import POJO.Marca;
 import POJO.Modelo;
-import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
-import javax.json.JsonException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,21 +37,17 @@ public class ServletListarModelo extends HttpServlet {
         marca.setMarcaCodigo(idMarca);
 
         List<Modelo> modelos = modeloDao.listarModelo(marca);
-        List<Modelo> modelosRefatorado = new LinkedList<>();
-        Modelo modeloTemp;
+        JsonObject jsonObject;
+        List<JsonObject> jsonList = new LinkedList<JsonObject>();
         
         for(Modelo modelo:modelos)
         {
-             modeloTemp = new Modelo();
-             modeloTemp.setModeloCodigo(modelo.getModeloCodigo());
-             modeloTemp.setModeloNome(modelo.getModeloNome());
-             modelosRefatorado.add(modeloTemp);
+            jsonObject = new JsonObject();
+            jsonObject.addProperty("modeloCodigo", modelo.getModeloCodigo());
+            jsonObject.addProperty("modeloNome", modelo.getModeloNome());
+            jsonList.add(jsonObject);
         }
-        
-        Gson json = new Gson();
-        String jsonModelos = json.toJson(modelosRefatorado);           
-        resp.getWriter().write(jsonModelos);
-    
-    
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(jsonList.toString());
     }
 }

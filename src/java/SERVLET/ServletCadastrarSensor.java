@@ -9,7 +9,6 @@ import DAO.SensorDAO;
 import POJO.Logradouro;
 import POJO.Sensor;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,6 +49,5 @@ public class ServletCadastrarSensor extends HttpServlet {
         {
             response.getWriter().write("false");
         }
-        
     }
 }

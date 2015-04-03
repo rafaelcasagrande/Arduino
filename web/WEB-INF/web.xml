@@ -36,6 +36,10 @@
         <servlet-name>ServletCadastrarSensor</servlet-name>
         <servlet-class>SERVLET.ServletCadastrarSensor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletListarCondutor</servlet-name>
+        <servlet-class>SERVLET.ServletListarCondutor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>ServletCadastrarSensor</servlet-name>
         <url-pattern>/ServletCadastrarSensor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarCondutor</servlet-name>
+        <url-pattern>/ServletListarCondutor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

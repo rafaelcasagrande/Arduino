@@ -10,7 +10,6 @@ import POJO.Condutor;
 import POJO.Modelo;
 import POJO.Veiculo;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -7,12 +7,10 @@ package SERVLET;
 
 import DAO.MarcaDAO;
 import POJO.Marca;
-import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,23 +26,20 @@ public class ServletListarMarca extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         MarcaDAO marcaDao = new MarcaDAO();
-        
         List<Marca> marcas = new LinkedList<Marca>();
-        
         marcas = marcaDao.listarMarcas();
-        
-        List<Marca> marcasRefatorado = new LinkedList<>();
+ 
+        JsonObject jsonObject;
+        List<JsonObject> jsonList = new LinkedList<JsonObject>();
         
         for(Marca marca:marcas)
         {
-            Marca marcaTemp = new Marca();
-            marcaTemp.setMarcaCodigo(marca.getMarcaCodigo());
-            marcaTemp.setMarcaNome(marca.getMarcaNome());
-            marcasRefatorado.add(marcaTemp);
+            jsonObject = new JsonObject();
+            jsonObject.addProperty("marcaCodigo", marca.getMarcaCodigo());
+            jsonObject.addProperty("marcaNome", marca.getMarcaNome());
+            jsonList.add(jsonObject);
         }
-        
-        Gson json = new Gson();
-        String jsonMarcas = json.toJson(marcasRefatorado);           
-        resp.getWriter().write(jsonMarcas);
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(jsonList.toString());
     }
 }

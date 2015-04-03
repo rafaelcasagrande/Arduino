@@ -7,6 +7,8 @@ package DAO;
 
 import POJO.Condutor;
 import UTIL.HibernateUtil;
+import java.util.LinkedList;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -57,4 +59,24 @@ public class CondutorDAO {
         }
         return condutor;
     }
+    
+    public List<Condutor> listarCondutor()
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Condutor> condutores = new LinkedList<Condutor>();
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("From Condutor");
+            condutores = query.list();
+            return condutores;         
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    
 }

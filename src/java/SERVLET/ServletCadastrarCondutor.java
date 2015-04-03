@@ -9,7 +9,6 @@ import DAO.CondutorDAO;
 import POJO.Condutor;
 import POJO.Logradouro;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,6 +63,5 @@ public class ServletCadastrarCondutor extends HttpServlet {
         {
             resp.getWriter().write("false");
         }
-
     }
 }

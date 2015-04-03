@@ -7,10 +7,8 @@ package SERVLET;
 
 import DAO.VeiculoDAO;
 import POJO.Veiculo;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -35,29 +33,19 @@ public class ServletConsultarPlaca extends HttpServlet {
         
         veiculo = veiculoDao.buscarPlaca(placaVeiculo);
         
-        String modelo = veiculo.getModelo().getModeloNome();
-        String marca = veiculo.getModelo().getMarca().getMarcaNome();
-        String cor = veiculo.getVeiculoCor();
-        int ano = veiculo.getVeiculoAno();
-        String condutor = veiculo.getCondutor().getCondutorNome();
-        String cpf = veiculo.getCondutor().getCondutorCpf();
-        int codigoVeiculo = veiculo.getVeiculoCodigo();
-        
         JsonObject jsonVeiculo = new JsonObject();
-        jsonVeiculo.addProperty("codigoVeiculo", codigoVeiculo);
-        jsonVeiculo.addProperty("modeloVeiculo", modelo);
-        jsonVeiculo.addProperty("marcaVeiculo", marca);
-        jsonVeiculo.addProperty("corVeiculo", cor);
-        jsonVeiculo.addProperty("anoVeiculo", ano);
-        jsonVeiculo.addProperty("condutorVeiculo", condutor);
-        jsonVeiculo.addProperty("condutorCpf", cpf);
+        jsonVeiculo.addProperty("codigoVeiculo", veiculo.getVeiculoCodigo());
+        jsonVeiculo.addProperty("modeloVeiculo", veiculo.getModelo().getModeloNome());
+        jsonVeiculo.addProperty("marcaVeiculo", veiculo.getModelo().getMarca().getMarcaNome());
+        jsonVeiculo.addProperty("corVeiculo", veiculo.getVeiculoCor());
+        jsonVeiculo.addProperty("anoVeiculo", veiculo.getVeiculoAno());
+        jsonVeiculo.addProperty("condutorVeiculo", veiculo.getCondutor().getCondutorNome());
+        jsonVeiculo.addProperty("condutorCpf", veiculo.getCondutor().getCondutorCpf());
         
         List<JsonObject> jsonList = new LinkedList<JsonObject>();
         jsonList.add(jsonVeiculo);
         
-        Gson gson = new Gson();
-        String gsonString = gson.toJson(jsonList);
-        response.getWriter().write(gsonString);
-        
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(jsonList.toString());
     }
 }

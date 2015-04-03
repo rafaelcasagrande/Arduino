@@ -32,7 +32,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Condutor <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                               <li><a href="cadastroCondutor.jsp">Cadastrar</a></li>
-                              <li><a href="#">Consultar</a></li>
+                              <li><a href="listarCondutor.jsp">Consultar</a></li>
                               <li><a href="#">Alterar</a></li>
                               <li><a href="#">Excluir</a></li>
                             </ul>
