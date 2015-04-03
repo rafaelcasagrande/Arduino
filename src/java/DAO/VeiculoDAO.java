@@ -8,6 +8,7 @@ package DAO;
 import POJO.Veiculo;
 import UTIL.HibernateUtil;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -32,6 +33,27 @@ public class VeiculoDAO {
         {
             System.out.println(ex.getMessage());
             return false;
+        }
+    }
+    
+    public Veiculo buscarPlaca (String placa)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Veiculo veiculo = new Veiculo();
+        
+        try
+        {
+            trns = session.beginTransaction();
+            Query query = session.createQuery("From Veiculo Where veiculoPlaca = :veiculoPlaca");
+            query.setParameter("veiculoPlaca", placa);
+            veiculo = (Veiculo)query.list().get(0);
+            return veiculo;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return null;
         }
     }
 }
