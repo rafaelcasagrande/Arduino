@@ -33,9 +33,14 @@ public class ServletConsultarDocumentosCondutor extends HttpServlet {
         CondutorDAO condutorDao = new CondutorDAO();
         condutor = condutorDao.consultarDocumentos(numeroDocumento, tipoDocumento);
 
+        String dataNascimento = "";
+        
+        String[] data = condutor.getCondutorDataNascimento().toString().split("-");
+        dataNascimento = data[2] + "/" + data [1] + "/" + data[0];
+        
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("condutorNome", condutor.getCondutorNome());
-        jsonObject.addProperty("condutorDataNascimento", condutor.getCondutorDataNascimento().toString());
+        jsonObject.addProperty("condutorDataNascimento", dataNascimento);
         jsonObject.addProperty("condutorCodigo", condutor.getCondutorCodigo());
         jsonObject.addProperty("condutorHabilitacao", condutor.getCondutorHabilitacao());
         jsonObject.addProperty("condutorCpf", condutor.getCondutorCpf());

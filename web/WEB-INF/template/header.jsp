@@ -33,8 +33,8 @@
                             <ul class="dropdown-menu" role="menu">
                               <li><a href="cadastroCondutor.jsp">Cadastrar</a></li>
                               <li><a href="listarCondutor.jsp">Consultar</a></li>
-                              <li><a href="#">Alterar</a></li>
-                              <li><a href="#">Excluir</a></li>
+                              <li><a href="listarCondutor.jsp">Alterar</a></li>
+                              <li><a href="listarCondutor.jsp">Excluir</a></li>
                             </ul>
                           </li>
                        </ul> 

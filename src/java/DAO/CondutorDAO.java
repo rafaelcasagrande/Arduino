@@ -79,4 +79,32 @@ public class CondutorDAO {
         }
     }
     
+    public boolean alterarCondutor(Condutor condutor)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("update Condutor set logradouro = :logradouro, condutorHabilitacao = :condutorHabilitacao, condutorCpf = :condutorCpf, condutorDataNascimento = :condutorDataNascimento, condutorNome = :condutorNome, condutorNumeroLogradouro = :condutorNumeroLogradouro Where condutorCodigo = :codigoCondutor");
+            query.setParameter("codigoCondutor", condutor.getCondutorCodigo());
+            query.setParameter("logradouro", condutor.getLogradouro());
+            query.setParameter("condutorHabilitacao", condutor.getCondutorHabilitacao());
+            query.setParameter("condutorCpf", condutor.getCondutorCpf());
+            query.setParameter("condutorDataNascimento", condutor.getCondutorDataNascimento());
+            query.setParameter("condutorNome", condutor.getCondutorNome());
+            query.setParameter("condutorNumeroLogradouro", condutor.getCondutorNumeroLogradouro());
+            query.executeUpdate();
+            session.getTransaction().commit();
+  
+            return true;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
 }

@@ -33,19 +33,26 @@ public class ServletListarCondutor extends HttpServlet {
         JsonObject json;
         List<JsonObject> jsonList = new LinkedList<JsonObject>();
         
+        String dataNascimento = "";
+        
         for(Condutor condutor:condutores)
         {
+            String[] data = condutor.getCondutorDataNascimento().toString().split("-");
+            dataNascimento = data[2] + "/" + data [1] + "/" + data[0];
+            
             json = new JsonObject();
             json.addProperty("codigoCondutor", condutor.getCondutorCodigo());
             json.addProperty("nomeCondutor", condutor.getCondutorNome());
             json.addProperty("cpfCondutor", condutor.getCondutorCpf());
             json.addProperty("habilitacaoCondutor", condutor.getCondutorHabilitacao());
+            json.addProperty("dataNascimentoCondutor", dataNascimento);
             json.addProperty("numeroLogradouroCondutor", condutor.getCondutorNumeroLogradouro());
             json.addProperty("cepCondutor", condutor.getLogradouro().getLogradouroCep());
             json.addProperty("nomeLogradouroCondutor", condutor.getLogradouro().getLogradouroNome());
             json.addProperty("bairroCondutor", condutor.getLogradouro().getBairro().getBairroNome());
             json.addProperty("cidadeCondutor", condutor.getLogradouro().getBairro().getCidade().getCidadeNome());
             json.addProperty("estadoCondutor", condutor.getLogradouro().getBairro().getCidade().getEstado().getEstadoNome());
+            json.addProperty("codigoLogradouro", condutor.getLogradouro().getLogradouroCodigo());
             jsonList.add(json);
         }
         response.setCharacterEncoding("UTF-8");

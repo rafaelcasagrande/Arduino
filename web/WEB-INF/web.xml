@@ -40,6 +40,10 @@
         <servlet-name>ServletListarCondutor</servlet-name>
         <servlet-class>SERVLET.ServletListarCondutor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAlterarCondutor</servlet-name>
+        <servlet-class>SERVLET.ServletAlterarCondutor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>ServletListarCondutor</servlet-name>
         <url-pattern>/ServletListarCondutor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAlterarCondutor</servlet-name>
+        <url-pattern>/ServletAlterarCondutor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
