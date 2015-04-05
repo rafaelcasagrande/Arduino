@@ -1,5 +1,5 @@
 package POJO;
-// Generated 02/04/2015 21:42:12 by Hibernate Tools 4.3.1
+// Generated 05/04/2015 09:40:23 by Hibernate Tools 4.3.1
 
 
 
@@ -11,7 +11,7 @@ public class Sensor  implements java.io.Serializable {
 
      private Integer sensorCodigo;
      private Logradouro logradouro;
-     private String sensorIp;
+     private String sensorMacAddress;
      private String sensorLongitude;
      private String sensorLatitude;
      private String sensorNumeroLogradouro;
@@ -19,9 +19,9 @@ public class Sensor  implements java.io.Serializable {
     public Sensor() {
     }
 
-    public Sensor(Logradouro logradouro, String sensorIp, String sensorLongitude, String sensorLatitude, String sensorNumeroLogradouro) {
+    public Sensor(Logradouro logradouro, String sensorMacAddress, String sensorLongitude, String sensorLatitude, String sensorNumeroLogradouro) {
        this.logradouro = logradouro;
-       this.sensorIp = sensorIp;
+       this.sensorMacAddress = sensorMacAddress;
        this.sensorLongitude = sensorLongitude;
        this.sensorLatitude = sensorLatitude;
        this.sensorNumeroLogradouro = sensorNumeroLogradouro;
@@ -41,12 +41,12 @@ public class Sensor  implements java.io.Serializable {
     public void setLogradouro(Logradouro logradouro) {
         this.logradouro = logradouro;
     }
-    public String getSensorIp() {
-        return this.sensorIp;
+    public String getSensorMacAddress() {
+        return this.sensorMacAddress;
     }
     
-    public void setSensorIp(String sensorIp) {
-        this.sensorIp = sensorIp;
+    public void setSensorMacAddress(String sensorMacAddress) {
+        this.sensorMacAddress = sensorMacAddress;
     }
     public String getSensorLongitude() {
         return this.sensorLongitude;

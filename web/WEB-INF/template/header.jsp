@@ -68,9 +68,9 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sensor <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                               <li><a href="cadastroSensor.jsp">Cadastrar</a></li>
-                              <li><a href="#">Consultar</a></li>
-                              <li><a href="#">Alterar</a></li>
-                              <li><a href="#">Excluir</a></li>
+                              <li><a href="listarSensor.jsp">Consultar</a></li>
+                              <li><a href="listarSensor.jsp">Alterar</a></li>
+                              <li><a href="listarSensor.jsp">Excluir</a></li>
                             </ul>
                           </li>
                        </ul>  

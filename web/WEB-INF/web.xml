@@ -60,6 +60,14 @@
         <servlet-name>ServletAlterarTag</servlet-name>
         <servlet-class>SERVLET.ServletAlterarTag</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletListarSensor</servlet-name>
+        <servlet-class>SERVLET.ServletListarSensor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletAlterarSensor</servlet-name>
+        <servlet-class>SERVLET.ServletAlterarSensor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>ServletAlterarTag</servlet-name>
         <url-pattern>/ServletAlterarTag</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarSensor</servlet-name>
+        <url-pattern>/ServletListarSensor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAlterarSensor</servlet-name>
+        <url-pattern>/ServletAlterarSensor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

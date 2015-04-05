@@ -17,7 +17,7 @@
             <h1> Sensor </h1>   
             <form role="form" class="form-inline">
                 
-                <input style="width: 300px;" class="form-control" placeholder="IP" type="text" id="txtSensorIp" name="txtSensorIp"><br>
+                <input style="width: 300px;" class="form-control" placeholder="Mac Address" type="text" id="txtSensorMacAddress" name="txtSensorMacAddress"><br>
                 <br>
                 <input style="width: 300px;" class="form-control" onblur="consultarCep()" placeholder="CEP" type="text" id="txtSensorCep" name="txtSensorCep"><br>
                 <input style="width: 300px;" class="form-control" placeholder="Numero Logradouro" type="text" id="txtNumeroLogradouro" name="txtNumeroLogradouro"><br>
@@ -90,14 +90,14 @@
             
             function cadastrarSensor()
             {
-               var ipSensor = document.getElementById("txtSensorIp").value;
+               var macAddressSensor = document.getElementById("txtSensorMacAddress").value;
                var numeroLogradouro = document.getElementById("txtNumeroLogradouro").value;
                
                xmlHttpRequest = getXMLHttpRequest();
                xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "cadastrarSensor");
                xmlHttpRequest.open("POST","ServletCadastrarSensor",true);
                xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("ipSensor=" + ipSensor + "&" + "numeroLogradouro=" + numeroLogradouro + "&" + "logradouroCodigo=" + logradouroCodigo);     
+               xmlHttpRequest.send("macAddressSensor=" + macAddressSensor + "&" + "numeroLogradouro=" + numeroLogradouro + "&" + "logradouroCodigo=" + logradouroCodigo);     
             }
             
             function getReadyStateHandler(xmlHttpRequest, tipo) {
@@ -107,11 +107,11 @@
                 if (xmlHttpRequest.readyState == 4) {
                     if (xmlHttpRequest.status == 200) {
     
-                        var respostaServelet = xmlHttpRequest.responseText;
+                        var respostaServlet = xmlHttpRequest.responseText;
                         
                         if(tipo === "consultaCep")
                         {
-                            var arr = JSON.parse(respostaServelet);
+                            var arr = JSON.parse(respostaServlet);
 
                             document.getElementById("txtSensorLogradouro").value = arr[0].logradouroNome;
                             document.getElementById("txtSensorCep").value = arr[0].logradouroCep;
@@ -122,7 +122,7 @@
                         }
                         else
                         {
-                            alert(respostaServelet);
+                            alert(respostaServlet);
                         }
 
                     } else {

@@ -9,6 +9,7 @@ import DAO.SensorDAO;
 import POJO.Logradouro;
 import POJO.Sensor;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,28 +19,29 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rafael
  */
-public class ServletCadastrarSensor extends HttpServlet {
-
+public class ServletAlterarSensor extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String macAddressSensor = request.getParameter("macAddressSensor").toString();
-        String numeroLogradouro = request.getParameter("numeroLogradouro").toString();
+        String sensorCodigo = request.getParameter("sensorCodigo").toString();
+        String sensorMacAddress = request.getParameter("sensorMacAddress").toString();
+        String sensorNumeroLogradouro = request.getParameter("sensorNumeroLogradouro").toString();
         String logradouroCodigo = request.getParameter("logradouroCodigo").toString();
         
         Logradouro logradouro = new Logradouro();
         logradouro.setLogradouroCodigo(Integer.parseInt(logradouroCodigo));
         
         Sensor sensor = new Sensor();
-        sensor.setSensorMacAddress(macAddressSensor);
-        sensor.setSensorNumeroLogradouro(numeroLogradouro);
+        sensor.setSensorCodigo(Integer.parseInt(sensorCodigo));
+        sensor.setSensorMacAddress(sensorMacAddress);
+        sensor.setSensorNumeroLogradouro(sensorNumeroLogradouro);
         sensor.setLogradouro(logradouro);
         
         boolean resultado = false;
         SensorDAO sensorDao = new SensorDAO();
-        resultado = sensorDao.cadastrarSensor(sensor);
+        resultado = sensorDao.alterarSensor(sensor);
         
         if(resultado)
         {
@@ -48,6 +50,6 @@ public class ServletCadastrarSensor extends HttpServlet {
         else
         {
             response.getWriter().write("false");
-        }
+        } 
     }
 }

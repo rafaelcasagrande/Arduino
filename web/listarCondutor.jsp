@@ -16,7 +16,7 @@
             <h1>Condutor</h1>
             <table id="tableCondutores" border="1">
                 <tr>
-                    <th> Codigo </th>
+                    <th> Código </th>
                     <th> Nome </th>
                     <th> CPF </th>
                     <th> Habilitação </th>
