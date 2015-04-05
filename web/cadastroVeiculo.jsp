@@ -78,7 +78,6 @@
                 xmlHttpRequest.open("POST","ServletCadastrarVeiculo",true);
                 xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 xmlHttpRequest.send("placa=" + placa + "&" + "cor=" + cor + "&" + "ano=" + ano + "&" + "modeloCodigo=" + modeloCodigo + "&" + "condutorCodigo=" + condutorCodigo); 
-                
             }
             
             

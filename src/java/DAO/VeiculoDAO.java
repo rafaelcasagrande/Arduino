@@ -7,6 +7,8 @@ package DAO;
 
 import POJO.Veiculo;
 import UTIL.HibernateUtil;
+import java.util.LinkedList;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -54,6 +56,53 @@ public class VeiculoDAO {
         {
             ex.printStackTrace();
             return null;
+        }
+    }
+    
+    public List<Veiculo> listarVeiculo()
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Veiculo> veiculos = new LinkedList<Veiculo>();
+        
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("From Veiculo");
+            veiculos = query.list();
+            return veiculos;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    
+    public boolean alterarVeiculo(Veiculo veiculo)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            trns = session.beginTransaction();
+            Query query = session.createQuery("update Veiculo set veiculoPlaca = :veiculoPlaca, veiculoCor = :veiculoCor, veiculoAno = :veiculoAno, condutor = :condutor, modelo = :modelo Where veiculoCodigo = :veiculoCodigo");
+            query.setParameter("veiculoCodigo", veiculo.getVeiculoCodigo());
+            query.setParameter("veiculoPlaca", veiculo.getVeiculoPlaca());
+            query.setParameter("veiculoCor", veiculo.getVeiculoCor());
+            query.setParameter("veiculoAno", veiculo.getVeiculoAno());
+            query.setParameter("condutor", veiculo.getCondutor());
+            query.setParameter("modelo", veiculo.getModelo());
+            query.executeUpdate();
+            session.getTransaction().commit();
+            
+            return true;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
         }
     }
 }

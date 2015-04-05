@@ -44,9 +44,9 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veículo <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                               <li><a href="cadastroVeiculo.jsp">Cadastrar</a></li>
-                              <li><a href="#">Consultar</a></li>
-                              <li><a href="#">Alterar</a></li>
-                              <li><a href="#">Excluir</a></li>
+                              <li><a href="listarVeiculo.jsp">Consultar</a></li>
+                              <li><a href="listarVeiculo.jsp">Alterar</a></li>
+                              <li><a href="listarVeiculo.jsp">Excluir</a></li>
                             </ul>
                           </li>
                         </ul>  
@@ -56,9 +56,9 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tag <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                               <li><a href="cadastroTag.jsp">Cadastrar</a></li>
-                              <li><a href="#">Consultar</a></li>
-                              <li><a href="#">Alterar</a></li>
-                              <li><a href="#">Excluir</a></li>
+                              <li><a href="listarTag.jsp">Consultar</a></li>
+                              <li><a href="listarTag.jsp">Alterar</a></li>
+                              <li><a href="listarTag.jsp">Excluir</a></li>
                             </ul>
                           </li>
                        </ul> 

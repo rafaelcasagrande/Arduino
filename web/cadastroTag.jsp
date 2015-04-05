@@ -78,11 +78,11 @@
                 if (xmlHttpRequest.readyState == 4) {
                     if (xmlHttpRequest.status == 200) {
     
-                        var respostaServelet = xmlHttpRequest.responseText;
+                        var respostaServlet = xmlHttpRequest.responseText;
                         
                         if(tipo === "consultaPlaca")
                         {
-                            var arr = JSON.parse(respostaServelet);
+                            var arr = JSON.parse(respostaServlet);
                             
                             codigoVeiculo = arr[0].codigoVeiculo;
                             document.getElementById("txtMarcaVeiculo").value = arr[0].marcaVeiculo;
@@ -95,7 +95,7 @@
                         }
                         else
                         {
-                            alert(respostaServelet);
+                            alert(respostaServlet);
                         }
 
                     } else {

@@ -44,6 +44,22 @@
         <servlet-name>ServletAlterarCondutor</servlet-name>
         <servlet-class>SERVLET.ServletAlterarCondutor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletListarVeiculo</servlet-name>
+        <servlet-class>SERVLET.ServletListarVeiculo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletAlterarVeiculo</servlet-name>
+        <servlet-class>SERVLET.ServletAlterarVeiculo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletListarTag</servlet-name>
+        <servlet-class>SERVLET.ServletListarTag</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletAlterarTag</servlet-name>
+        <servlet-class>SERVLET.ServletAlterarTag</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -87,6 +103,22 @@
     <servlet-mapping>
         <servlet-name>ServletAlterarCondutor</servlet-name>
         <url-pattern>/ServletAlterarCondutor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarVeiculo</servlet-name>
+        <url-pattern>/ServletListarVeiculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAlterarVeiculo</servlet-name>
+        <url-pattern>/ServletAlterarVeiculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarTag</servlet-name>
+        <url-pattern>/ServletListarTag</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAlterarTag</servlet-name>
+        <url-pattern>/ServletAlterarTag</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
