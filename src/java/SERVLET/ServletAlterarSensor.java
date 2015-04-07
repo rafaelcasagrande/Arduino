@@ -29,6 +29,8 @@ public class ServletAlterarSensor extends HttpServlet {
         String sensorMacAddress = request.getParameter("sensorMacAddress").toString();
         String sensorNumeroLogradouro = request.getParameter("sensorNumeroLogradouro").toString();
         String logradouroCodigo = request.getParameter("logradouroCodigo").toString();
+        String latitude = request.getParameter("latitude").toString();
+        String longitude = request.getParameter("longitude").toString();
         
         Logradouro logradouro = new Logradouro();
         logradouro.setLogradouroCodigo(Integer.parseInt(logradouroCodigo));
@@ -37,6 +39,8 @@ public class ServletAlterarSensor extends HttpServlet {
         sensor.setSensorCodigo(Integer.parseInt(sensorCodigo));
         sensor.setSensorMacAddress(sensorMacAddress);
         sensor.setSensorNumeroLogradouro(sensorNumeroLogradouro);
+        sensor.setSensorLatitude(latitude);
+        sensor.setSensorLongitude(longitude);
         sensor.setLogradouro(logradouro);
         
         boolean resultado = false;

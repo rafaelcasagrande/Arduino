@@ -1,54 +1,66 @@
-var locator, map, endereco;
-require([
-    "esri/tasks/locator",
-    "dojo/_base/array",
-    "dojo/parser", 
-    "dijit/registry",
-    "dijit/form/Button", 
-    "dijit/form/Textarea",
-    "dijit/layout/BorderContainer", 
-    "dijit/layout/ContentPane", 
-    "dojo/domReady!"
-], function(
-  Locator, arrayUtils, parser, registry
-) {
-  parser.parse();
+      
+            var locator, map, endereco;
+        require([
+              "esri/map", "esri/tasks/locator", 
+              "esri/SpatialReference", "esri/graphic",
+              "esri/symbols/SimpleLineSymbol", "esri/symbols/SimpleMarkerSymbol",
+              "esri/symbols/Font", "esri/symbols/TextSymbol",
+              "esri/geometry/Point", "esri/geometry/Extent",
+              "esri/geometry/webMercatorUtils",
+              "dojo/_base/array", "dojo/_base/Color",
+              "dojo/number", "dojo/parser", "dojo/dom", "dojo/json", "dijit/registry",
 
-  locator = new Locator("http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer");
+              "dijit/form/Button", "dijit/form/Textarea",
+              "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
+        ], function(
+                
+              Map, Locator, 
+              SpatialReference, Graphic,
+              SimpleLineSymbol, SimpleMarkerSymbol, 
+              Font, TextSymbol, 
+              Point, Extent,
+              webMercatorUtils,
+              arrayUtils, Color,
+              number, parser, dom, JSON, registry
+        ) {
+          parser.parse();
 
-  registry.byId("locate").on("click", locate);
+          locator = new Locator("http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer");
 
-  //Draw and zoom to the result when the geocoding is complete                
-  locator.on("address-to-locations-complete", function(evt) {
+          registry.byId("btnLocate").on("click", locate);
 
-    showResults(evt.addresses);
-  });
+          //Draw and zoom to the result when the geocoding is complete                
+          locator.on("address-to-locations-complete", function(evt) {
 
-  function showResults(results) {
-      arrayUtils.forEach(results, function(result) {             
-      var longitude = result.location.x.toFixed(5);
-      var latitude = result.location.y.toFixed(5);
+            showResults(evt.addresses);
+          });
 
-      document.getElementById("txtSensorLatitude").value = latitude;
-      document.getElementById("txtSensorLongitude").value = longitude;
+          function showResults(results) {
+              arrayUtils.forEach(results, function(result) {             
+              var longitude = result.location.x.toFixed(5);
+              var latitude = result.location.y.toFixed(5);
 
-      throw BreakException;                
-    });
-  }
+              document.getElementById("txtSensorLatitude").value = latitude;
+              document.getElementById("txtSensorLongitude").value = longitude;
 
-  //Perform the geocode. This function runs when the "Locate" button is pushed.            
-  function locate() {
-      endereco = (document.getElementById("txtSensorLogradouro").value + ", " + document.getElementById("txtSensorLogradouro").value + ", " + document.getElementById("txtSensorCidade").value + ", " + document.getElementById("txtSensorEstado").value + ", Brasil");
+              throw BreakException;                
+            });
+          }
 
-    var address = {
-       SingleLine: endereco
-    };
-    var options = {
-      address: address,
-      outFields: ["*"]
-    };
-    //optionally return the out fields if you need to calculate the extent of the geocoded point
-    locator.addressToLocations(options);
-  }
-});
+          //Perform the geocode. This function runs when the "Locate" button is pushed.            
+          function locate() {
+              endereco = (document.getElementById("txtSensorLogradouro").value + ", " + document.getElementById("txtNumeroLogradouro").value + ", " + document.getElementById("txtSensorCidade").value + ", " + document.getElementById("txtSensorEstado").value + ", Brasil");
+            var address = {
+               SingleLine: endereco
+            };
+            var options = {
+              address: address,
+              outFields: ["*"]
+            };
+            //optionally return the out fields if you need to calculate the extent of the geocoded point
+            locator.addressToLocations(options);
+          }
+        });
+
+
    

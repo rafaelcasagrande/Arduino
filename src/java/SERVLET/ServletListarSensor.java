@@ -37,6 +37,8 @@ public class ServletListarSensor extends HttpServlet {
         {
             jsonObject = new JsonObject();
             jsonObject.addProperty("sensorCodigo", sensor.getSensorCodigo());
+            jsonObject.addProperty("sensorLatitude", sensor.getSensorLatitude());
+            jsonObject.addProperty("sensorLongitude", sensor.getSensorLongitude());
             jsonObject.addProperty("sensorMacAddress", sensor.getSensorMacAddress());
             jsonObject.addProperty("sensorNumeroLogradouro", sensor.getSensorNumeroLogradouro());
             jsonObject.addProperty("logradouroCep", sensor.getLogradouro().getLogradouroCep());

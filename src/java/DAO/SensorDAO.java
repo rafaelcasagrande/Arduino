@@ -64,10 +64,12 @@ public class SensorDAO {
         try
         {
             session.beginTransaction();
-            Query query = session.createQuery("Update Sensor set sensorMacAddress = :sensorMacAddress, sensorNumeroLogradouro = :sensorNumeroLogradouro, logradouro = :logradouro Where sensorCodigo = :sensorCodigo");
+            Query query = session.createQuery("Update Sensor set sensorMacAddress = :sensorMacAddress, sensorNumeroLogradouro = :sensorNumeroLogradouro, logradouro = :logradouro, sensorLatitude = :latitude, sensorLongitude = :longitude Where sensorCodigo = :sensorCodigo");
             query.setParameter("sensorMacAddress", sensor.getSensorMacAddress());
             query.setParameter("sensorNumeroLogradouro", sensor.getSensorNumeroLogradouro());
             query.setParameter("logradouro", sensor.getLogradouro());
+            query.setParameter("latitude", sensor.getSensorLatitude());
+            query.setParameter("longitude", sensor.getSensorLongitude());
             query.setParameter("sensorCodigo", sensor.getSensorCodigo());
  
             query.executeUpdate();

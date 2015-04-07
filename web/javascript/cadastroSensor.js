@@ -23,12 +23,14 @@ var logradouroCodigo;
             {
                var macAddressSensor = document.getElementById("txtSensorMacAddress").value;
                var numeroLogradouro = document.getElementById("txtNumeroLogradouro").value;
+               var latitude = document.getElementById("txtSensorLatitude").value;
+               var longitude = document.getElementById("txtSensorLongitude").value;
                
                xmlHttpRequest = getXMLHttpRequest();
                xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "cadastrarSensor");
                xmlHttpRequest.open("POST","ServletCadastrarSensor",true);
                xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("macAddressSensor=" + macAddressSensor + "&" + "numeroLogradouro=" + numeroLogradouro + "&" + "logradouroCodigo=" + logradouroCodigo);     
+               xmlHttpRequest.send("macAddressSensor=" + macAddressSensor + "&" + "numeroLogradouro=" + numeroLogradouro + "&" + "logradouroCodigo=" + logradouroCodigo + "&" + "latitude=" + latitude + "&" + "longitude=" + longitude);     
             }
             
             function getReadyStateHandler(xmlHttpRequest, tipo) {

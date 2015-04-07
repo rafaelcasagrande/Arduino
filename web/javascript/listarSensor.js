@@ -27,10 +27,12 @@ window.onload = listarSensores();
             {
                 var sensorNumeroLogradouro = document.getElementById("txtNumeroLogradouro").value;
                 var sensorMacAddress = document.getElementById("txtSensorMacAddress").value;
+                var latitude = document.getElementById("txtSensorLatitude").value;
+                var longitude = document.getElementById("txtSensorLongitude").value;
                 xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "alterarSensor");
                 xmlHttpRequest.open("POST","ServletAlterarSensor",true);
                 xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-                xmlHttpRequest.send("sensorMacAddress=" + sensorMacAddress + "&" + "sensorCodigo=" + sensorCodigo + "&" + "logradouroCodigo=" + logradouroCodigo + "&" + "sensorNumeroLogradouro=" + sensorNumeroLogradouro);    
+                xmlHttpRequest.send("sensorMacAddress=" + sensorMacAddress + "&" + "sensorCodigo=" + sensorCodigo + "&" + "logradouroCodigo=" + logradouroCodigo + "&" + "sensorNumeroLogradouro=" + sensorNumeroLogradouro + "&" + "latitude=" + latitude + "&" + "longitude=" + longitude);    
             }
             
             function getReadyStateHandler(xmlHttpRequest, tipo) {
@@ -62,8 +64,10 @@ window.onload = listarSensores();
                                 var celBairro = row.insertCell(5);
                                 var celCidade = row.insertCell(6);
                                 var celEstado = row.insertCell(7);
-                                var celAlterar = row.insertCell(8);
-                                var celExcluir = row.insertCell(9);
+                                var celLatitude = row.insertCell(8);
+                                var celLongitude = row.insertCell(9);
+                                var celAlterar = row.insertCell(10);
+                                var celExcluir = row.insertCell(11);
 
                                 celCodigo.innerHTML = arrayListSensores[i].sensorCodigo;
                                 celMacAddress.innerHTML = arrayListSensores[i].sensorMacAddress;
@@ -73,6 +77,8 @@ window.onload = listarSensores();
                                 celBairro.innerHTML = arrayListSensores[i].bairroNome;
                                 celCidade.innerHTML = arrayListSensores[i].cidadeNome;
                                 celEstado.innerHTML = arrayListSensores[i].estadoNome;
+                                celLatitude.innerHTML = arrayListSensores[i].sensorLatitude;
+                                celLongitude.innerHTML = arrayListSensores[i].sensorLongitude;
                                 celAlterar.innerHTML = "<button onclick=alterarSensor(" + i + ")> Alterar </button";
                                 celExcluir.innerHTML = "<button> Excluir </button>";
    
@@ -115,4 +121,7 @@ window.onload = listarSensores();
                     document.getElementById("txtSensorBairro").value = arrayListSensores[posicao].bairroNome;
                     document.getElementById("txtSensorCidade").value = arrayListSensores[posicao].cidadeNome;
                     document.getElementById("txtSensorEstado").value = arrayListSensores[posicao].estadoNome;
+                    
+                    document.getElementById("txtSensorLatitude").value = arrayListSensores[posicao].sensorLatitude;
+                    document.getElementById("txtSensorLongitude").value = arrayListSensores[posicao].sensorLongitude;
                 }

@@ -7,6 +7,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
+        
         <div align="center">
             <h1> Sensor </h1> 
             <table id="tableSensor" border="1">
@@ -19,6 +21,8 @@
                     <th> Bairro </th>
                     <th> Cidade </th>
                     <th> Estado</th>
+                    <th> Latitude </th>
+                    <th> Longitude </th>
                     <th> Alterar</th>
                     <th> Excluir</th>
                 </tr>
@@ -35,23 +39,27 @@
                 <input disabled style="width: 300px;" class="form-control" placeholder="Cidade" type="text" id="txtSensorCidade" name="txtSensorCidade"><br> 
                 <input disabled style="width: 300px;" class="form-control" placeholder="Estado" type="text" id="txtSensorEstado" name="txtSensorEstado"><br> 
                 <br>
-                <input style="width: 300px;" class="form-control" placeholder="Latitude" type="text" id="txtSensorLatitude" name="txtSensorLatitude"><br>
-                <input style="width: 300px;" class="form-control" placeholder="Longitude" type="text" id="txtSensorLongitude" name="txtSensorLongitude"><br>
-
+                <button data-dojo-type="dijit/form/Button" name="btnLocate" id="btnLocate" value="Localizar"> </button>    
+                <br>
+                <input disabled style="width: 300px;" class="form-control" placeholder="Latitude" type="text" id="txtSensorLatitude" name="txtSensorLatitude"><br>
+                <input disabled style="width: 300px;" class="form-control" placeholder="Longitude" type="text" id="txtSensorLongitude" name="txtSensorLongitude"><br>
+                <br>
                 <button type="button" onclick="alterarDadosSensor()" class="btn btn-default" name="btnSensorSalvar" id="btnSensorSalvar">
                     Salvar
-                </button>    
-                
+                </button>                    
                 <button type="button" class="btn btn-default" name="btnSensorLimpar" id="btnSensorLimpar">
                     Limpar
-                </button>
-                
+                </button>              
                 <button type="button" class="btn btn-default" name="btnSensorVoltar" id="btnSensorVoltar">
                     Voltar
                 </button>
             </form>
-        </div>
+        </div>    
+        
         <script src="javascript/XMLHTTPRequest.js"> </script>
         <script src="javascript/listarSensor.js"> </script>
+        <script src="http://js.arcgis.com/3.8/"></script>
+        <script src="javascript/locator.js"></script>
+        
     </body>
 </html>

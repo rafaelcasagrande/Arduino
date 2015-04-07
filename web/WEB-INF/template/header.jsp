@@ -74,6 +74,19 @@
                             </ul>
                           </li>
                        </ul>  
+                        
+                        <ul class="nav navbar-nav">
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mapa <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="exibirMapa.jsp">Exibir</a></li>
+                              <li><a href="#">Consultar</a></li>
+                              <li><a href="#">Alterar</a></li>
+                              <li><a href="#">Excluir</a></li>
+                            </ul>
+                          </li>
+                       </ul>  
+                        
                     </div>
                 </div> 
             </nav>           

@@ -28,6 +28,8 @@ public class ServletCadastrarSensor extends HttpServlet {
         String macAddressSensor = request.getParameter("macAddressSensor").toString();
         String numeroLogradouro = request.getParameter("numeroLogradouro").toString();
         String logradouroCodigo = request.getParameter("logradouroCodigo").toString();
+        String latitude = request.getParameter("latitude").toString();
+        String longitude = request.getParameter("longitude").toString();
         
         Logradouro logradouro = new Logradouro();
         logradouro.setLogradouroCodigo(Integer.parseInt(logradouroCodigo));
@@ -35,6 +37,8 @@ public class ServletCadastrarSensor extends HttpServlet {
         Sensor sensor = new Sensor();
         sensor.setSensorMacAddress(macAddressSensor);
         sensor.setSensorNumeroLogradouro(numeroLogradouro);
+        sensor.setSensorLatitude(latitude);
+        sensor.setSensorLongitude(longitude);
         sensor.setLogradouro(logradouro);
         
         boolean resultado = false;
