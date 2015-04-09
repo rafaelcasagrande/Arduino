@@ -1,49 +1,51 @@
-var map;
-var arrayListSensores;
-var points = new Array();
+     window.onload = listarSensores();
+     var points = new Array();
+     var map;
+  
+      require([
+        "esri/map", "esri/dijit/PopupTemplate", "esri/geometry/Point", 
+        "esri/graphic",
+        "dojo/_base/array", "dojo/dom-style", 
+        "dojo/domReady!", "esri/dijit/Popup"
+      ], function(
+        Map, PopupTemplate, Point,
+        Graphic,
+        arrayUtils, domStyle,  Popup
+      ) {
 
-require(["esri/map", "dojo/domReady!", "dojo/dom", "esri/dijit/PopupTemplate", "esri/graphic", "esri/geometry/Point", "dojo/_base/array", "esri/symbols/SimpleMarkerSymbol", "esri/Color", "esri/InfoTemplate"], function(Map, dom, PopupTemplate, Graphic, Point, arrayUtils, SimpleMarkerSymbol, Color, InfoTemplate) {
-  map = new Map("mapDiv",{
-           basemap: "streets",
-           center: [ -45.88719,  -23.17924 ],
-           zoom: 3,
-         });
-  
-   
-  dojo.connect(map, "onLoad", mapLoaded);
-  
-    function mapLoaded()
-    {
-        iniciarMapa();
+        map = new Map("map",{
+          basemap: "streets",
+          center: [ -45.88719,  -23.19924 ],
+          zoom: 13,
+          minZoom: 2
+        });
         
-        function iniciarMapa()
-        {
-            var markerSymbol2 = new SimpleMarkerSymbol();
-            markerSymbol2.setColor(new Color("#00FFFF"));
-  
-            for(var i = 0; i < 3; i++) 
-            {
-                var point = new esri.geometry.Point("-45", "-23");
-                var graphic = new Graphic(point, markerSymbol2);
-                map.centerAt(point);
-                map.graphics.add(graphic);
-             }
+        map.on("load", mapLoaded);
+      
+        function mapLoaded(){
+            var iconPath = "M4.135,16.762c3.078,0,5.972,1.205,8.146,3.391c2.179,2.187,3.377,5.101,3.377,8.202h4.745c0-9.008-7.299-16.335-16.269-16.335V16.762zM4.141,8.354c10.973,0,19.898,8.975,19.898,20.006h4.743c0-13.646-11.054-24.749-24.642-24.749V8.354zM10.701,25.045c0,1.815-1.471,3.287-3.285,3.287s-3.285-1.472-3.285-3.287c0-1.813,1.471-3.285,3.285-3.285S10.701,23.231,10.701,25.045z";
+            var initColor = "#3300FF";
+            arrayUtils.forEach(points, function(point) {
+            var template = new PopupTemplate({title: "Código: " + point.sensorCodigo, description: "MacAddress:" + point.sensorMacAddress + "\n" + "CEP:" + point.logradouroCep});        
+            var graphic = new Graphic(new Point(point.coordenadas), createSymbol(iconPath, initColor));
+            graphic.setInfoTemplate(template);
+            map.graphics.add(graphic);
+          });
         }
-    }
-    
-    function createSymbol(color){
-           var markerSymbol = new esri.symbol.SimpleMarkerSymbol();
-           markerSymbol.setColor(new dojo.Color(color));
-           return markerSymbol;
-         };
-  
-});
-/*
+        function createSymbol(path, color){
+          var markerSymbol = new esri.symbol.SimpleMarkerSymbol();
+          markerSymbol.setPath(path);
+          markerSymbol.setColor(new dojo.Color(color));
+          markerSymbol.setOutline(null);
+          return markerSymbol;
+        }
+      });
+
 function listarSensores()
 {
    xmlHttpRequest = getXMLHttpRequest();
    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "listarSensor");
-   xmlHttpRequest.open("POST","ServletListarSensor",false);
+   xmlHttpRequest.open("POST","ServletListarSensor",true);
    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
    xmlHttpRequest.send(null);  
 }
@@ -60,7 +62,7 @@ function getReadyStateHandler(xmlHttpRequest, tipo) {
                     arrayListSensores = JSON.parse(respostaServlet);
                     for (var i = 0; i < arrayListSensores.length; i++)
                     {
-                        var coordenadas = {
+                        var metadados = {
                             sensorCodigo: arrayListSensores[i].sensorCodigo,
                             sensorMacAddress: arrayListSensores[i].sensorMacAddress,
                             logradouroCep: arrayListSensores[i].logradouroCep,
@@ -69,10 +71,9 @@ function getReadyStateHandler(xmlHttpRequest, tipo) {
                             bairroNome: arrayListSensores[i].bairroNome,
                             cidadeNome: arrayListSensores[i].cidadeNome,
                             estadoNome: arrayListSensores[i].estadoNome,
-                            x: arrayListSensores[i].sensorLatitude,
-                            y: arrayListSensores[i].sensorLongitude};
+                            coordenadas: [arrayListSensores[i].sensorLongitude, arrayListSensores[i].sensorLatitude]};
 
-                        points[i] = coordenadas;
+                        points[i] = metadados;
                     }
                 }
             } else {
@@ -81,4 +82,4 @@ function getReadyStateHandler(xmlHttpRequest, tipo) {
                 }
             };
         }
-        */
+        
