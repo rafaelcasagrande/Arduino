@@ -68,6 +68,18 @@
         <servlet-name>ServletAlterarSensor</servlet-name>
         <servlet-class>SERVLET.ServletAlterarSensor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCadastrarOcorrencia</servlet-name>
+        <servlet-class>SERVLET.ServletCadastrarOcorrencia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletListarOcorrencia</servlet-name>
+        <servlet-class>SERVLET.ServletListarOcorrencia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletAlterarOcorrencia</servlet-name>
+        <servlet-class>SERVLET.ServletAlterarOcorrencia</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -135,6 +147,18 @@
     <servlet-mapping>
         <servlet-name>ServletAlterarSensor</servlet-name>
         <url-pattern>/ServletAlterarSensor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCadastrarOcorrencia</servlet-name>
+        <url-pattern>/ServletCadastrarOcorrencia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarOcorrencia</servlet-name>
+        <url-pattern>/ServletListarOcorrencia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAlterarOcorrencia</servlet-name>
+        <url-pattern>/ServletAlterarOcorrencia</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

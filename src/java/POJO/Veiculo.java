@@ -1,5 +1,5 @@
 package POJO;
-// Generated 05/04/2015 09:40:23 by Hibernate Tools 4.3.1
+// Generated 09/04/2015 21:22:21 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,23 +14,23 @@ public class Veiculo  implements java.io.Serializable {
      private Integer veiculoCodigo;
      private Condutor condutor;
      private Modelo modelo;
-     private String veiculoStatus;
      private String veiculoPlaca;
      private String veiculoCor;
      private Integer veiculoAno;
      private Set tags = new HashSet(0);
+     private Set ocorrencias = new HashSet(0);
 
     public Veiculo() {
     }
 
-    public Veiculo(Condutor condutor, Modelo modelo, String veiculoStatus, String veiculoPlaca, String veiculoCor, Integer veiculoAno, Set tags) {
+    public Veiculo(Condutor condutor, Modelo modelo, String veiculoPlaca, String veiculoCor, Integer veiculoAno, Set tags, Set ocorrencias) {
        this.condutor = condutor;
        this.modelo = modelo;
-       this.veiculoStatus = veiculoStatus;
        this.veiculoPlaca = veiculoPlaca;
        this.veiculoCor = veiculoCor;
        this.veiculoAno = veiculoAno;
        this.tags = tags;
+       this.ocorrencias = ocorrencias;
     }
    
     public Integer getVeiculoCodigo() {
@@ -53,13 +53,6 @@ public class Veiculo  implements java.io.Serializable {
     
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
-    }
-    public String getVeiculoStatus() {
-        return this.veiculoStatus;
-    }
-    
-    public void setVeiculoStatus(String veiculoStatus) {
-        this.veiculoStatus = veiculoStatus;
     }
     public String getVeiculoPlaca() {
         return this.veiculoPlaca;
@@ -88,6 +81,13 @@ public class Veiculo  implements java.io.Serializable {
     
     public void setTags(Set tags) {
         this.tags = tags;
+    }
+    public Set getOcorrencias() {
+        return this.ocorrencias;
+    }
+    
+    public void setOcorrencias(Set ocorrencias) {
+        this.ocorrencias = ocorrencias;
     }
 
 

@@ -8,15 +8,17 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">admin</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="POJO/Condutor.hbm.xml"/>
     <mapping resource="POJO/Estado.hbm.xml"/>
     <mapping resource="POJO/Marca.hbm.xml"/>
-    <mapping resource="POJO/Modelo.hbm.xml"/>
     <mapping resource="POJO/Veiculo.hbm.xml"/>
     <mapping resource="POJO/Tag.hbm.xml"/>
-    <mapping resource="POJO/Logradouro.hbm.xml"/>
     <mapping resource="POJO/Sensor.hbm.xml"/>
-    <mapping resource="POJO/Cidade.hbm.xml"/>
+    <mapping resource="POJO/Ocorrencia.hbm.xml"/>
     <mapping resource="POJO/Bairro.hbm.xml"/>
+    <mapping resource="POJO/Condutor.hbm.xml"/>
+    <mapping resource="POJO/Modelo.hbm.xml"/>
+    <mapping resource="POJO/Registro.hbm.xml"/>
+    <mapping resource="POJO/Logradouro.hbm.xml"/>
+    <mapping resource="POJO/Cidade.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

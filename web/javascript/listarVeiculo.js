@@ -88,9 +88,8 @@ window.onload = listarVeiculos();
                                 var celCondutor = row.insertCell(6);
                                 var celCPF = row.insertCell(7);
                                 var celHabilitacao = row.insertCell(8);
-                                var celStatus = row.insertCell(9);
-                                var celAlterar = row.insertCell(10);
-                                var celExcluir = row.insertCell(11);
+                                var celAlterar = row.insertCell(9);
+                                var celExcluir = row.insertCell(10);
 
                                 celCodigo.innerHTML = arrayListVeiculos[i].veiculoCodigo;
                                 celPlaca.innerHTML = arrayListVeiculos[i].veiculoPlaca;
@@ -101,7 +100,6 @@ window.onload = listarVeiculos();
                                 celCondutor.innerHTML = arrayListVeiculos[i].condutorNome;
                                 celCPF.innerHTML = arrayListVeiculos[i].condutorCpf;
                                 celHabilitacao.innerHTML = arrayListVeiculos[i].condutorHabilitacao;
-                                celStatus.innerHTML = arrayListVeiculos[i].veiculoStatus;
                                 celAlterar.innerHTML = "<button onclick=alterarVeiculo(" + i + ")> Alterar </button>";
                                 celExcluir.innerHTML = "<button onclick=excluirVeiculo()> Excluir </button>";
                             }

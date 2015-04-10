@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05/04/2015 09:40:26 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09/04/2015 21:22:21 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Sensor" table="sensor" catalog="tcc" optimistic-lock="version">
         <id name="sensorCodigo" type="java.lang.Integer">
@@ -23,5 +23,11 @@
         <property name="sensorNumeroLogradouro" type="string">
             <column name="sensor_numero_logradouro" length="10" />
         </property>
+        <set name="registros" table="registro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sensor_codigo" />
+            </key>
+            <one-to-many class="POJO.Registro" />
+        </set>
     </class>
 </hibernate-mapping>

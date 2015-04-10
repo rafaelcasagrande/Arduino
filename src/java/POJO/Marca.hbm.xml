@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05/04/2015 09:40:26 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09/04/2015 21:22:21 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Marca" table="marca" catalog="tcc" optimistic-lock="version">
         <id name="marcaCodigo" type="string">

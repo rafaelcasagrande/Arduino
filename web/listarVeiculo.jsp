@@ -21,7 +21,6 @@
                     <th> Condutor </th>
                     <th> CPF </th>
                     <th> Habilitação </th>
-                    <th> Status </th>
                     <th> Alterar </th>
                     <th> Excluir </th>
                 </tr>

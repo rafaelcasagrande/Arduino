@@ -46,7 +46,6 @@ public class ServletListarVeiculo extends HttpServlet {
             jsonObject.addProperty("veiculoCodigo", veiculo.getVeiculoCodigo());
             jsonObject.addProperty("veiculoCor", veiculo.getVeiculoCor());
             jsonObject.addProperty("veiculoPlaca", veiculo.getVeiculoPlaca());
-            jsonObject.addProperty("veiculoStatus", veiculo.getVeiculoStatus());
             jsonObject.addProperty("condutorNome", veiculo.getCondutor().getCondutorNome());
             jsonObject.addProperty("condutorCodigo", veiculo.getCondutor().getCondutorCodigo());
             jsonObject.addProperty("condutorCpf", veiculo.getCondutor().getCondutorCpf());

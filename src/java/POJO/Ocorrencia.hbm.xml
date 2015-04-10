@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/04/2015 21:22:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.Ocorrencia" table="ocorrencia" catalog="tcc" optimistic-lock="version">
+        <id name="ocorrenciaCodigo" type="java.lang.Integer">
+            <column name="ocorrencia_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="veiculo" class="POJO.Veiculo" fetch="select">
+            <column name="veiculo_codigo" />
+        </many-to-one>
+        <property name="ocorrenciaInicio" type="date">
+            <column name="ocorrencia_inicio" length="10" />
+        </property>
+        <property name="ocorrenciaTermino" type="date">
+            <column name="ocorrencia_termino" length="10" />
+        </property>
+        <property name="ocorrenciaStatus" type="string">
+            <column name="ocorrencia_status" length="10" />
+        </property>
+        <set name="registros" table="registro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ocorrencia_codigo" />
+            </key>
+            <one-to-many class="POJO.Registro" />
+        </set>
+    </class>
+</hibernate-mapping>
