@@ -26,11 +26,13 @@ window.onload = listarOcorrencias();
             
             function alterarDadosOcorrencia()
             {
+                var encerrarOcorrencia = document.getElementById("chkFinalizarOcorrencia").checked;
+
                 var ocorrenciaCodigo = document.getElementById("txtCodigoOcorrencia").value;
                 xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "alterarOcorrencia");
                 xmlHttpRequest.open("POST","ServletAlterarOcorrencia",true);
                 xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-                xmlHttpRequest.send("ocorrenciaCodigo=" + ocorrenciaCodigo + "&" + "veiculoCodigo=" + codigoVeiculo);    
+                xmlHttpRequest.send("ocorrenciaCodigo=" + ocorrenciaCodigo + "&" + "veiculoCodigo=" + codigoVeiculo + "&" + "encerrarOcorrencia=" + encerrarOcorrencia);    
             }
 
             function getReadyStateHandler(xmlHttpRequest, tipo) {

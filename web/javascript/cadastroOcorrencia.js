@@ -21,6 +21,10 @@ var xmlHttpRequest;
                             document.getElementById("txtCondutorCpf").value = arr[0].condutorCpf;
 
                         }
+                        else if(tipo === "registrar")
+                        {
+                            alert(respostaServlet);
+                        }
                         else
                         {
                             alert(respostaServlet);
@@ -54,4 +58,13 @@ var xmlHttpRequest;
             }
             
 
-
+            function registrar()
+            {
+               var macAddress = document.getElementById("txtMacAddress").value; 
+               var tagId = document.getElementById("txtTag").value; 
+               xmlHttpRequest = getXMLHttpRequest();
+               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "registrar");
+               xmlHttpRequest.open("POST","ServletRegistrarDelito",true);
+               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+               xmlHttpRequest.send("tagId=" + tagId  + "&sensorMacAddress=" + macAddress);       
+            }

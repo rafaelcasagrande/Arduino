@@ -25,6 +25,7 @@ public class ServletAlterarOcorrencia extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String encerrarOcorrencia = request.getParameter("encerrarOcorrencia");
         String ocorrenciaCodigo = request.getParameter("ocorrenciaCodigo");
         String veiculoCodigo = request.getParameter("veiculoCodigo");
         
@@ -33,6 +34,16 @@ public class ServletAlterarOcorrencia extends HttpServlet {
         
         Ocorrencia ocorrencia = new Ocorrencia();
         ocorrencia.setOcorrenciaCodigo(Integer.parseInt(ocorrenciaCodigo));
+        
+        if(encerrarOcorrencia.equals("true"))
+        {
+            ocorrencia.setOcorrenciaStatus("false");
+        }
+        else
+        {
+            ocorrencia.setOcorrenciaStatus("true");
+        }
+        
         ocorrencia.setVeiculo(veiculo);
         
         boolean resultado = false;

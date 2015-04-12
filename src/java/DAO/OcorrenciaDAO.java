@@ -68,9 +68,10 @@ public class OcorrenciaDAO {
         try
         {
             session.beginTransaction();
-            Query query = session.createQuery("Update Ocorrencia set veiculo = :veiculo Where ocorrenciaCodigo = :ocorrenciaCodigo");
+            Query query = session.createQuery("Update Ocorrencia set veiculo = :veiculo, ocorrenciaStatus = :ocorrenciaStatus Where ocorrenciaCodigo = :ocorrenciaCodigo");
             query.setParameter("veiculo", ocorrencia.getVeiculo());
             query.setParameter("ocorrenciaCodigo", ocorrencia.getOcorrenciaCodigo());
+            query.setParameter("ocorrenciaStatus", ocorrencia.getOcorrenciaStatus());
             query.executeUpdate();
             session.getTransaction().commit();
             return true;

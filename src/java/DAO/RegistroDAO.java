@@ -11,6 +11,8 @@ import POJO.Sensor;
 import POJO.Tag;
 import UTIL.HibernateUtil;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -42,6 +44,7 @@ public class RegistroDAO {
                 registro.setRegistroMomento(new Date());
                 
                 session.save(registro);
+                session.getTransaction().commit();
                 return true;
             }
             else
@@ -69,7 +72,7 @@ public class RegistroDAO {
             tagLocal = (Tag)queryTag.list().get(0);
             
             ocorrenciaGlobal = new Ocorrencia();
-            Query queryOcorrencia = session.createQuery("From Ocorrencia Where veiculo = :veiculo and ocorrenciaStatus = true");
+            Query queryOcorrencia = session.createQuery("From Ocorrencia Where veiculo = :veiculo and ocorrenciaStatus = 'true'");
             queryOcorrencia.setParameter("veiculo", tagLocal.getVeiculo());
             ocorrenciaGlobal = (Ocorrencia)queryOcorrencia.list().get(0);
             
@@ -80,8 +83,9 @@ public class RegistroDAO {
             else
             {
                 sensorGlobal = new Sensor();
-                Query querySensor = session.createQuery("From Sensor Where sensorMacAddress = :sensorMacAddress");
-                querySensor.setParameter("sensorMacAdress", sensorParametro.getSensorMacAddress());
+
+                Query querySensor = session.createQuery("From Sensor Where sensorMacAddress = :sensorMac");
+                querySensor.setParameter("sensorMac", sensorParametro.getSensorMacAddress());
                 sensorGlobal = (Sensor)querySensor.list().get(0);
 
                 return true;
@@ -93,4 +97,26 @@ public class RegistroDAO {
             return false;
         }
     }
+    
+    public List<Registro> listarRegistros()
+    {
+        List<Registro> registros = new LinkedList<Registro>();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction trns = null;
+        
+        try
+        {
+            trns = session.beginTransaction();
+            Query query = session.createQuery("From Registro Where ocorrencia.ocorrenciaStatus = 'true'");
+            registros = query.list();
+            return registros;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return null;
+        } 
+    }
+    
 }

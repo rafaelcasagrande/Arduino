@@ -81,8 +81,12 @@
         <servlet-class>SERVLET.ServletAlterarOcorrencia</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletRegistrar</servlet-name>
+        <servlet-name>ServletRegistrarDelito</servlet-name>
         <servlet-class>SERVLET.ServletRegistrarDelito</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletListarDelito</servlet-name>
+        <servlet-class>SERVLET.ServletListarDelito</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
@@ -165,8 +169,12 @@
         <url-pattern>/ServletAlterarOcorrencia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletRegistrar</servlet-name>
-        <url-pattern>/ServletRegistrar</url-pattern>
+        <servlet-name>ServletRegistrarDelito</servlet-name>
+        <url-pattern>/ServletRegistrarDelito</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarDelito</servlet-name>
+        <url-pattern>/ServletListarDelito</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

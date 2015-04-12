@@ -28,6 +28,8 @@
                 <input disabled style="width: 300px;" class="form-control" placeholder="Código Ocorrência" type="text" id="txtCodigoOcorrencia" name="txtCodigoOcorrencia"><br>
                 <input style="width: 300px;" class="form-control" placeholder="Emplacamento do Veículo" type="text" onblur="buscarEmplacamento()" id="txtPlacaVeiculo" name="txtPlacaVeiculo"><br>
                 <br>
+                <input type="checkbox" name="chkFinalizarOcorrencia" id="chkFinalizarOcorrencia" value="Finalizar"> Encerrar Ocorrência<br>
+                <br>
                 <input disabled style="width: 300px;" class="form-control" placeholder="Marca" type="text" id="txtMarcaVeiculo" name="txtMarcaVeiculo"><br>
                 <input disabled style="width: 300px;" class="form-control" placeholder="Modelo" type="text" id="txtModeloVeiculo" name="txtModeloVeiculo"><br>
                 <input disabled style="width: 300px;" class="form-control" placeholder="Cor" type="text" id="txtCorVeiculo" name="txtCorVeiculo"><br>

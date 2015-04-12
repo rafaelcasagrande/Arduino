@@ -93,8 +93,8 @@
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mapa <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="exibirMapa.jsp">Exibir Sensores</a></li>
-                              <li><a href="#">Exibir Registros de Ocorrências</a></li>
+                              <li><a href="exibirMapaSensores.jsp">Exibir Sensores</a></li>
+                              <li><a href="exibirMapaDelitos.jsp">Exibir Registros de Ocorrências</a></li>
                             </ul>
                           </li>
                        </ul>  

@@ -8,7 +8,7 @@
     <script src="http://js.arcgis.com/3.13/"></script>
     
     <script src="javascript/XMLHTTPRequest.js"></script>
-    <script src="javascript/mapa.js"></script>  
+    <script src="javascript/mapaSensores.js"></script>  
     <link href="style/style.css" rel="stylesheet"/>
     
     <div id="map"></div>
