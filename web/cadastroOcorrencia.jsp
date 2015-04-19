@@ -29,15 +29,6 @@
                 <button type="button" class="btn btn-default" name="btnOcorrenciaVoltar" id="btnOcorrenciaVoltar">
                     Voltar
                 </button>        
-                <br>
-                <br>
-                <input style="width: 300px;" class="form-control" placeholder="Mac Address" type="text" id="txtMacAddress" name="txtMacAddress"><br>
-                <input style="width: 300px;" class="form-control" placeholder="Tag Id" type="text" id="txtTag" name="txtTag"><br>
-                
-                <button type="button" onclick="registrar()" class="btn btn-default" name="btnRegistrar" id="btnRegistrar">
-                    Salvar
-                </button> 
-                
             </form>
         </div>
         <script src="javascript/XMLHTTPRequest.js"> </script>

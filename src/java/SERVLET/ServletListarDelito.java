@@ -38,6 +38,10 @@ public class ServletListarDelito extends HttpServlet {
         
         for(Registro registro:registros)
         {
+            String[] momento = registro.getRegistroMomento().toString().split(" ");
+            String[] date = momento[0].split("-");
+            String dateTime = date[2] + "-" + date[1] + "-" + date[0] + " " + momento[1];
+            
             jsonObject = new JsonObject();
             jsonObject.addProperty("sensorLatitude", registro.getSensor().getSensorLatitude());
             jsonObject.addProperty("sensorLongitude", registro.getSensor().getSensorLongitude());
@@ -48,7 +52,7 @@ public class ServletListarDelito extends HttpServlet {
             jsonObject.addProperty("veiculoPlaca", registro.getOcorrencia().getVeiculo().getVeiculoPlaca());
             jsonObject.addProperty("modeloNome", registro.getOcorrencia().getVeiculo().getModelo().getModeloNome());
             jsonObject.addProperty("marcaNome", registro.getOcorrencia().getVeiculo().getModelo().getMarca().getMarcaNome());
-            jsonObject.addProperty("registroMomento", registro.getRegistroMomento().toString());
+            jsonObject.addProperty("registroMomento", dateTime);
             jsonObject.addProperty("logradouroCep", registro.getSensor().getLogradouro().getLogradouroCep());
             jsonObject.addProperty("logradouroNome", registro.getSensor().getLogradouro().getLogradouroNome());
             jsonObject.addProperty("bairroNome", registro.getSensor().getLogradouro().getBairro().getBairroNome());
