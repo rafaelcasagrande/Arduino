@@ -39,12 +39,18 @@ public class ServletConsultarDocumentosCondutor extends HttpServlet {
         dataNascimento = data[2] + "/" + data [1] + "/" + data[0];
         
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("condutorNome", condutor.getCondutorNome());
+        jsonObject.addProperty("nomeCondutor", condutor.getCondutorNome());
         jsonObject.addProperty("condutorDataNascimento", dataNascimento);
-        jsonObject.addProperty("condutorCodigo", condutor.getCondutorCodigo());
-        jsonObject.addProperty("condutorHabilitacao", condutor.getCondutorHabilitacao());
-        jsonObject.addProperty("condutorCpf", condutor.getCondutorCpf());
- 
+        jsonObject.addProperty("codigoCondutor", condutor.getCondutorCodigo());
+        jsonObject.addProperty("habilitacaoCondutor", condutor.getCondutorHabilitacao());
+        jsonObject.addProperty("cpfCondutor", condutor.getCondutorCpf());
+        jsonObject.addProperty("cepCondutor", condutor.getLogradouro().getLogradouroCep());
+        jsonObject.addProperty("nomeLogradouroCondutor", condutor.getLogradouro().getLogradouroNome());
+        jsonObject.addProperty("numeroLogradouroCondutor", condutor.getCondutorNumeroLogradouro());
+        jsonObject.addProperty("bairroCondutor", condutor.getLogradouro().getBairro().getBairroNome());
+        jsonObject.addProperty("cidadeCondutor", condutor.getLogradouro().getBairro().getCidade().getCidadeNome());
+        jsonObject.addProperty("estadoCondutor", condutor.getLogradouro().getBairro().getCidade().getEstado().getEstadoNome());
+
         List<JsonObject> listJson = new LinkedList<JsonObject>();
         listJson.add(jsonObject);
         

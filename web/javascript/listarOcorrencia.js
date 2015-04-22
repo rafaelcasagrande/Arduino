@@ -13,6 +13,23 @@ window.onload = listarOcorrencias();
                xmlHttpRequest.send(null);  
             }
             
+            function buscarOcorrencia()
+            {
+                var codigoOcorrencia = document.getElementById("txtOcorrenciaCodigo").value;
+                xmlHttpRequest = getXMLHttpRequest();
+                xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarOcorrencia");
+                xmlHttpRequest.open("POST","ServletConsultarOcorrencia",true);
+                xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                xmlHttpRequest.send("codigoOcorrencia=" + codigoOcorrencia);  
+                
+            }
+            
+            function atualizar()
+            {
+                listarOcorrencias();
+                document.getElementById("txtOcorrenciaCodigo").value = "";
+            }
+            
             function buscarEmplacamento()
             {
                var placaVeiculo = document.getElementById("txtPlacaVeiculo").value; 
@@ -45,12 +62,20 @@ window.onload = listarOcorrencias();
                         var respostaServlet = xmlHttpRequest.responseText;
                         
                         
-                        if(tipo === "listarOcorrencia")
+                        if((tipo === "listarOcorrencia") || (tipo === "buscarOcorrencia"))
                         {
                             arrayListOcorrencia = JSON.parse(respostaServlet);
                             
                             var table = document.getElementById("tableOcorrencia");
                             var i;
+
+                            if(tipo === "buscarOcorrencia")
+                            {
+                                while(table.rows.length > 1) 
+                                {
+                                    table.deleteRow(1);
+                                }
+                            }
 
                             for (i = 0; i < arrayListOcorrencia.length; i++)
                             {

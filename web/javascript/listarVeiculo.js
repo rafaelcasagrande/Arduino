@@ -15,6 +15,24 @@ window.onload = listarVeiculos();
                xmlHttpRequest.send(null);  
             }
             
+            function buscarVeiculo()
+            {
+               var placaVeiculo = document.getElementById("txtPlacaVeiculoBuscar").value; 
+                
+               xmlHttpRequest = getXMLHttpRequest();
+               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaPlaca");
+               xmlHttpRequest.open("POST","ServletConsultarPlaca",true);
+               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+               xmlHttpRequest.send("placaVeiculo=" + placaVeiculo); 
+            }
+            
+            function atualizar()
+            {
+                listarVeiculos();
+                listarMarcas();
+                document.getElementById("txtPlacaVeiculoBuscar").value = "";
+            }
+            
             function listarMarcas()
             {
                xmlHttpRequest = getXMLHttpRequest();
@@ -68,12 +86,20 @@ window.onload = listarVeiculos();
                         var respostaServlet = xmlHttpRequest.responseText;
                         
                         
-                        if(tipo === "listarVeiculo")
+                        if((tipo === "listarVeiculo") || (tipo === "consultaPlaca"))
                         {
                             arrayListVeiculos = JSON.parse(respostaServlet);
                             
                             var table = document.getElementById("tableVeiculos");
                             var i;
+
+                            if(tipo === "consultaPlaca")
+                            {
+                                while(table.rows.length > 1) 
+                                {
+                                    table.deleteRow(1);
+                                }
+                            }
 
                             for (i = 0; i < arrayListVeiculos.length; i++)
                             {
@@ -102,7 +128,7 @@ window.onload = listarVeiculos();
                                 celHabilitacao.innerHTML = arrayListVeiculos[i].condutorHabilitacao;
                                 celAlterar.innerHTML = "<button onclick=alterarVeiculo(" + i + ")> Alterar </button>";
                                 celExcluir.innerHTML = "<button onclick=excluirVeiculo()> Excluir </button>";
-                            }
+                         }
                         }
                         else if(tipo === "listarMarca")
                         {
@@ -157,17 +183,17 @@ window.onload = listarVeiculos();
                         {
                             var arr = JSON.parse(respostaServlet);
                             
-                            document.getElementById("txtNomeCondutor").value = arr[0].condutorNome;
+                            document.getElementById("txtNomeCondutor").value = arr[0].nomeCondutor;
                             document.getElementById("txtDataNascimentoCondutor").value = arr[0].condutorDataNascimento;
-                            condutorCodigo = arr[0].condutorCodigo;
+                            condutorCodigo = arr[0].codigoCondutor;
                             
                             if(document.getElementById("cbxDocumento").value === 'cpf')
                             {
-                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].condutorHabilitacao;
+                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].habilitacaoCondutor;
                             }
                             else
                             {
-                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].condutorCpf;
+                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].cpfCondutor;
                             }
                         }
                         else if(tipo === 'alterarVeiculo')

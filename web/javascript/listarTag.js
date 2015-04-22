@@ -13,6 +13,21 @@ window.onload = listarTags();
                xmlHttpRequest.send(null);  
             }
             
+            function atualizar()
+            {
+                listarTags();
+                document.getElementById("txtTagIdBuscar").value = "";
+            }
+            
+            function buscarTag()
+            {
+                var tagId = document.getElementById("txtTagIdBuscar").value;
+                xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarTag");
+                xmlHttpRequest.open("POST","ServletConsultarTag",true);
+                xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                xmlHttpRequest.send("tagId=" + tagId);    
+            }
+            
             function buscarEmplacamento()
             {
                var placaVeiculo = document.getElementById("txtPlacaVeiculo").value; 
@@ -43,12 +58,20 @@ window.onload = listarTags();
                         var respostaServlet = xmlHttpRequest.responseText;
                         
                         
-                        if(tipo === "listarTag")
+                        if((tipo === "listarTag") || (tipo === "buscarTag"))
                         {
                             arrayListTags = JSON.parse(respostaServlet);
                             
                             var table = document.getElementById("tableTag");
                             var i;
+
+                            if(tipo === "buscarTag")
+                            {
+                                while(table.rows.length > 1) 
+                                {
+                                    table.deleteRow(1);
+                                }
+                            }
 
                             for (i = 0; i < arrayListTags.length; i++)
                             {
@@ -86,13 +109,12 @@ window.onload = listarTags();
                             var arr = JSON.parse(respostaServlet);
                             
                             codigoVeiculo = arr[0].codigoVeiculo;
-                            document.getElementById("txtMarcaVeiculo").value = arr[0].marcaVeiculo;
-                            document.getElementById("txtModeloVeiculo").value = arr[0].modeloVeiculo;
-                            document.getElementById("txtCorVeiculo").value = arr[0].corVeiculo;
+                            document.getElementById("txtMarcaVeiculo").value = arr[0].marcaNome;
+                            document.getElementById("txtModeloVeiculo").value = arr[0].modeloNome;
+                            document.getElementById("txtCorVeiculo").value = arr[0].veiculoCor;
                             document.getElementById("txtAnoVeiculo").value = arr[0].anoVeiculo;
-                            document.getElementById("txtCondutorResponsavel").value = arr[0].condutorVeiculo;
+                            document.getElementById("txtCondutorResponsavel").value = arr[0].condutorNome;
                             document.getElementById("txtCondutorCpf").value = arr[0].condutorCpf;
-
                         }
                         else if(tipo === "alterarTag")
                         {

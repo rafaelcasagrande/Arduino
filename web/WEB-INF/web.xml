@@ -88,6 +88,18 @@
         <servlet-name>ServletListarDelito</servlet-name>
         <servlet-class>SERVLET.ServletListarDelito</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletConsultarTag</servlet-name>
+        <servlet-class>SERVLET.ServletConsultarTag</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletConsultarSensor</servlet-name>
+        <servlet-class>SERVLET.ServletConsultarSensor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletConsultarOcorrencia</servlet-name>
+        <servlet-class>SERVLET.ServletConsultarOcorrencia</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -176,6 +188,18 @@
         <servlet-name>ServletListarDelito</servlet-name>
         <url-pattern>/ServletListarDelito</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarTag</servlet-name>
+        <url-pattern>/ServletConsultarTag</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarSensor</servlet-name>
+        <url-pattern>/ServletConsultarSensor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarOcorrencia</servlet-name>
+        <url-pattern>/ServletConsultarOcorrencia</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -192,9 +216,9 @@
         <filter-name>sitemesh</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-   <listener>
-	<listener-class>
+    <listener>
+        <listener-class>
              LISTENER.ListenerClass 
         </listener-class>
-   </listener>
+    </listener>
 </web-app>

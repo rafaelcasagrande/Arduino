@@ -9,8 +9,16 @@
     <body>
         
         
-        <div align="center">
+        <div align="center" class="form-inline">
             <h1> Sensor </h1> 
+
+            <input style="width: 300px;" class="form-control" placeholder="Mac Address" type="text" onblur="buscarSensor()" id="txtSensorMacAddressBuscar" name="txtSensorMacAddressBuscar">            
+            <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
+                Atualizar
+            </button>
+            <br>
+            <br>
+
             <table id="tableSensor" border="1">
                 <tr>
                     <th> Código </th>
@@ -28,7 +36,7 @@
                 </tr>
             </table>
             <br>
-            <form role="form" class="form-inline">
+            <form role="form" >
                 
                 <input style="width: 300px;" class="form-control" placeholder="Mac Address" type="text" id="txtSensorMacAddress" name="txtSensorMacAddress"><br>
                 <br>

@@ -12,6 +12,22 @@ window.onload = listarSensores();
                xmlHttpRequest.send(null);  
             }
             
+            function buscarSensor()
+            {
+               var macAddress = document.getElementById("txtSensorMacAddressBuscar").value;
+               xmlHttpRequest = getXMLHttpRequest();
+               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarSensor");
+               xmlHttpRequest.open("POST","ServletConsultarSensor",true);
+               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+               xmlHttpRequest.send("macAddress=" + macAddress);  
+            }
+            
+            function atualizar()
+            {
+                listarSensores();
+                document.getElementById("txtSensorMacAddressBuscar").value = "";
+            }
+            
             function consultarCep()
             {
 
@@ -45,12 +61,20 @@ window.onload = listarSensores();
                         var respostaServlet = xmlHttpRequest.responseText;
                         
                         
-                        if(tipo === "listarSensor")
+                        if((tipo === "listarSensor") || (tipo === "buscarSensor"))
                         {
                             arrayListSensores = JSON.parse(respostaServlet);
                             
                             var table = document.getElementById("tableSensor");
                             var i;
+
+                            if(tipo === "buscarSensor")
+                            {
+                                while(table.rows.length > 1) 
+                                {
+                                    table.deleteRow(1);
+                                }
+                            }
 
                             for (i = 0; i < arrayListSensores.length; i++)
                             {

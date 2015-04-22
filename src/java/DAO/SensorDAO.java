@@ -82,4 +82,24 @@ public class SensorDAO {
             return false;
         }
     }
+    
+    public Sensor consultarSensor(String macAddress)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Sensor sensor = new Sensor();
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("From Sensor Where sensorMacAddress = :sensorMacAddress");
+            query.setParameter("sensorMacAddress", macAddress);
+            sensor = (Sensor)query.list().get(0);
+            return sensor;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
 }

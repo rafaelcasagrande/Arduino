@@ -34,14 +34,19 @@ public class ServletConsultarPlaca extends HttpServlet {
         veiculo = veiculoDao.buscarPlaca(placaVeiculo);
         
         JsonObject jsonVeiculo = new JsonObject();
-        jsonVeiculo.addProperty("codigoVeiculo", veiculo.getVeiculoCodigo());
-        jsonVeiculo.addProperty("modeloVeiculo", veiculo.getModelo().getModeloNome());
-        jsonVeiculo.addProperty("marcaVeiculo", veiculo.getModelo().getMarca().getMarcaNome());
-        jsonVeiculo.addProperty("corVeiculo", veiculo.getVeiculoCor());
+        jsonVeiculo.addProperty("veiculoCodigo", veiculo.getVeiculoCodigo());
+        jsonVeiculo.addProperty("modeloNome", veiculo.getModelo().getModeloNome());
+        jsonVeiculo.addProperty("marcaNome", veiculo.getModelo().getMarca().getMarcaNome());
+        jsonVeiculo.addProperty("veiculoCor", veiculo.getVeiculoCor());
         jsonVeiculo.addProperty("anoVeiculo", veiculo.getVeiculoAno());
-        jsonVeiculo.addProperty("condutorVeiculo", veiculo.getCondutor().getCondutorNome());
+        jsonVeiculo.addProperty("condutorNome", veiculo.getCondutor().getCondutorNome());
         jsonVeiculo.addProperty("condutorCpf", veiculo.getCondutor().getCondutorCpf());
-        
+        jsonVeiculo.addProperty("veiculoPlaca", veiculo.getVeiculoPlaca());
+        jsonVeiculo.addProperty("veiculoAno", veiculo.getVeiculoAno());
+        jsonVeiculo.addProperty("condutorHabilitacao", veiculo.getCondutor().getCondutorHabilitacao());
+        jsonVeiculo.addProperty("marcaCodigo", veiculo.getModelo().getMarca().getMarcaCodigo());
+        jsonVeiculo.addProperty("modeloCodigo", veiculo.getModelo().getModeloCodigo());
+
         List<JsonObject> jsonList = new LinkedList<JsonObject>();
         jsonList.add(jsonVeiculo);
         

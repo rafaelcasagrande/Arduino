@@ -7,8 +7,22 @@
         <title>Condutor</title>
     </head>
     <body>
-        <div align="center">
+
+        <div align="center" class="form-inline">
             <h1>Condutor</h1>
+            
+                   
+            <br>
+            <select id="cbxDocumento" >
+                <option value="cpf" > CPF </option>
+                <option value="habilitacao" > Habilitação </option>
+            </select>
+            <input style="width: 300px;" class="form-control" placeholder="Condutor" type="text" onblur="buscarCondutor()" id="txtDocumentoCondutor" name="txtCondutor">            
+            <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
+                Atualizar
+            </button>
+            <br>
+            <br>
             <table id="tableCondutores" border="1">
                 <tr>
                     <th> Código </th>
@@ -28,7 +42,7 @@
             
             <br>
             
-            <form role="form" class="form-inline">
+            <form role="form">      
                 <input style="width: 300px;" class="form-control" placeholder="Nome" type="text" id="txtCondutorNome" name="txtCondutorNome"><br>
                 <input style="width: 300px;" class="form-control" placeholder="CPF" type="text" id="txtCondutorCpf" name="txtCondutorCpf"><br> 
                 <input style="width: 300px;" class="form-control" placeholder="Habilitação" type="text" id="txtCondutorHabilitacao" name="txtCondutorHabilitacao"><br> 

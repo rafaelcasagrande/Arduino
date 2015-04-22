@@ -6,10 +6,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div align="center">  
+        <div align="center" class="form-inline">  
         
             <h1>Veículo</h1>
 
+            <input style="width: 300px;" class="form-control" placeholder="Placa" type="text" onblur="buscarVeiculo()" id="txtPlacaVeiculoBuscar" name="txtPlacaVeiculoBuscar">            
+            <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
+                Atualizar
+            </button>
+            <br>
+            <br>
+            
             <table id="tableVeiculos" border="1">
                 <tr>
                     <th> Código </th>
@@ -28,7 +35,7 @@
 
             <br>
             
-            <form role="form" class="form-inline">
+            <form role="form">
                 
                 <input style="width: 300px;" class="form-control" placeholder="Placa" type="text" id="txtVeiculoPlaca" name="txtVeiculoPlaca"><br>
                 <input style="width: 300px;" class="form-control" placeholder="Cor" type="text" id="txtVeiculoCor" name="txtVeiculoCor"><br> 

@@ -80,4 +80,24 @@ public class TagDao {
         }
     }
     
+    public Tag consultarTag(String tagId)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Tag tag = new Tag();
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("From Tag Where tagId = :tagId");
+            query.setParameter("tagId", tagId);
+            tag = (Tag)query.list().get(0);
+            return tag;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    
 }

@@ -6,8 +6,16 @@
         <title>Tag</title>
     </head>
     <body>
-        <div align="center">
+        <div align="center" class="form-inline">
             <h1>Tag</h1>
+            
+            <input style="width: 300px;" class="form-control" placeholder="Tag ID" type="text" onblur="buscarTag()" id="txtTagIdBuscar" name="txtTagIdBuscar">            
+            <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
+                Atualizar
+            </button>
+            <br>
+            <br>
+            
             <table id="tableTag" border="1" >
                 <tr>
                     <th> Código </th>
@@ -25,7 +33,7 @@
                 </tr>
             </table>
             <br>
-            <form role="form" class="form-inline">
+            <form role="form">
                 <input style="width: 300px;" class="form-control" placeholder="ID" type="text" id="txtTagId" name="txtTagId"><br>
                 <input style="width: 300px;" class="form-control" placeholder="Emplacamento do Veículo" type="text" onblur="buscarEmplacamento()" id="txtPlacaVeiculo" name="txtPlacaVeiculo"><br>
                 <br>

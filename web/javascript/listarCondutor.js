@@ -1,4 +1,4 @@
-window.onload = listarCondutores();
+            window.onload = listarCondutores();
             
             var arrayListCondutores;
             var logradouroCodigo;
@@ -11,6 +11,23 @@ window.onload = listarCondutores();
                xmlHttpRequest.open("POST","ServletListarCondutor",true);
                xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
                xmlHttpRequest.send(null);  
+            }
+            
+            function atualizar()
+            {
+                listarCondutores();
+                document.getElementById("txtDocumentoCondutor").value = "";
+            }
+            
+            function buscarCondutor()
+            {
+               xmlHttpRequest = getXMLHttpRequest();
+               var numeroDocumento = document.getElementById("txtDocumentoCondutor").value;
+               var tipoDocumento = document.getElementById("cbxDocumento").value;
+               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarCondutor");
+               xmlHttpRequest.open("POST","ServletConsultarDocumentosCondutor",true);
+               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+               xmlHttpRequest.send("numeroDocumento=" + numeroDocumento + "&" + "tipoDocumento=" + tipoDocumento);  
             }
             
             function alterarDadosCondutor()
@@ -45,14 +62,21 @@ window.onload = listarCondutores();
                     if (xmlHttpRequest.status == 200) {
     
                         var respostaServlet = xmlHttpRequest.responseText;
-                        
-                        
-                        if(tipo === "listarCondutor")
+
+                        if((tipo === "listarCondutor") || (tipo === "buscarCondutor"))
                         {
                             arrayListCondutores = JSON.parse(respostaServlet);
                             
                             var table = document.getElementById("tableCondutores");
                             var i;
+
+                            if(tipo === "buscarCondutor")
+                            {
+                                while(table.rows.length > 1) 
+                                {
+                                    table.deleteRow(1);
+                                }
+                            }
 
                             for (i = 0; i < arrayListCondutores.length; i++)
                             {
@@ -82,8 +106,7 @@ window.onload = listarCondutores();
                                 celCidade.innerHTML = arrayListCondutores[i].cidadeCondutor;
                                 celEstado.innerHTML = arrayListCondutores[i].estadoCondutor;
                                 celAlterar.innerHTML = "<button onclick=alterarCondutor(" + i + ")> Alterar </button>";
-                                celExcluir.innerHTML = "<button onclick='excluirCondutor()'>Excluir</button>";
-                                
+                                celExcluir.innerHTML = "<button onclick='excluirCondutor()'>Excluir</button>"; 
                             }
                         }
                         else if(tipo === "consultaCep")

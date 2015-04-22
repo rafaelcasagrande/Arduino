@@ -6,8 +6,16 @@
         <title>Ocorrência</title>
     </head>
     <body>
-        <div align="center">
+        <div align="center" class="form-inline">
             <h1>Ocorrência</h1>
+
+            <input style="width: 300px;" class="form-control" placeholder="Código Ocorrência" type="text" onblur="buscarOcorrencia()" id="txtOcorrenciaCodigo" name="txtOcorrenciaCodigo">            
+            <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
+                Atualizar
+            </button>
+            <br>
+            <br>
+
             <table id="tableOcorrencia" border="1" >
                 <tr>
                     <th> Código </th>
@@ -24,7 +32,7 @@
                 </tr>
             </table>
             <br>
-            <form role="form" class="form-inline">
+            <form role="form">
                 <input disabled style="width: 300px;" class="form-control" placeholder="Código Ocorrência" type="text" id="txtCodigoOcorrencia" name="txtCodigoOcorrencia"><br>
                 <input style="width: 300px;" class="form-control" placeholder="Emplacamento do Veículo" type="text" onblur="buscarEmplacamento()" id="txtPlacaVeiculo" name="txtPlacaVeiculo"><br>
                 <br>

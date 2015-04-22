@@ -84,4 +84,26 @@ public class OcorrenciaDAO {
     }
     
     
+    public Ocorrencia consultarOcorrencia(int codigoOcorrencia)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        Ocorrencia ocorrencia = new Ocorrencia();
+        
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("From Ocorrencia Where ocorrenciaCodigo = :ocorrenciaCodigo");
+            query.setParameter("ocorrenciaCodigo", codigoOcorrencia);
+            
+            ocorrencia = (Ocorrencia)query.list().get(0);
+            return ocorrencia;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
 }
