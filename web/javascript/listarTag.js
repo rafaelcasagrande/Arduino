@@ -100,8 +100,8 @@ window.onload = listarTags();
                                 celCondutor.innerHTML = arrayListTags[i].condutorNome;
                                 celCPF.innerHTML = arrayListTags[i].condutorCpf;
                                 celHabilitacao.innerHTML = arrayListTags[i].condutorHabilitacao; 
-                                celAlterar.innerHTML = "<button onclick=alterarTag(" + i + ") >Alterar</button>";
-                                celExcluir.innerHTML = "<button>Excluir</button>";
+                                celAlterar.innerHTML = "<button onclick=alterarTag(" + i + ") > Alterar </button>";
+                                celExcluir.innerHTML = "<button onclick=excluirTag(" + i + ") > Excluir </button>";
                             }
                         }
                         else if(tipo === "consultaPlaca")
@@ -117,6 +117,11 @@ window.onload = listarTags();
                             document.getElementById("txtCondutorCpf").value = arr[0].condutorCpf;
                         }
                         else if(tipo === "alterarTag")
+                        {
+                            alert(respostaServlet);
+                            location.reload();
+                        }
+                        else if(tipo === "excluirTag")
                         {
                             alert(respostaServlet);
                             location.reload();
@@ -141,5 +146,15 @@ window.onload = listarTags();
                     document.getElementById("txtAnoVeiculo").value = arrayListTags[posicao].veiculoAno;
                     document.getElementById("txtCondutorResponsavel").value = arrayListTags[posicao].condutorNome;
                     document.getElementById("txtCondutorCpf").value = arrayListTags[posicao].condutorCpf;
+                }
+                
+                function excluirTag(posicao)
+                {
+                    codigoTag = arrayListTags[posicao].tagCodigo;
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirTag");
+                    xmlHttpRequest.open("POST","ServletExcluirTag",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("codigoTag=" + codigoTag);  
+                    
                 }
 

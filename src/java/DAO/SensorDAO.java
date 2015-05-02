@@ -102,4 +102,27 @@ public class SensorDAO {
             return null;
         }
     }
+    
+    public boolean excluirSensor(Sensor sensor)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+  
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("From Sensor Where sensorCodigo = :sensorCodigo");
+            query.setParameter("sensorCodigo", sensor.getSensorCodigo());
+            Sensor sen = (Sensor)query.list().get(0);
+            session.delete(sen);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
 }

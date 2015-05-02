@@ -107,4 +107,27 @@ public class CondutorDAO {
         }
     }
     
+    public boolean excluirCondutor(Condutor condutor)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("From Condutor Where condutorCodigo = :condutorCodigo");
+            query.setParameter("condutorCodigo", condutor.getCondutorCodigo());
+            Condutor con = (Condutor)query.list().get(0);
+            session.delete(con);
+            session.getTransaction().commit();
+  
+            return true;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
 }

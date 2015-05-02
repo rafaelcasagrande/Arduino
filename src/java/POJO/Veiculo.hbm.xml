@@ -23,13 +23,13 @@
         <property name="veiculoAno" type="java.lang.Integer">
             <column name="veiculo_ano" />
         </property>
-        <set name="tags" table="tag" inverse="true" lazy="true" fetch="select">
+        <set name="tags" cascade="delete" table="tag" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="veiculo_codigo" />
             </key>
             <one-to-many class="POJO.Tag" />
         </set>
-        <set name="ocorrencias" table="ocorrencia" inverse="true" lazy="true" fetch="select">
+        <set name="ocorrencias" cascade="delete" table="ocorrencia" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="veiculo_codigo" />
             </key>

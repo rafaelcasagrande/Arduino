@@ -106,4 +106,27 @@ public class OcorrenciaDAO {
             return null;
         }
     }
+    
+    public boolean excluirOcorrencia(Ocorrencia ocorrencia)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("From Ocorrencia Where ocorrenciaCodigo = :ocorrenciaCodigo");
+            query.setParameter("ocorrenciaCodigo", ocorrencia.getOcorrenciaCodigo());
+            Ocorrencia ocorr = (Ocorrencia)query.list().get(0);
+            session.delete(ocorr);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
 }

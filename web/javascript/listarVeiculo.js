@@ -127,7 +127,7 @@ window.onload = listarVeiculos();
                                 celCPF.innerHTML = arrayListVeiculos[i].condutorCpf;
                                 celHabilitacao.innerHTML = arrayListVeiculos[i].condutorHabilitacao;
                                 celAlterar.innerHTML = "<button onclick=alterarVeiculo(" + i + ")> Alterar </button>";
-                                celExcluir.innerHTML = "<button onclick=excluirVeiculo()> Excluir </button>";
+                                celExcluir.innerHTML = "<button onclick=excluirVeiculo(" + i + ")> Excluir </button>";
                          }
                         }
                         else if(tipo === "listarMarca")
@@ -201,6 +201,11 @@ window.onload = listarVeiculos();
                             alert(respostaServlet);
                             location.reload();
                         }
+                        else if(tipo === 'excluirVeiculo')
+                        {
+                            alert(respostaServlet);
+                            location.reload();
+                        }
 
                     } else {
                                 alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
@@ -228,7 +233,13 @@ window.onload = listarVeiculos();
                     document.getElementById("txtDataNascimentoCondutor").value = arrayListVeiculos[posicao].condutorDataNascimento;
                     document.getElementById("txtDocumentoCondutorResultado").value = arrayListVeiculos[posicao].condutorHabilitacao;
                 }
-                function excluirCondutor()
+                
+                function excluirVeiculo(posicao)
                 {
-                    alert("excluir");
+                    veiculoCodigo = arrayListVeiculos[posicao].veiculoCodigo;
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirVeiculo");
+                    xmlHttpRequest.open("POST","ServletExcluirVeiculo",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("veiculoCodigo=" + veiculoCodigo); 
                 }

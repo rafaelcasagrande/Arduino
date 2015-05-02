@@ -38,7 +38,6 @@ window.onload = listarMarcas();
                 var cor = document.getElementById("txtVeiculoCor").value; 
                 var ano = document.getElementById("txtVeiculoAno").value;
                 var modeloCodigo = document.getElementById("cbxModelo").value;
-                
                 xmlHttpRequest = getXMLHttpRequest();
                 xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "cadastroVeiculo");
                 xmlHttpRequest.open("POST","ServletCadastrarVeiculo",true);
@@ -92,17 +91,16 @@ window.onload = listarMarcas();
                         {
                             var arr = JSON.parse(respostaServlet);
                             
-                            document.getElementById("txtNomeCondutor").value = arr[0].condutorNome;
+                            document.getElementById("txtNomeCondutor").value = arr[0].nomeCondutor;
                             document.getElementById("txtDataNascimentoCondutor").value = arr[0].condutorDataNascimento;
-                            condutorCodigo = arr[0].condutorCodigo;
-                            
+                            condutorCodigo = arr[0].codigoCondutor;
                             if(document.getElementById("cbxDocumento").value === 'cpf')
                             {
-                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].condutorHabilitacao;
+                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].habilitacaoCondutor;
                             }
                             else
                             {
-                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].condutorCpf;
+                                document.getElementById("txtDocumentoCondutorResultado").value = arr[0].cpfCondutor;
                             }
                         }
                         else

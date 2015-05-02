@@ -12,7 +12,7 @@ var xmlHttpRequest;
                         {
                             var arr = JSON.parse(respostaServlet);
                             
-                            codigoVeiculo = arr[0].codigoVeiculo;
+                            codigoVeiculo = arr[0].veiculoCodigo;
                             document.getElementById("txtMarcaVeiculo").value = arr[0].marcaNome;
                             document.getElementById("txtModeloVeiculo").value = arr[0].modeloNome;
                             document.getElementById("txtCorVeiculo").value = arr[0].veiculoCor;

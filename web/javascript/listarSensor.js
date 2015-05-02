@@ -104,7 +104,7 @@ window.onload = listarSensores();
                                 celLatitude.innerHTML = arrayListSensores[i].sensorLatitude;
                                 celLongitude.innerHTML = arrayListSensores[i].sensorLongitude;
                                 celAlterar.innerHTML = "<button onclick=alterarSensor(" + i + ")> Alterar </button";
-                                celExcluir.innerHTML = "<button> Excluir </button>";
+                                celExcluir.innerHTML = "<button onclick=excluirSensor(" + i + ")> Excluir </button>";
    
                             }
                         }
@@ -120,6 +120,11 @@ window.onload = listarSensores();
                             logradouroCodigo = arr[0].logradouroCodigo;
                         }
                         else if(tipo === "alterarSensor")
+                        {
+                            alert(respostaServlet);
+                            location.reload();
+                        }
+                        else if(tipo === "excluirSensor")
                         {
                             alert(respostaServlet);
                             location.reload();
@@ -148,4 +153,15 @@ window.onload = listarSensores();
                     
                     document.getElementById("txtSensorLatitude").value = arrayListSensores[posicao].sensorLatitude;
                     document.getElementById("txtSensorLongitude").value = arrayListSensores[posicao].sensorLongitude;
+                }
+                
+                function excluirSensor(posicao)
+                {
+                    sensorCodigo = arrayListSensores[posicao].sensorCodigo;
+                    
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirSensor");
+                    xmlHttpRequest.open("POST","ServletExcluirSensor",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("codigoSensor=" + sensorCodigo);  
                 }

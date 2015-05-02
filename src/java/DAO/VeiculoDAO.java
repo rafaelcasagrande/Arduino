@@ -105,4 +105,28 @@ public class VeiculoDAO {
             return false;
         }
     }
+    
+    public boolean excluirVeiculo(Veiculo veiculo)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            trns = session.beginTransaction();
+            Query query = session.createQuery("From Veiculo Where veiculoCodigo = :veiculoCodigo");
+            query.setParameter("veiculoCodigo", veiculo.getVeiculoCodigo());
+            Veiculo vei = (Veiculo)query.list().get(0);
+            session.delete(vei);
+            session.getTransaction().commit();
+            
+            return true;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
 }

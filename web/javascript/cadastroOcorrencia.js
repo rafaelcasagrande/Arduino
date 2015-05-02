@@ -11,13 +11,12 @@ var xmlHttpRequest;
                         if(tipo === "consultaPlaca")
                         {
                             var arr = JSON.parse(respostaServlet);
-                            
-                            codigoVeiculo = arr[0].codigoVeiculo;
-                            document.getElementById("txtMarcaVeiculo").value = arr[0].marcaVeiculo;
-                            document.getElementById("txtModeloVeiculo").value = arr[0].modeloVeiculo;
-                            document.getElementById("txtCorVeiculo").value = arr[0].corVeiculo;
+                            codigoVeiculo = arr[0].veiculoCodigo;
+                            document.getElementById("txtMarcaVeiculo").value = arr[0].marcaNome;
+                            document.getElementById("txtModeloVeiculo").value = arr[0].modeloNome;
+                            document.getElementById("txtCorVeiculo").value = arr[0].veiculoCor;
                             document.getElementById("txtAnoVeiculo").value = arr[0].anoVeiculo;
-                            document.getElementById("txtCondutorResponsavel").value = arr[0].condutorVeiculo;
+                            document.getElementById("txtCondutorResponsavel").value = arr[0].condutorNome;
                             document.getElementById("txtCondutorCpf").value = arr[0].condutorCpf;
 
                         }

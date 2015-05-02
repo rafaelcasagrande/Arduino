@@ -103,7 +103,7 @@ window.onload = listarOcorrencias();
                                 celInicio.innerHTML = arrayListOcorrencia[i].ocorrenciaInicio;
                                 celTermino.innerHTML = arrayListOcorrencia[i].ocorrenciaTermino;
                                 celAlterar.innerHTML = "<button onclick=alterarOcorrencia(" + i + ") >Alterar</button>";
-                                celExcluir.innerHTML = "<button>Excluir</button>";
+                                celExcluir.innerHTML = "<button onclick=excluirOcorrencia(" + i + ") >Excluir</button>";
                             }
                         }
                         else if(tipo === "consultaPlaca")
@@ -120,6 +120,12 @@ window.onload = listarOcorrencias();
 
                         }
                         else if(tipo === "alterarOcorrencia")
+                        {
+                            alert(respostaServlet);
+                            location.reload();
+                        }
+                        
+                        else if(tipo === "excluirOcorrencia")
                         {
                             alert(respostaServlet);
                             location.reload();
@@ -144,5 +150,15 @@ window.onload = listarOcorrencias();
                     document.getElementById("txtAnoVeiculo").value = arrayListOcorrencia[posicao].veiculoAno;
                     document.getElementById("txtCondutorResponsavel").value = arrayListOcorrencia[posicao].condutorNome;
                     document.getElementById("txtCondutorCpf").value = arrayListOcorrencia[posicao].condutorCpf;
+                }
+                
+                function excluirOcorrencia(posicao)
+                {
+                    codigoOcorrencia = arrayListOcorrencia[posicao].ocorrenciaCodigo; 
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirOcorrencia");
+                    xmlHttpRequest.open("POST","ServletExcluirOcorrencia",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("codigoOcorrencia=" + codigoOcorrencia); 
                 }
 

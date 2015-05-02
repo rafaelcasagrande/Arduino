@@ -100,4 +100,26 @@ public class TagDao {
         }
     }
     
+    public boolean excluirTag(Tag tag)
+    {
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query query = session.createQuery("From Tag Where tagCodigo = :tagCodigo");
+            query.setParameter("tagCodigo", tag.getTagCodigo());
+            Tag ta = (Tag)query.list().get(0);
+            session.delete(ta);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
 }

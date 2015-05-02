@@ -26,7 +26,7 @@
         <property name="condutorNumeroLogradouro" type="string">
             <column name="condutor_numero_logradouro" length="10" />
         </property>
-        <set name="veiculos" table="veiculo" inverse="true" lazy="true" fetch="select">
+        <set name="veiculos" cascade="delete" table="veiculo" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="condutor_codigo" />
             </key>

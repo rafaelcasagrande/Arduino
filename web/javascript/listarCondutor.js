@@ -106,7 +106,7 @@
                                 celCidade.innerHTML = arrayListCondutores[i].cidadeCondutor;
                                 celEstado.innerHTML = arrayListCondutores[i].estadoCondutor;
                                 celAlterar.innerHTML = "<button onclick=alterarCondutor(" + i + ")> Alterar </button>";
-                                celExcluir.innerHTML = "<button onclick='excluirCondutor()'>Excluir</button>"; 
+                                celExcluir.innerHTML = "<button onclick=excluirCondutor(" + i + ")> Excluir </button>"; 
                             }
                         }
                         else if(tipo === "consultaCep")
@@ -120,7 +120,12 @@
                             document.getElementById("txtCondutorEstado").value = arrListLogradouro[0].logradouroEstado;
                             logradouroCodigo = arrListLogradouro[0].logradouroCodigo;  
                         }
-                        else
+                        else if(tipo === "alterarCondutor")
+                        {
+                            alert(respostaServlet);
+                            location.reload();
+                        }
+                        else if(tipo === "excluirCondutor")
                         {
                             alert(respostaServlet);
                             location.reload();
@@ -149,7 +154,13 @@
                     condutorCodigo = arrayListCondutores[posicao].codigoCondutor;
                     logradouroCodigo = arrayListCondutores[posicao].codigoLogradouro;
                 }
-                function excluirCondutor()
+                
+                function excluirCondutor(posicao)
                 {
-                    alert("excluir");
+                    codigoCondutor = arrayListCondutores[posicao].codigoCondutor;                    
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirCondutor");
+                    xmlHttpRequest.open("POST","ServletExcluirCondutor",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xmlHttpRequest.send("codigoCondutor=" + codigoCondutor);  
                 }

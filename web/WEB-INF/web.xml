@@ -100,6 +100,26 @@
         <servlet-name>ServletConsultarOcorrencia</servlet-name>
         <servlet-class>SERVLET.ServletConsultarOcorrencia</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletExcluirCondutor</servlet-name>
+        <servlet-class>SERVLET.ServletExcluirCondutor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletExcluirVeiculo</servlet-name>
+        <servlet-class>SERVLET.ServletExcluirVeiculo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletExcluirTag</servlet-name>
+        <servlet-class>SERVLET.ServletExcluirTag</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletExcluirSensor</servlet-name>
+        <servlet-class>SERVLET.ServletExcluirSensor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletExcluirOcorrencia</servlet-name>
+        <servlet-class>SERVLET.ServletExcluirOcorrencia</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -199,6 +219,26 @@
     <servlet-mapping>
         <servlet-name>ServletConsultarOcorrencia</servlet-name>
         <url-pattern>/ServletConsultarOcorrencia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletExcluirCondutor</servlet-name>
+        <url-pattern>/ServletExcluirCondutor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletExcluirVeiculo</servlet-name>
+        <url-pattern>/ServletExcluirVeiculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletExcluirTag</servlet-name>
+        <url-pattern>/ServletExcluirTag</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletExcluirSensor</servlet-name>
+        <url-pattern>/ServletExcluirSensor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletExcluirOcorrencia</servlet-name>
+        <url-pattern>/ServletExcluirOcorrencia</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
