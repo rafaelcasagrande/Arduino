@@ -28,6 +28,13 @@ window.onload = listarVeiculos();
             
             function atualizar()
             {
+                var table = document.getElementById("tableVeiculos");
+                
+                while(table.rows.length > 1) 
+                {
+                    table.deleteRow(1);
+                }
+                
                 listarVeiculos();
                 listarMarcas();
                 document.getElementById("txtPlacaVeiculoBuscar").value = "";

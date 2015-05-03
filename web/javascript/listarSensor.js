@@ -24,6 +24,12 @@ window.onload = listarSensores();
             
             function atualizar()
             {
+                var table = document.getElementById("tableSensor");
+                while(table.rows.length > 1) 
+                {
+                    table.deleteRow(1);
+                }
+
                 listarSensores();
                 document.getElementById("txtSensorMacAddressBuscar").value = "";
             }

@@ -25,7 +25,7 @@ public class ServletExcluirOcorrencia extends HttpServlet {
             throws ServletException, IOException {
         
         boolean resultado = false;
-        String codigoOcorrencia = request.getParameter("codigoOcorencia");
+        String codigoOcorrencia = request.getParameter("codigoOcorrencia");
         
         Ocorrencia ocorrencia = new Ocorrencia();
         ocorrencia.setOcorrenciaCodigo(Integer.parseInt(codigoOcorrencia));

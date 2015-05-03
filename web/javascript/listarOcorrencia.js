@@ -26,6 +26,12 @@ window.onload = listarOcorrencias();
             
             function atualizar()
             {
+                var table = document.getElementById("tableOcorrencia");
+                while(table.rows.length > 1) 
+                {
+                    table.deleteRow(1);
+                }
+                
                 listarOcorrencias();
                 document.getElementById("txtOcorrenciaCodigo").value = "";
             }

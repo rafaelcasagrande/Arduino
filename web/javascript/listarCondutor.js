@@ -15,6 +15,13 @@
             
             function atualizar()
             {
+                var table = document.getElementById("tableCondutores");
+                
+                while(table.rows.length > 1) 
+                {
+                    table.deleteRow(1);
+                }
+                
                 listarCondutores();
                 document.getElementById("txtDocumentoCondutor").value = "";
             }

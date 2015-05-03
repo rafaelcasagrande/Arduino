@@ -15,6 +15,12 @@ window.onload = listarTags();
             
             function atualizar()
             {
+                var table = document.getElementById("tableTag");
+                while(table.rows.length > 1) 
+                {
+                    table.deleteRow(1);
+                }
+                
                 listarTags();
                 document.getElementById("txtTagIdBuscar").value = "";
             }
