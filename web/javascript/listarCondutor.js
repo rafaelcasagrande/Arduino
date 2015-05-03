@@ -15,26 +15,34 @@
             
             function atualizar()
             {
+                
                 var table = document.getElementById("tableCondutores");
                 
                 while(table.rows.length > 1) 
                 {
                     table.deleteRow(1);
                 }
-                
+                limparCampos();
                 listarCondutores();
                 document.getElementById("txtDocumentoCondutor").value = "";
             }
             
             function buscarCondutor()
             {
-               xmlHttpRequest = getXMLHttpRequest();
                var numeroDocumento = document.getElementById("txtDocumentoCondutor").value;
-               var tipoDocumento = document.getElementById("cbxDocumento").value;
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarCondutor");
-               xmlHttpRequest.open("POST","ServletConsultarDocumentosCondutor",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-               xmlHttpRequest.send("numeroDocumento=" + numeroDocumento + "&" + "tipoDocumento=" + tipoDocumento);  
+               if(numeroDocumento === "")
+               {
+                   alert("Preencher número do documento");
+               }
+               else
+               {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    var tipoDocumento = document.getElementById("cbxDocumento").value;
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarCondutor");
+                    xmlHttpRequest.open("POST","ServletConsultarDocumentosCondutor",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xmlHttpRequest.send("numeroDocumento=" + numeroDocumento + "&" + "tipoDocumento=" + tipoDocumento);  
+                }
             }
             
             function alterarDadosCondutor()
@@ -53,12 +61,20 @@
             
             function consultarCep()
             {
-               xmlHttpRequest = getXMLHttpRequest();
-               var cep = document.getElementById("txtCondutorCep").value;
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaCep");
-               xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("cep=" + cep);              
+               
+                var cep = document.getElementById("txtCondutorCep").value;
+                if(cep === "")
+                {
+                    alert("Preencher CEP");
+                }
+                else
+                {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaCep");
+                    xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("cep=" + cep);    
+                }
             }
             
             function getReadyStateHandler(xmlHttpRequest, tipo) {
@@ -112,8 +128,8 @@
                                 celBairro.innerHTML = arrayListCondutores[i].bairroCondutor;
                                 celCidade.innerHTML = arrayListCondutores[i].cidadeCondutor;
                                 celEstado.innerHTML = arrayListCondutores[i].estadoCondutor;
-                                celAlterar.innerHTML = "<button onclick=alterarCondutor(" + i + ")> Alterar </button>";
-                                celExcluir.innerHTML = "<button onclick=excluirCondutor(" + i + ")> Excluir </button>"; 
+                                celAlterar.innerHTML = "<button class='btn btn-link' onclick=alterarCondutor(" + i + ")> <span class='glyphicon glyphicon-pencil'></span> </button>";
+                                celExcluir.innerHTML = "<button class='btn btn-link' onclick=excluirCondutor(" + i + ")> <span class='glyphicon glyphicon-remove'></span> </button>"; 
                             }
                         }
                         else if(tipo === "consultaCep")
@@ -129,17 +145,31 @@
                         }
                         else if(tipo === "alterarCondutor")
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar operação");
+                            }                        
                         }
                         else if(tipo === "excluirCondutor")
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar operação");
+                            } 
                         }
 
                     } else {
-                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                                alert("Falha ao realizar operação");
                             }
                         }
                     };
@@ -170,4 +200,23 @@
                     xmlHttpRequest.open("POST","ServletExcluirCondutor",true);
                     xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xmlHttpRequest.send("codigoCondutor=" + codigoCondutor);  
+                }
+                
+                function limparCampos()
+                {
+                    document.getElementById("txtCondutorNome").value = "";
+                    document.getElementById("txtCondutorCpf").value = "";
+                    document.getElementById("txtCondutorHabilitacao").value = "";
+                    document.getElementById("txtCondutorNascimento").value = "";
+                    document.getElementById("txtCondutorNumeroLogradouro").value = "";
+                    document.getElementById("txtCondutorLogradouro").value = "";
+                    document.getElementById("txtCondutorCep").value = "";
+                    document.getElementById("txtCondutorBairro").value = "";
+                    document.getElementById("txtCondutorCidade").value = "";
+                    document.getElementById("txtCondutorEstado").value = "";
+                }
+                
+                function direcionarInicio()
+                {
+                    window.location = "index.jsp";
                 }

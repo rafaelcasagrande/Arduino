@@ -45,6 +45,18 @@ window.onload = listarTags();
                xmlHttpRequest.send("placaVeiculo=" + placaVeiculo); 
             }
             
+            function limparCampos()
+            {
+                document.getElementById("txtTagId").value = "";
+                document.getElementById("txtPlacaVeiculo").value = "";
+                document.getElementById("txtMarcaVeiculo").value = "";
+                document.getElementById("txtModeloVeiculo").value = "";
+                document.getElementById("txtCorVeiculo").value = "";
+                document.getElementById("txtAnoVeiculo").value = "";
+                document.getElementById("txtCondutorResponsavel").value = "";
+                document.getElementById("txtCondutorCpf").value = "";
+            }
+            
             function alterarDadosTag()
             {
                 var tagId = document.getElementById("txtTagId").value;
@@ -106,8 +118,9 @@ window.onload = listarTags();
                                 celCondutor.innerHTML = arrayListTags[i].condutorNome;
                                 celCPF.innerHTML = arrayListTags[i].condutorCpf;
                                 celHabilitacao.innerHTML = arrayListTags[i].condutorHabilitacao; 
-                                celAlterar.innerHTML = "<button onclick=alterarTag(" + i + ") > Alterar </button>";
-                                celExcluir.innerHTML = "<button onclick=excluirTag(" + i + ") > Excluir </button>";
+                                celAlterar.innerHTML = "<button class='btn btn-link' onclick=alterarTag(" + i + ")> <span class='glyphicon glyphicon-pencil'></span> </button>";
+                                celExcluir.innerHTML = "<button class='btn btn-link' onclick=excluirTag(" + i + ")> <span class='glyphicon glyphicon-remove'></span> </button>"; 
+                            
                             }
                         }
                         else if(tipo === "consultaPlaca")
@@ -164,3 +177,7 @@ window.onload = listarTags();
                     
                 }
 
+                function direcionarInicio()
+                {
+                    window.location = "index.jsp";
+                }

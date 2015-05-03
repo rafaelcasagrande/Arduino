@@ -4,13 +4,19 @@ var xmlHttpRequest;
 
 function consultarCep()
 {
-
-   xmlHttpRequest = getXMLHttpRequest();
    var cep = document.getElementById("txtCondutorCep").value;
-   xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaCep");
-   xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
-   xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-   xmlHttpRequest.send("cep=" + cep);              
+   if(cep === "")
+   {
+       alert("Preencher CEP")
+   }
+   else
+   {
+        xmlHttpRequest = getXMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaCep");
+        xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
+        xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+        xmlHttpRequest.send("cep=" + cep);          
+   }
 }
 
 function getReadyStateHandler(xmlHttpRequest, tipo) {
@@ -33,22 +39,21 @@ return function() {
                 document.getElementById("txtCondutorEstado").value = arr[0].logradouroEstado;
                 logradouroCodigo = arr[0].logradouroCodigo;
             }
-            else
+            else if(respostaServelet === 'false')
             {
-                alert(respostaServelet);
+                alert("Falha ao realizar operação");
+            }
+            else if(respostaServelet === 'true')
+            {
+                alert("Operação realizada com sucesso");
             }
 
         } else {
-                    alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                    alert("Falha ao realizar operação");
                 }
             }
         };
     }
-function limparDador()
-{
-
-
-}
 
 function cadastrarCondutor()
 {
@@ -71,4 +76,22 @@ function cadastrarCondutor()
         xmlHttpRequest.send("nomeCondutor=" + nomeCondutor + "&" + "cpfCondutor=" + cpfCondutor + "&" + "habilitacaoCondutor=" + habilitacaoCondutor + "&" + "dataNascimentoCondutor=" + dataNascimentoCondutor + "&" + "numeroLogradouroCondutor=" + numeroLogradouroCondutor + "&" + "idLogradouro=" + logradouroCodigo);    
     }
 }
+
+function limparCampos()
+    {
+        document.getElementById("txtCondutorNome").value = "";
+        document.getElementById("txtCondutorCpf").value = "";
+        document.getElementById("txtCondutorHabilitacao").value = "";
+        document.getElementById("txtCondutorNascimento").value = "";
+        document.getElementById("txtCondutorNumeroLogradouro").value = "";
+        document.getElementById("txtCondutorLogradouro").value = "";
+        document.getElementById("txtCondutorCep").value = "";
+        document.getElementById("txtCondutorBairro").value = "";
+        document.getElementById("txtCondutorCidade").value = "";
+        document.getElementById("txtCondutorEstado").value = "";
+    }
         
+  function direcionarInicio()
+  {
+      window.location = "index.jsp";
+  }

@@ -19,6 +19,19 @@ var logradouroCodigo;
                xmlHttpRequest.send("cep=" + cep);              
             }
             
+            function limparCampos()
+            {
+                document.getElementById("txtSensorMacAddress").value = "";
+                document.getElementById("txtNumeroLogradouro").value = "";
+                document.getElementById("txtSensorLatitude").value = "";
+                document.getElementById("txtSensorLongitude").value = "";
+                document.getElementById("txtSensorLogradouro").value = "";
+                document.getElementById("txtSensorCep").value = "";
+                document.getElementById("txtSensorBairro").value = "";
+                document.getElementById("txtSensorCidade").value = "";
+                document.getElementById("txtSensorEstado").value = "";
+            }
+            
             function cadastrarSensor()
             {
                var macAddressSensor = document.getElementById("txtSensorMacAddress").value;
@@ -64,11 +77,9 @@ var logradouroCodigo;
                         }
                     };
                 }
-        
-  
-        
-        function limparDador()
-        {
-            
-            
-        }
+                
+                
+                function direcionarInicio()
+                {
+                    window.location = "index.jsp";
+                }

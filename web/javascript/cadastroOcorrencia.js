@@ -51,3 +51,19 @@ var xmlHttpRequest;
                xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
                xmlHttpRequest.send("veiculoCodigo=" + codigoVeiculo); 
             }
+            
+            function limparCampos()
+            {
+                document.getElementById("txtPlacaVeiculo").value = "";
+                document.getElementById("txtMarcaVeiculo").value = "";
+                document.getElementById("txtModeloVeiculo").value = "";
+                document.getElementById("txtCorVeiculo").value = "";
+                document.getElementById("txtAnoVeiculo").value = "";
+                document.getElementById("txtCondutorResponsavel").value = "";
+                document.getElementById("txtCondutorCpf").value = "";
+            }
+            
+            function direcionarInicio()
+            {
+                window.location = "index.jsp";
+            }

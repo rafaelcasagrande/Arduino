@@ -16,6 +16,6 @@
         <script src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <sitemesh:write property="body"/>   
+            <sitemesh:write property="body"/>
     </body>
 </html>

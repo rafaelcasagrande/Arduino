@@ -9,17 +9,24 @@
     <body>
         
         
-        <div align="center" class="form-inline">
+        <div align="center" class="form-inline  container">
             <h1> Sensor </h1> 
 
-            <input style="width: 300px;" class="form-control" placeholder="Mac Address" type="text" onblur="buscarSensor()" id="txtSensorMacAddressBuscar" name="txtSensorMacAddressBuscar">            
-            <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
-                Atualizar
+            <input style="width: 300px;" class="form-control" placeholder="Mac Address" type="text" id="txtSensorMacAddressBuscar" name="txtSensorMacAddressBuscar">            
+
+            <button type="button" onclick="buscarSensor()" class="btn btn-default" name="btnPesquisar" id="btnPesquisar">
+                <span class="glyphicon glyphicon-search"></span>
             </button>
+            
+            <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+            
+            
             <br>
             <br>
 
-            <table id="tableSensor" border="1">
+            <table id="tableSensor" class="table table-striped">
                 <tr>
                     <th> Código </th>
                     <th> Mac Address </th>
@@ -38,29 +45,36 @@
             <br>
             <form role="form" >
                 
-                <input style="width: 300px;" class="form-control" placeholder="Mac Address" type="text" id="txtSensorMacAddress" name="txtSensorMacAddress"><br>
-                <br>
-                <input style="width: 300px;" class="form-control" onblur="consultarCep()" placeholder="CEP" type="text" id="txtSensorCep" name="txtSensorCep"><br>
-                <input style="width: 300px;" class="form-control" placeholder="Numero Logradouro" type="text" id="txtNumeroLogradouro" name="txtNumeroLogradouro"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Logradouro" type="text" id="txtSensorLogradouro" name="txtSensorLogradouro"><br> 
-                <input disabled style="width: 300px;" class="form-control" placeholder="Bairro" type="text" id="txtSensorBairro" name="txtSensorBairro"><br> 
-                <input disabled style="width: 300px;" class="form-control" placeholder="Cidade" type="text" id="txtSensorCidade" name="txtSensorCidade"><br> 
-                <input disabled style="width: 300px;" class="form-control" placeholder="Estado" type="text" id="txtSensorEstado" name="txtSensorEstado"><br> 
-                <br>
-                <button data-dojo-type="dijit/form/Button" name="btnLocate" id="btnLocate" value="Localizar"> </button>    
-                <br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Latitude" type="text" id="txtSensorLatitude" name="txtSensorLatitude"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Longitude" type="text" id="txtSensorLongitude" name="txtSensorLongitude"><br>
-                <br>
-                <button type="button" onclick="alterarDadosSensor()" class="btn btn-default" name="btnSensorSalvar" id="btnSensorSalvar">
-                    Salvar
-                </button>                    
-                <button type="button" class="btn btn-default" name="btnSensorLimpar" id="btnSensorLimpar">
-                    Limpar
-                </button>              
-                <button type="button" class="btn btn-default" name="btnSensorVoltar" id="btnSensorVoltar">
-                    Voltar
-                </button>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label> Mac Address </label> <input class="form-control" type="text" id="txtSensorMacAddress" name="txtSensorMacAddress"><br><br>
+                        <label> CEP </label> <input class="form-control" onblur="consultarCep()" type="text" id="txtSensorCep" name="txtSensorCep"><br><br>
+                        <label> N. Logradouro </label> <input class="form-control" type="text" id="txtNumeroLogradouro" name="txtNumeroLogradouro"><br>
+                    </div>
+                    <div class="col-md-3">
+                        <label> Logradouro: </label> <input disabled class="form-control" type="text" id="txtSensorLogradouro" name="txtSensorLogradouro"><br><br> 
+                        <label> Bairro: </label> <input disabled class="form-control" type="text" id="txtSensorBairro" name="txtSensorBairro"><br><br>
+                        <label> Cidade: </label>  <input disabled class="form-control" type="text" id="txtSensorCidade" name="txtSensorCidade"><br><br> 
+                        <label> Estado: </label>  <input disabled class="form-control" type="text" id="txtSensorEstado" name="txtSensorEstado"><br> 
+                    </div>
+                    <div class="col-md-3">
+                        <button data-dojo-type="dijit/form/Button" name="btnLocate" id="btnLocate" value="Localizar"> </button><br>    
+                        <br>
+                        <label> Latitude: </label> <input disabled class="form-control" type="text" id="txtSensorLatitude" name="txtSensorLatitude"><br><br>
+                        <label> Longitude: </label> <input disabled class="form-control" type="text" id="txtSensorLongitude" name="txtSensorLongitude"><br>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" onclick="alterarDadosSensor()" class="btn btn-default" name="btnSensorSalvar" id="btnSensorSalvar">
+                            Salvar <span class="glyphicon glyphicon-floppy-disk"></span>
+                        </button>
+                        <button type="button" onclick="limparCampos()" class="btn btn-default" name="btnSensorLimpar" id="btnSensorLimpar">
+                            Limpar <span class="glyphicon glyphicon-trash"></span>
+                        </button>   
+                        <button type="button" onclick="direcionarInicio()" class="btn btn-default" name="btnSensorVoltar" id="btnSensorVoltar">
+                            Voltar <span class="glyphicon glyphicon-arrow-left"></span>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>    
         

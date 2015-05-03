@@ -6,17 +6,22 @@
         <title>Ocorrência</title>
     </head>
     <body>
-        <div align="center" class="form-inline">
+        <div align="center" class="form-inline  container">
             <h1>Ocorrência</h1>
 
-            <input style="width: 300px;" class="form-control" placeholder="Código Ocorrência" type="text" onblur="buscarOcorrencia()" id="txtOcorrenciaCodigo" name="txtOcorrenciaCodigo">            
+            <input style="width: 300px;" class="form-control" placeholder="Código Ocorrência" type="text" id="txtOcorrenciaCodigo" name="txtOcorrenciaCodigo">            
+           
+            <button type="button" onclick="buscarOcorrencia()" class="btn btn-default" name="btnPesquisar" id="btnPesquisar">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+            
             <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
-                Atualizar
+                <span class="glyphicon glyphicon-refresh"></span>
             </button>
             <br>
             <br>
 
-            <table id="tableOcorrencia" border="1" >
+            <table id="tableOcorrencia" class="table table-striped" >
                 <tr>
                     <th> Código </th>
                     <th> Placa </th>
@@ -33,27 +38,33 @@
             </table>
             <br>
             <form role="form">
-                <input disabled style="width: 300px;" class="form-control" placeholder="Código Ocorrência" type="text" id="txtCodigoOcorrencia" name="txtCodigoOcorrencia"><br>
-                <input style="width: 300px;" class="form-control" placeholder="Emplacamento do Veículo" type="text" onblur="buscarEmplacamento()" id="txtPlacaVeiculo" name="txtPlacaVeiculo"><br>
-                <br>
-                <input type="checkbox" name="chkFinalizarOcorrencia" id="chkFinalizarOcorrencia" value="Finalizar"> Encerrar Ocorrência<br>
-                <br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Marca" type="text" id="txtMarcaVeiculo" name="txtMarcaVeiculo"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Modelo" type="text" id="txtModeloVeiculo" name="txtModeloVeiculo"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Cor" type="text" id="txtCorVeiculo" name="txtCorVeiculo"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Ano" type="text" id="txtAnoVeiculo" name="txtAnoVeiculo"><br>
-                
-                <button type="button" onclick="alterarDadosOcorrencia()" class="btn btn-default" name="btnOcorrenciaSalvar" id="btnOcorrenciaSalvar">
-                    Salvar
-                </button>    
-                
-                <button type="button" class="btn btn-default" name="btnOcorrenciaLimpar" id="btnOcorrenciaLimpar">
-                    Limpar
-                </button>    
-                
-                <button type="button" class="btn btn-default" name="btnOcorrenciaVoltar" id="btnOcorrenciaVoltar">
-                    Voltar
-                </button>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label> Código: </label> <input disabled  class="form-control" type="text" id="txtCodigoOcorrencia" name="txtCodigoOcorrencia"><br><br>
+                        <label> Placa: </label> <input class="form-control" type="text" onblur="buscarEmplacamento()" id="txtPlacaVeiculo" name="txtPlacaVeiculo"><br>
+                        <br>
+                        <input type="checkbox" name="chkFinalizarOcorrencia" id="chkFinalizarOcorrencia" value="Finalizar"> Encerrar Ocorrência<br>
+                    </div>
+                    <div class="col-md-4">
+                        <label> Marca: </label> <input disabled class="form-control" type="text" id="txtMarcaVeiculo" name="txtMarcaVeiculo"><br><br>
+                        <label> Modelo: </label> <input disabled class="form-control" type="text" id="txtModeloVeiculo" name="txtModeloVeiculo"><br><br>
+                        <label> Cor: </label> <input disabled class="form-control" type="text" id="txtCorVeiculo" name="txtCorVeiculo"><br><br>
+                        <label> Ano: </label> <input disabled class="form-control" type="text" id="txtAnoVeiculo" name="txtAnoVeiculo"><br>
+                    </div>
+                    <div class="col-md-4">
+                           
+                        <button type="button" onclick="alterarDadosOcorrencia()" class="btn btn-default" name="btnOcorrenciaSalvar" id="btnOcorrenciaSalvar">
+                            Salvar <span class="glyphicon glyphicon-floppy-disk"></span>
+                        </button>
+                        <button type="button" onclick="limparCampos()" class="btn btn-default" name="btnOcorrenciaLimpar" id="btnOcorrenciaLimpar">
+                            Limpar <span class="glyphicon glyphicon-trash"></span>
+                        </button>   
+                        <button type="button" onclick="direcionarInicio()" class="btn btn-default" name="btnOcorrenciaVoltar" id="btnOcorrenciaVoltar">
+                            Voltar <span class="glyphicon glyphicon-arrow-left"></span>
+                        </button>
+   
+                    </div>
+                </div>
             </form>
         </div>
 

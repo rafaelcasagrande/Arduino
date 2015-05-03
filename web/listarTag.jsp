@@ -6,17 +6,24 @@
         <title>Tag</title>
     </head>
     <body>
-        <div align="center" class="form-inline">
+        <div align="center" class="form-inline  container">
             <h1>Tag</h1>
             
-            <input style="width: 300px;" class="form-control" placeholder="Tag ID" type="text" onblur="buscarTag()" id="txtTagIdBuscar" name="txtTagIdBuscar">            
-            <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
-                Atualizar
+            <input style="width: 300px;" class="form-control" placeholder="Tag ID" type="text" id="txtTagIdBuscar" name="txtTagIdBuscar">            
+
+            <button type="button" onclick="buscarTag()" class="btn btn-default" name="btnPesquisar" id="btnPesquisar">
+                <span class="glyphicon glyphicon-search"></span>
             </button>
+            
+            <button type="button" onclick="atualizar()" class="btn btn-default" name="btnAtualizar" id="btnAtualizar">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+            
+            
             <br>
             <br>
             
-            <table id="tableTag" border="1" >
+            <table id="tableTag" class="table table-striped" >
                 <tr>
                     <th> Código </th>
                     <th> Id </th>
@@ -34,27 +41,34 @@
             </table>
             <br>
             <form role="form">
-                <input style="width: 300px;" class="form-control" placeholder="ID" type="text" id="txtTagId" name="txtTagId"><br>
-                <input style="width: 300px;" class="form-control" placeholder="Emplacamento do Veículo" type="text" onblur="buscarEmplacamento()" id="txtPlacaVeiculo" name="txtPlacaVeiculo"><br>
-                <br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Marca" type="text" id="txtMarcaVeiculo" name="txtMarcaVeiculo"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Modelo" type="text" id="txtModeloVeiculo" name="txtModeloVeiculo"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Cor" type="text" id="txtCorVeiculo" name="txtCorVeiculo"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Ano" type="text" id="txtAnoVeiculo" name="txtAnoVeiculo"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="Condutor Responsável" type="text" id="txtCondutorResponsavel" name="txtCondutorResponsavel"><br>
-                <input disabled style="width: 300px;" class="form-control" placeholder="CPF Condutor" type="text" id="txtCondutorCpf" name="txtCondutorCpf"><br>
                 
-                <button type="button" onclick="alterarDadosTag()" class="btn btn-default" name="btnTagSalvar" id="btnTagSalvar">
-                    Salvar
-                </button>    
-                
-                <button type="button" class="btn btn-default" name="btnTagLimpar" id="btnTagLimpar">
-                    Limpar
-                </button>    
-                
-                <button type="button" class="btn btn-default" name="btnTagVoltar" id="btnTagVoltar">
-                    Voltar
-                </button>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label> Tag ID: </label> <input class="form-control" type="text" id="txtTagId" name="txtTagId"><br><br>
+                        <label> Placa: </label> <input class="form-control" type="text" onblur="buscarEmplacamento()" id="txtPlacaVeiculo" name="txtPlacaVeiculo"><br>
+                    </div>
+                    <div class="col-md-3">
+                        <label> Marca: </label> <input disabled class="form-control" type="text" id="txtMarcaVeiculo" name="txtMarcaVeiculo"><br><br>
+                        <label> Modelo: </label> <input disabled class="form-control" type="text" id="txtModeloVeiculo" name="txtModeloVeiculo"><br><br>
+                        <label> Cor: </label> <input disabled class="form-control" type="text" id="txtCorVeiculo" name="txtCorVeiculo"><br>
+                    </div>  
+                    <div class="col-md-3">
+                        <label> Ano: </label> <input disabled class="form-control" type="text" id="txtAnoVeiculo" name="txtAnoVeiculo"><br><br>
+                        <label> Condutor: </label> <input disabled class="form-control" type="text" id="txtCondutorResponsavel" name="txtCondutorResponsavel"><br><br>
+                        <label> CPF: </label> <input disabled class="form-control" type="text" id="txtCondutorCpf" name="txtCondutorCpf"><br>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" onclick="alterarDadosTag()" class="btn btn-default" name="btnTagSalvar" id="btnTagSalvar">
+                            Salvar <span class="glyphicon glyphicon-floppy-disk"></span>
+                        </button>
+                        <button type="button" onclick="limparCampos()" class="btn btn-default" name="btnTagLimpar" id="btnTagLimpar">
+                            Limpar <span class="glyphicon glyphicon-trash"></span>
+                        </button>   
+                        <button type="button" onclick="direcionarInicio()" class="btn btn-default" name="btnTagVoltar" id="btnTagVoltar">
+                            Voltar <span class="glyphicon glyphicon-arrow-left"></span>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
 

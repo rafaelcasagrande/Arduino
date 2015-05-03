@@ -17,14 +17,36 @@ window.onload = listarVeiculos();
             
             function buscarVeiculo()
             {
+               
                var placaVeiculo = document.getElementById("txtPlacaVeiculoBuscar").value; 
-                
-               xmlHttpRequest = getXMLHttpRequest();
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaPlaca");
-               xmlHttpRequest.open("POST","ServletConsultarPlaca",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("placaVeiculo=" + placaVeiculo); 
+               if(placaVeiculo === "")
+               {
+                   alert("Preencher Placa do Veículo");
+               }
+               else
+               {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaPlaca");
+                    xmlHttpRequest.open("POST","ServletConsultarPlaca",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("placaVeiculo=" + placaVeiculo);   
+               }
+               
             }
+            
+            function limparCampos()
+            {
+                document.getElementById("txtVeiculoPlaca").value = "";
+                document.getElementById("txtVeiculoCor").value = "";
+                document.getElementById("txtVeiculoAno").value = "";
+                document.getElementById("txtDocumentoCondutor").value = "";
+                document.getElementById("txtNomeCondutor").value = "";
+                document.getElementById("txtDataNascimentoCondutor").value = "";
+                document.getElementById("txtDocumentoCondutorResultado").value = "";
+                listarMarcas();
+                $('#cbxModelo').empty();
+            }
+            
             
             function atualizar()
             {
@@ -61,13 +83,22 @@ window.onload = listarVeiculos();
             
             function buscarCondutor()
             {
-               xmlHttpRequest = getXMLHttpRequest();
+               
                var numeroDocumento = document.getElementById("txtDocumentoCondutor").value;
-               var tipoDocumento = document.getElementById("cbxDocumento").value;
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "condutor");
-               xmlHttpRequest.open("POST","ServletConsultarDocumentosCondutor",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-               xmlHttpRequest.send("numeroDocumento=" + numeroDocumento + "&" + "tipoDocumento=" + tipoDocumento);  
+               if(numeroDocumento === "")
+               {
+                   alert("Preencher Número do Documento");
+               }
+               else
+               {
+                    var tipoDocumento = document.getElementById("cbxDocumento").value;
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "condutor");
+                    xmlHttpRequest.open("POST","ServletConsultarDocumentosCondutor",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xmlHttpRequest.send("numeroDocumento=" + numeroDocumento + "&" + "tipoDocumento=" + tipoDocumento);  
+               }
+               
             }
             
             function alterarDadosVeiculo()
@@ -133,8 +164,9 @@ window.onload = listarVeiculos();
                                 celCondutor.innerHTML = arrayListVeiculos[i].condutorNome;
                                 celCPF.innerHTML = arrayListVeiculos[i].condutorCpf;
                                 celHabilitacao.innerHTML = arrayListVeiculos[i].condutorHabilitacao;
-                                celAlterar.innerHTML = "<button onclick=alterarVeiculo(" + i + ")> Alterar </button>";
-                                celExcluir.innerHTML = "<button onclick=excluirVeiculo(" + i + ")> Excluir </button>";
+                                celAlterar.innerHTML = "<button class='btn btn-link' onclick=alterarVeiculo(" + i + ")> <span class='glyphicon glyphicon-pencil'></span> </button>";
+                                celExcluir.innerHTML = "<button class='btn btn-link' onclick=excluirVeiculo(" + i + ")> <span class='glyphicon glyphicon-remove'></span> </button>"; 
+                            
                          }
                         }
                         else if(tipo === "listarMarca")
@@ -205,17 +237,31 @@ window.onload = listarVeiculos();
                         }
                         else if(tipo === 'alterarVeiculo')
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar operação");
+                            }
                         }
                         else if(tipo === 'excluirVeiculo')
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar operação");
+                            }
                         }
 
                     } else {
-                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                                alert("Falha ao realizar a operação");
                             }
                         }
                     };
@@ -249,4 +295,9 @@ window.onload = listarVeiculos();
                     xmlHttpRequest.open("POST","ServletExcluirVeiculo",true);
                     xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
                     xmlHttpRequest.send("veiculoCodigo=" + veiculoCodigo); 
+                }
+                
+                function direcionarInicio()
+                {
+                    window.location = "index.jsp";
                 }

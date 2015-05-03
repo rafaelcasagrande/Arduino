@@ -11,6 +11,19 @@ window.onload = listarMarcas();
                xmlHttpRequest.send(null);
             }
             
+            function limparCampos()
+            {
+                document.getElementById("txtVeiculoPlaca").value = "";
+                document.getElementById("txtVeiculoCor").value = ""; 
+                document.getElementById("txtVeiculoAno").value = "";
+                document.getElementById("txtDocumentoCondutor").value = "";
+                document.getElementById("txtNomeCondutor").value = "";
+                document.getElementById("txtDataNascimentoCondutor").value = "";
+                document.getElementById("txtDocumentoCondutorResultado").value = ""; 
+                $('#cbxModelo').empty();
+                listarMarcas();
+            }
+            
             function listarModelos()
             {
                xmlHttpRequest = getXMLHttpRequest();
@@ -23,13 +36,22 @@ window.onload = listarMarcas();
             
             function buscarCondutor()
             {
-               xmlHttpRequest = getXMLHttpRequest();
+               
                var numeroDocumento = document.getElementById("txtDocumentoCondutor").value;
-               var tipoDocumento = document.getElementById("cbxDocumento").value;
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "condutor");
-               xmlHttpRequest.open("POST","ServletConsultarDocumentosCondutor",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-               xmlHttpRequest.send("numeroDocumento=" + numeroDocumento + "&" + "tipoDocumento=" + tipoDocumento);              
+               
+               if(numeroDocumento === "")
+               {
+                    alert("Preencher número do documento");
+               }
+               else
+               {
+                   xmlHttpRequest = getXMLHttpRequest();
+                    var tipoDocumento = document.getElementById("cbxDocumento").value;
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "condutor");
+                    xmlHttpRequest.open("POST","ServletConsultarDocumentosCondutor",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xmlHttpRequest.send("numeroDocumento=" + numeroDocumento + "&" + "tipoDocumento=" + tipoDocumento); 
+               }
             }
             
             function cadastrarVeiculo()
@@ -103,13 +125,22 @@ window.onload = listarMarcas();
                                 document.getElementById("txtDocumentoCondutorResultado").value = arr[0].cpfCondutor;
                             }
                         }
-                        else
+                        else if(respostaServlet === 'true')
                         {
-                            alert(respostaServlet);
+                            alert("Operação realizada com sucesso");
+                        }
+                        else if(respostaServlet === 'false')
+                        {
+                            alert("Falha ao realizar operação");
                         }
                     } else {
-                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                                alert("Falha ao realizar operação");
                             }
                         }
                     };
+                }
+                
+                function direcionarInicio()
+                {
+                    window.location = "index.jsp";
                 }

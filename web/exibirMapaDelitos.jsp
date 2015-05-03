@@ -11,6 +11,6 @@
     <script src="javascript/mapaDelitos.js"></script>  
     <link href="style/style.css" rel="stylesheet"/>
     
-    <div id="map"></div>
+        <div id="map" class="container"></div>
   </body>
 </html>

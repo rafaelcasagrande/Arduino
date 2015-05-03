@@ -53,5 +53,20 @@ var xmlHttpRequest;
                xmlHttpRequest.send("codigoVeiculo=" + codigoVeiculo + "&" + "idTag=" + idTag); 
             }
             
+            function limparCampos()
+            {
+                document.getElementById("txtTagId").value = "";
+                document.getElementById("txtPlacaVeiculo").value = "";
+                document.getElementById("txtMarcaVeiculo").value = "";
+                document.getElementById("txtModeloVeiculo").value = "";
+                document.getElementById("txtCorVeiculo").value = "";
+                document.getElementById("txtAnoVeiculo").value = "";
+                document.getElementById("txtCondutorResponsavel").value = "";
+                document.getElementById("txtCondutorCpf").value = "";
+            }
 
+            function direcionarInicio()
+            {
+                window.location = "index.jsp";
+            }
 

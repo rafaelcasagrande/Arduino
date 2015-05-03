@@ -108,8 +108,9 @@ window.onload = listarOcorrencias();
                                 celStatus.innerHTML = arrayListOcorrencia[i].ocorrenciaStatus;
                                 celInicio.innerHTML = arrayListOcorrencia[i].ocorrenciaInicio;
                                 celTermino.innerHTML = arrayListOcorrencia[i].ocorrenciaTermino;
-                                celAlterar.innerHTML = "<button onclick=alterarOcorrencia(" + i + ") >Alterar</button>";
-                                celExcluir.innerHTML = "<button onclick=excluirOcorrencia(" + i + ") >Excluir</button>";
+                                celAlterar.innerHTML = "<button class='btn btn-link' onclick=alterarOcorrencia(" + i + ")> <span class='glyphicon glyphicon-pencil'></span> </button>";
+                                celExcluir.innerHTML = "<button class='btn btn-link' onclick=excluirOcorrencia(" + i + ")> <span class='glyphicon glyphicon-remove'></span> </button>"; 
+                            
                             }
                         }
                         else if(tipo === "consultaPlaca")
@@ -167,4 +168,20 @@ window.onload = listarOcorrencias();
                     xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
                     xmlHttpRequest.send("codigoOcorrencia=" + codigoOcorrencia); 
                 }
+                
+                function limparCampos()
+                {
+                    document.getElementById("txtCodigoOcorrencia").value = "";
+                    document.getElementById("txtPlacaVeiculo").value = "";
+                    document.getElementById("txtMarcaVeiculo").value = "";
+                    document.getElementById("txtModeloVeiculo").value = "";
+                    document.getElementById("txtCorVeiculo").value = "";
+                    document.getElementById("txtAnoVeiculo").value = "";
+                    document.getElementById("txtCondutorResponsavel").value = "";
+                    document.getElementById("txtCondutorCpf").value = "";
+                }
 
+                function direcionarInicio()
+                {
+                    window.location = "index.jsp";
+                }

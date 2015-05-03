@@ -12,6 +12,19 @@ window.onload = listarSensores();
                xmlHttpRequest.send(null);  
             }
             
+            function limparCampos()
+            {
+                document.getElementById("txtSensorMacAddress").value = "";
+                document.getElementById("txtSensorCep").value = "";
+                document.getElementById("txtNumeroLogradouro").value = "";
+                document.getElementById("txtSensorLogradouro").value =  "";
+                document.getElementById("txtSensorBairro").value = "";
+                document.getElementById("txtSensorCidade").value = "";
+                document.getElementById("txtSensorEstado").value = "";
+                document.getElementById("txtSensorLatitude").value = "";
+                document.getElementById("txtSensorLongitude").value = "";
+            }
+            
             function buscarSensor()
             {
                var macAddress = document.getElementById("txtSensorMacAddressBuscar").value;
@@ -109,8 +122,9 @@ window.onload = listarSensores();
                                 celEstado.innerHTML = arrayListSensores[i].estadoNome;
                                 celLatitude.innerHTML = arrayListSensores[i].sensorLatitude;
                                 celLongitude.innerHTML = arrayListSensores[i].sensorLongitude;
-                                celAlterar.innerHTML = "<button onclick=alterarSensor(" + i + ")> Alterar </button";
-                                celExcluir.innerHTML = "<button onclick=excluirSensor(" + i + ")> Excluir </button>";
+                                celAlterar.innerHTML = "<button class='btn btn-link' onclick=alterarSensor(" + i + ")> <span class='glyphicon glyphicon-pencil'></span> </button>";
+                                celExcluir.innerHTML = "<button class='btn btn-link' onclick=excluirSensor(" + i + ")> <span class='glyphicon glyphicon-remove'></span> </button>"; 
+                            
    
                             }
                         }
@@ -170,4 +184,9 @@ window.onload = listarSensores();
                     xmlHttpRequest.open("POST","ServletExcluirSensor",true);
                     xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
                     xmlHttpRequest.send("codigoSensor=" + sensorCodigo);  
+                }
+                
+                function direcionarInicio()
+                {
+                    window.location = "index.jsp";
                 }
