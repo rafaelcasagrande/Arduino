@@ -16,12 +16,18 @@ window.onload = listarOcorrencias();
             function buscarOcorrencia()
             {
                 var codigoOcorrencia = document.getElementById("txtOcorrenciaCodigo").value;
-                xmlHttpRequest = getXMLHttpRequest();
-                xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarOcorrencia");
-                xmlHttpRequest.open("POST","ServletConsultarOcorrencia",true);
-                xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-                xmlHttpRequest.send("codigoOcorrencia=" + codigoOcorrencia);  
-                
+                if(codigoOcorrencia === "")
+                {
+                    alert("Preencher código da ocorrência")
+                }
+                else
+                {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarOcorrencia");
+                    xmlHttpRequest.open("POST","ServletConsultarOcorrencia",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("codigoOcorrencia=" + codigoOcorrencia);  
+                }
             }
             
             function atualizar()
@@ -39,12 +45,19 @@ window.onload = listarOcorrencias();
             function buscarEmplacamento()
             {
                var placaVeiculo = document.getElementById("txtPlacaVeiculo").value; 
-                
-               xmlHttpRequest = getXMLHttpRequest();
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaPlaca");
-               xmlHttpRequest.open("POST","ServletConsultarPlaca",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("placaVeiculo=" + placaVeiculo); 
+               if(placaVeiculo === "")
+               {
+                   alert("Preencher placa do veículo")
+               }
+               else
+               {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaPlaca");
+                    xmlHttpRequest.open("POST","ServletConsultarPlaca",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("placaVeiculo=" + placaVeiculo); 
+               }
+               
             }
             
             function alterarDadosOcorrencia()
@@ -128,18 +141,32 @@ window.onload = listarOcorrencias();
                         }
                         else if(tipo === "alterarOcorrencia")
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar a operação");
+                            }
                         }
                         
                         else if(tipo === "excluirOcorrencia")
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar a operação");
+                            }
                         }
 
                     } else {
-                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                                alert("Falha ao realizar a operação");
                             }
                         }
                     };
@@ -161,12 +188,16 @@ window.onload = listarOcorrencias();
                 
                 function excluirOcorrencia(posicao)
                 {
-                    codigoOcorrencia = arrayListOcorrencia[posicao].ocorrenciaCodigo; 
-                    xmlHttpRequest = getXMLHttpRequest();
-                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirOcorrencia");
-                    xmlHttpRequest.open("POST","ServletExcluirOcorrencia",true);
-                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-                    xmlHttpRequest.send("codigoOcorrencia=" + codigoOcorrencia); 
+                    var msg = confirm("Deseja realmente excluir?");
+                    if(msg === true)
+                    {
+                        codigoOcorrencia = arrayListOcorrencia[posicao].ocorrenciaCodigo; 
+                        xmlHttpRequest = getXMLHttpRequest();
+                        xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirOcorrencia");
+                        xmlHttpRequest.open("POST","ServletExcluirOcorrencia",true);
+                        xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                        xmlHttpRequest.send("codigoOcorrencia=" + codigoOcorrencia); 
+                    }
                 }
                 
                 function limparCampos()

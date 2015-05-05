@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Sensores</title>
   </head>
   <body class="claro">
     <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/claro/claro.css">

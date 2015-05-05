@@ -36,7 +36,7 @@
                 var graphic = new Graphic(new Point(point.coordenadas), createSymbol(iconPath, initColor));
                 arrayGraphic.push(graphic);
                 arrayPopup.push(point.sensorMacAddress);
-                arrayDescricao.push("<font color='red'><b> Ocorrência:  </b></font><b>" + point.ocorrenciaCodigo + "</b><br> <b> Placa do veículo:  </b>" + point.veiculoPlaca + "<br> <b> Marca do Veículo: </b>" + point.marcaNome + "<br> <b> Modelo do Veículo: </b> " + point.modeloNome + "<br> <b> Cor do Veículo: </b>" + point.veiculoCor + "<br> <b> Ano do Veículo: </b>" + point.veiculoAno + "<br> <b> Momento do Registro: </b> " + point.registroMomento + "<br> <b> Logradouro: </b>" + point.logradouroNome + "<br> <b> Bairro: </b>" + point.bairroNome + "<br> <b> Cidade: </b>" + point.cidadeNome + "<br> <b> Estado: </b>" + point.estadoNome + "<br><br>"); 
+                arrayDescricao.push("<font color='red'><b> Código da Ocorrência:  </b></font><b>" + point.ocorrenciaCodigo + "</b><br> <b> Placa do veículo:  </b>" + point.veiculoPlaca + "<br> <b> Marca do Veículo: </b>" + point.marcaNome + "<br> <b> Modelo do Veículo: </b> " + point.modeloNome + "<br> <b> Cor do Veículo: </b>" + point.veiculoCor + "<br> <b> Ano do Veículo: </b>" + point.veiculoAno + "<br> <b> Momento do Registro: </b> " + point.registroMomento + "<br> <b> Logradouro: </b>" + point.logradouroNome + "<br> <b> Bairro: </b>" + point.bairroNome + "<br> <b> Cidade: </b>" + point.cidadeNome + "<br> <b> Estado: </b>" + point.estadoNome + "<br><br>"); 
             }
             else
             {

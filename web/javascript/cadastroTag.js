@@ -20,13 +20,17 @@ var xmlHttpRequest;
                             document.getElementById("txtCondutorResponsavel").value = arr[0].condutorNome;
                             document.getElementById("txtCondutorCpf").value = arr[0].condutorCpf;
                         }
-                        else
+                        else if(respostaServlet === "true")
                         {
-                            alert(respostaServlet);
+                            alert("Operação realizada com sucesso");
+                        }
+                        else if(respostaServlet === "false")
+                        {
+                            alert("Falha ao realizar a operação");
                         }
 
                     } else {
-                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                                alert("Falha ao realizar a operação");
                             }
                         }
                     };
@@ -35,12 +39,19 @@ var xmlHttpRequest;
             function buscarEmplacamento()
             {
                var placaVeiculo = document.getElementById("txtPlacaVeiculo").value; 
-                
-               xmlHttpRequest = getXMLHttpRequest();
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaPlaca");
-               xmlHttpRequest.open("POST","ServletConsultarPlaca",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("placaVeiculo=" + placaVeiculo); 
+               
+               if(placaVeiculo === "")
+               {
+                   alert("Preencher placa do veículo")
+               }
+               else
+               {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaPlaca");
+                    xmlHttpRequest.open("POST","ServletConsultarPlaca",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("placaVeiculo=" + placaVeiculo); 
+                }
             }
             
             function cadastrarTag()

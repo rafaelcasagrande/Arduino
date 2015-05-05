@@ -194,12 +194,16 @@
                 
                 function excluirCondutor(posicao)
                 {
-                    codigoCondutor = arrayListCondutores[posicao].codigoCondutor;                    
-                    xmlHttpRequest = getXMLHttpRequest();
-                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirCondutor");
-                    xmlHttpRequest.open("POST","ServletExcluirCondutor",true);
-                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xmlHttpRequest.send("codigoCondutor=" + codigoCondutor);  
+                    var msg = confirm("Deseja realmente excluir?")
+                    if(msg == true)
+                    {
+                        codigoCondutor = arrayListCondutores[posicao].codigoCondutor;                    
+                        xmlHttpRequest = getXMLHttpRequest();
+                        xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirCondutor");
+                        xmlHttpRequest.open("POST","ServletExcluirCondutor",true);
+                        xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        xmlHttpRequest.send("codigoCondutor=" + codigoCondutor);  
+                    } 
                 }
                 
                 function limparCampos()

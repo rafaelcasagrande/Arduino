@@ -3,12 +3,11 @@
     <head>    
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <title>Cadastrar Condutor</title>
-        
     </head>
     <body>
         <div align="center" class="container">
-            <h1> Cadastrar Condutor </h1>   
             <form role="form" class="form-inline">
+                <h1> Cadastrar Condutor </h1>   
                 <input style="width: 300px;" class="form-control" placeholder="Nome" type="text" id="txtCondutorNome" name="txtCondutorNome"><br><br>
                 <input style="width: 300px;" class="form-control" placeholder="CPF" type="text" id="txtCondutorCpf" name="txtCondutorCpf"><br><br>
                 <input style="width: 300px;" class="form-control" placeholder="Habilitação" type="text" id="txtCondutorHabilitacao" name="txtCondutorHabilitacao"><br><br> 

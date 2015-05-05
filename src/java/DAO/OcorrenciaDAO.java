@@ -6,7 +6,7 @@
 package DAO;
 
 import POJO.Ocorrencia;
-import UTIL.HibernateUtil;
+import UTIL.HibernateUtil;;
 import java.util.LinkedList;
 import java.util.List;
 import org.hibernate.Query;
@@ -27,9 +27,20 @@ public class OcorrenciaDAO {
         try
         {
             trns = session.beginTransaction();
-            session.save(ocorrencia);
-            session.getTransaction().commit();
-            return true;
+            
+            Query query = session.createQuery("From Ocorrencia Where veiculo = :veiculo and ocorrenciaStatus = 'true'");
+            query.setParameter("veiculo", ocorrencia.getVeiculo());
+            Ocorrencia ocorr = (Ocorrencia)query.list().get(0);
+            if(ocorr == null)
+            {
+                session.save(ocorrencia);
+                session.getTransaction().commit();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         catch(Exception ex)
         {
@@ -48,7 +59,7 @@ public class OcorrenciaDAO {
         try
         {
             trns = session.beginTransaction();
-            Query query = session.createQuery("From Ocorrencia");
+            Query query = session.createQuery("From Ocorrencia Where ocorrenciaStatus = 'true'");
             ocorrencias = query.list();
             return ocorrencias;
         }

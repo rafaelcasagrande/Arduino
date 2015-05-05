@@ -26,9 +26,21 @@ public class SensorDAO {
         try
         {
             session.beginTransaction();
-            session.save(sensor);
-            session.getTransaction().commit();
-            return true;
+            
+            Query query = session.createQuery("From Sensor Where sensorMacAddress = :macAddress");
+            query.setParameter("macAddress", sensor.getSensorMacAddress());
+            Sensor sen = (Sensor)query.list().get(0);
+            
+            if(sen == null)
+            {
+                session.save(sensor);
+                session.getTransaction().commit();
+                return true;
+            }
+            else
+            {
+               return false; 
+            }   
         }
         catch(Exception ex)
         {

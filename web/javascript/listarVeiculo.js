@@ -289,12 +289,16 @@ window.onload = listarVeiculos();
                 
                 function excluirVeiculo(posicao)
                 {
-                    veiculoCodigo = arrayListVeiculos[posicao].veiculoCodigo;
-                    xmlHttpRequest = getXMLHttpRequest();
-                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirVeiculo");
-                    xmlHttpRequest.open("POST","ServletExcluirVeiculo",true);
-                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-                    xmlHttpRequest.send("veiculoCodigo=" + veiculoCodigo); 
+                    var msg = confirm("Deseja realmente excluir?")
+                    if(msg == true)
+                    {
+                        veiculoCodigo = arrayListVeiculos[posicao].veiculoCodigo;
+                        xmlHttpRequest = getXMLHttpRequest();
+                        xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirVeiculo");
+                        xmlHttpRequest.open("POST","ServletExcluirVeiculo",true);
+                        xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                        xmlHttpRequest.send("veiculoCodigo=" + veiculoCodigo); 
+                    }
                 }
                 
                 function direcionarInicio()

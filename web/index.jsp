@@ -9,13 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Início</title>
+        
     </head>
-    <body>
+    <body>   
         <form class="container">
             <div class="jumbotron">
             <h1>Estações Fiscalizadoras para Identificação de Veículos Delituosos</h1>
-            <p></p>
             </div>
         </form>
     </body>

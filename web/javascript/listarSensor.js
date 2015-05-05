@@ -28,11 +28,18 @@ window.onload = listarSensores();
             function buscarSensor()
             {
                var macAddress = document.getElementById("txtSensorMacAddressBuscar").value;
-               xmlHttpRequest = getXMLHttpRequest();
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarSensor");
-               xmlHttpRequest.open("POST","ServletConsultarSensor",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("macAddress=" + macAddress);  
+               if(macAddress === "")
+               {
+                     alert("Preencher Mac Address");
+               }
+               else
+               {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarSensor");
+                    xmlHttpRequest.open("POST","ServletConsultarSensor",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("macAddress=" + macAddress); 
+               }
             }
             
             function atualizar()
@@ -49,13 +56,19 @@ window.onload = listarSensores();
             
             function consultarCep()
             {
-
-               xmlHttpRequest = getXMLHttpRequest();
                var cep = document.getElementById("txtSensorCep").value;
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaCep");
-               xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("cep=" + cep);              
+               if(cep === "")
+               {
+                   alert("Preencher CEP")
+               }
+               else
+               {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaCep");
+                    xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("cep=" + cep); 
+               }            
             }
             
             function alterarDadosSensor()
@@ -141,17 +154,31 @@ window.onload = listarSensores();
                         }
                         else if(tipo === "alterarSensor")
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar a operação");
+                            }
                         }
                         else if(tipo === "excluirSensor")
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar a operação");
+                            }
                         }
 
                     } else {
-                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                                alert("Falha ao realizar a operação");
                             }
                         }
                     };
@@ -177,13 +204,16 @@ window.onload = listarSensores();
                 
                 function excluirSensor(posicao)
                 {
-                    sensorCodigo = arrayListSensores[posicao].sensorCodigo;
-                    
-                    xmlHttpRequest = getXMLHttpRequest();
-                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirSensor");
-                    xmlHttpRequest.open("POST","ServletExcluirSensor",true);
-                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-                    xmlHttpRequest.send("codigoSensor=" + sensorCodigo);  
+                    var msg = confirm("Deseja realmente excluir?")
+                    if(msg == true)
+                    {
+                        sensorCodigo = arrayListSensores[posicao].sensorCodigo;
+                        xmlHttpRequest = getXMLHttpRequest();
+                        xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirSensor");
+                        xmlHttpRequest.open("POST","ServletExcluirSensor",true);
+                        xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                        xmlHttpRequest.send("codigoSensor=" + sensorCodigo);  
+                    }
                 }
                 
                 function direcionarInicio()

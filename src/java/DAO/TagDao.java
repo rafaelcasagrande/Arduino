@@ -28,9 +28,22 @@ public class TagDao {
         try
         {
             trns = session.beginTransaction();
-            session.save(tag);
-            session.getTransaction().commit();
-            return true;
+            
+            Query query = session.createQuery("From Tag Where tagId = :id");
+            query.setParameter("id", tag.getTagId());
+            Tag ta = (Tag)query.list().get(0);
+            
+            if(ta == null)
+            {
+                session.save(tag);
+                session.getTransaction().commit();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
         catch(Exception ex)
         {

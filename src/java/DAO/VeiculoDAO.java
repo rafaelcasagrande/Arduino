@@ -27,9 +27,20 @@ public class VeiculoDAO {
         try
         {
             trns = session.beginTransaction();
-            session.save(veiculo);
-            session.getTransaction().commit();
-            return true;
+            
+            Query query = session.createQuery("Frin Veiculo Where veiculoPlaca = :placa");
+            query.setParameter("placa", veiculo.getVeiculoPlaca());
+            Veiculo vei = (Veiculo)query.list().get(0);
+            if(vei == null)
+            {
+                session.save(veiculo);
+                session.getTransaction().commit();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         catch(Exception ex)
         {

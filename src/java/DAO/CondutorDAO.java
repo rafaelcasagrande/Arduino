@@ -27,9 +27,21 @@ public class CondutorDAO {
         try
         {
             trns = session.beginTransaction();
-            session.save(condutor);
-            session.getTransaction().commit();
-            return true;
+            
+            Query query = session.createQuery("From Condutor Where condutorCpf = :cpf");
+            query.setParameter("cpf", condutor.getCondutorCpf());
+            Condutor cond = (Condutor)query.list().get(0);
+            if(cond == null)
+            {
+                session.save(condutor);
+                session.getTransaction().commit();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }  
         catch(Exception ex)
         {

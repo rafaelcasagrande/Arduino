@@ -28,21 +28,36 @@ window.onload = listarTags();
             function buscarTag()
             {
                 var tagId = document.getElementById("txtTagIdBuscar").value;
-                xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarTag");
-                xmlHttpRequest.open("POST","ServletConsultarTag",true);
-                xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-                xmlHttpRequest.send("tagId=" + tagId);    
+                if(tagId === "")
+                {
+                    alert("Preencher Tag ID");
+                }
+                else
+                {
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "buscarTag");
+                    xmlHttpRequest.open("POST","ServletConsultarTag",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("tagId=" + tagId);    
+                }
             }
             
             function buscarEmplacamento()
             {
                var placaVeiculo = document.getElementById("txtPlacaVeiculo").value; 
-                
-               xmlHttpRequest = getXMLHttpRequest();
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaPlaca");
-               xmlHttpRequest.open("POST","ServletConsultarPlaca",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("placaVeiculo=" + placaVeiculo); 
+               
+               if(placaVeiculo === "")
+               {
+                   alert("Preencher placa do veículo");
+               }
+               else
+               {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaPlaca");
+                    xmlHttpRequest.open("POST","ServletConsultarPlaca",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("placaVeiculo=" + placaVeiculo); 
+               }
+               
             }
             
             function limparCampos()
@@ -137,17 +152,32 @@ window.onload = listarTags();
                         }
                         else if(tipo === "alterarTag")
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar a operação");
+                            }
+                            
                         }
                         else if(tipo === "excluirTag")
                         {
-                            alert(respostaServlet);
-                            location.reload();
+                            if(respostaServlet === "true")
+                            {
+                                alert("Operação realizada com sucesso");
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert("Falha ao realizar a operação");
+                            }
                         }
 
                     } else {
-                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                               alert("Falha ao realizar a operação");
                             }
                         }
                     };
@@ -169,12 +199,15 @@ window.onload = listarTags();
                 
                 function excluirTag(posicao)
                 {
-                    codigoTag = arrayListTags[posicao].tagCodigo;
-                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirTag");
-                    xmlHttpRequest.open("POST","ServletExcluirTag",true);
-                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-                    xmlHttpRequest.send("codigoTag=" + codigoTag);  
-                    
+                    var msg = confirm("Deseja realmente excluir?")
+                    if(msg == true)
+                    {
+                        codigoTag = arrayListTags[posicao].tagCodigo;
+                        xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "excluirTag");
+                        xmlHttpRequest.open("POST","ServletExcluirTag",true);
+                        xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                        xmlHttpRequest.send("codigoTag=" + codigoTag); 
+                    }
                 }
 
                 function direcionarInicio()

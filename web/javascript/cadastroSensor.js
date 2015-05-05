@@ -10,13 +10,19 @@ var logradouroCodigo;
   
             function consultarCep()
             {
-
-               xmlHttpRequest = getXMLHttpRequest();
                var cep = document.getElementById("txtSensorCep").value;
-               xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaCep");
-               xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
-               xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
-               xmlHttpRequest.send("cep=" + cep);              
+               if(cep === "")
+               {
+                   alert("Preencher CEP");
+               }
+               else
+               {
+                    xmlHttpRequest = getXMLHttpRequest();
+                    xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest, "consultaCep");
+                    xmlHttpRequest.open("POST","ServletConsultaEndereco",true);
+                    xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", "charset=ISO-8859-1");
+                    xmlHttpRequest.send("cep=" + cep);    
+               }        
             }
             
             function limparCampos()
@@ -66,13 +72,17 @@ var logradouroCodigo;
                             document.getElementById("txtSensorEstado").value = arr[0].logradouroEstado;
                             logradouroCodigo = arr[0].logradouroCodigo;
                         }
-                        else
+                        else if(respostaServlet === "true")
                         {
-                            alert(respostaServlet);
+                            alert("Operação realizada com sucesso");
+                        }
+                        else if(respostaServlet === "false")
+                        {
+                            alert("Falha ao realizar a operação");
                         }
 
                     } else {
-                                alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
+                                alert("Falha ao realizar a operação");
                             }
                         }
                     };
