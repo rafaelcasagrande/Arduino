@@ -120,6 +120,22 @@
         <servlet-name>ServletExcluirOcorrencia</servlet-name>
         <servlet-class>SERVLET.ServletExcluirOcorrencia</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCadastrarUsuario</servlet-name>
+        <servlet-class>SERVLET.ServletCadastrarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletAcessarUsuario</servlet-name>
+        <servlet-class>SERVLET.ServletAcessarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletVerificarUsername</servlet-name>
+        <servlet-class>SERVLET.ServletVerificarUsername</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletAlterarUsuario</servlet-name>
+        <servlet-class>SERVLET.ServletAlterarUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConsultaEndereco</servlet-name>
         <url-pattern>/ServletConsultaEndereco</url-pattern>
@@ -239,6 +255,22 @@
     <servlet-mapping>
         <servlet-name>ServletExcluirOcorrencia</servlet-name>
         <url-pattern>/ServletExcluirOcorrencia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCadastrarUsuario</servlet-name>
+        <url-pattern>/ServletCadastrarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAcessarUsuario</servlet-name>
+        <url-pattern>/ServletAcessarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletVerificarUsername</servlet-name>
+        <url-pattern>/ServletVerificarUsername</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAlterarUsuario</servlet-name>
+        <url-pattern>/ServletAlterarUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

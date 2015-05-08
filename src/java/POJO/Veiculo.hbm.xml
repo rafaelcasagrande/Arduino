@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/04/2015 23:57:13 by Hibernate Tools 4.3.1 -->
+<!-- Generated 07/05/2015 20:45:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Veiculo" table="veiculo" catalog="tcc" optimistic-lock="version">
         <id name="veiculoCodigo" type="java.lang.Integer">
@@ -23,13 +23,13 @@
         <property name="veiculoAno" type="java.lang.Integer">
             <column name="veiculo_ano" />
         </property>
-        <set name="tags" cascade="delete" table="tag" inverse="true" lazy="true" fetch="select">
+        <set name="tags" table="tag" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="veiculo_codigo" />
             </key>
             <one-to-many class="POJO.Tag" />
         </set>
-        <set name="ocorrencias" cascade="delete" table="ocorrencia" inverse="true" lazy="true" fetch="select">
+        <set name="ocorrencias" table="ocorrencia" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="veiculo_codigo" />
             </key>

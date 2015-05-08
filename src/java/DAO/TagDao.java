@@ -23,7 +23,7 @@ public class TagDao {
     public boolean cadastrarTag(Tag tag)
     {
         Transaction trns = null;
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         
         try
         {

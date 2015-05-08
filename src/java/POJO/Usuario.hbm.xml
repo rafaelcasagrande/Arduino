@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07/05/2015 20:45:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.Usuario" table="usuario" catalog="tcc" optimistic-lock="version">
+        <id name="usuarioCodigo" type="java.lang.Integer">
+            <column name="usuario_codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="usuarioLogin" type="string">
+            <column name="usuario_login" length="20" />
+        </property>
+        <property name="usuarioSenha" type="string">
+            <column name="usuario_senha" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

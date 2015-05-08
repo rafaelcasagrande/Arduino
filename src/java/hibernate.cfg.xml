@@ -14,6 +14,7 @@
     <mapping resource="POJO/Tag.hbm.xml"/>
     <mapping resource="POJO/Sensor.hbm.xml"/>
     <mapping resource="POJO/Ocorrencia.hbm.xml"/>
+    <mapping resource="POJO/Usuario.hbm.xml"/>
     <mapping resource="POJO/Bairro.hbm.xml"/>
     <mapping resource="POJO/Condutor.hbm.xml"/>
     <mapping resource="POJO/Modelo.hbm.xml"/>

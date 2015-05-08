@@ -22,7 +22,7 @@ public class SensorDAO {
     public boolean cadastrarSensor (Sensor sensor)
     {
         Transaction trns = null;
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try
         {
             session.beginTransaction();
