@@ -23,7 +23,7 @@
         <property name="sensorNumeroLogradouro" type="string">
             <column name="sensor_numero_logradouro" length="10" />
         </property>
-        <set name="registros" table="registro" inverse="true" lazy="true" fetch="select">
+        <set name="registros" cascade="delete" table="registro" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="sensor_codigo" />
             </key>

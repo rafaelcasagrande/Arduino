@@ -20,13 +20,13 @@
         <property name="logradouroCep" type="string">
             <column name="logradouro_cep" length="12" />
         </property>
-        <set name="sensors" table="sensor" inverse="true" lazy="true" fetch="select">
+        <set name="sensors" cascade="delete" table="sensor" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="logradouro_codigo" />
             </key>
             <one-to-many class="POJO.Sensor" />
         </set>
-        <set name="condutors" table="condutor" inverse="true" lazy="true" fetch="select">
+        <set name="condutors" cascade="delete" table="condutor" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="logradouro_codigo" />
             </key>

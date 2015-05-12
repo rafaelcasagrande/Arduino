@@ -20,7 +20,7 @@
         <property name="ocorrenciaStatus" type="string">
             <column name="ocorrencia_status" length="10" />
         </property>
-        <set name="registros" table="registro" inverse="true" lazy="true" fetch="select">
+        <set name="registros" cascade="delete" table="registro" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="ocorrencia_codigo" />
             </key>

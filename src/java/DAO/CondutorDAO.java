@@ -30,8 +30,8 @@ public class CondutorDAO {
             
             Query query = session.createQuery("From Condutor Where condutorCpf = :cpf");
             query.setParameter("cpf", condutor.getCondutorCpf());
-            Condutor cond = (Condutor)query.list().get(0);
-            if(cond == null)
+            List<Condutor> cond = query.list();
+            if(cond.isEmpty())
             {
                 session.save(condutor);
                 session.getTransaction().commit();

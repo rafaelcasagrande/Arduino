@@ -14,7 +14,7 @@
         <property name="modeloNome" type="string">
             <column name="modelo_nome" length="100" />
         </property>
-        <set name="veiculos" table="veiculo" inverse="true" lazy="true" fetch="select">
+        <set name="veiculos" cascade="delete" table="veiculo" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="modelo_codigo" length="8" />
             </key>
