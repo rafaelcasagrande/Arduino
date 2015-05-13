@@ -31,9 +31,9 @@ public class TagDao {
             
             Query query = session.createQuery("From Tag Where tagId = :id");
             query.setParameter("id", tag.getTagId());
-            Tag ta = (Tag)query.list().get(0);
+            List<Tag> ta = query.list();
             
-            if(ta == null)
+            if(ta.isEmpty())
             {
                 session.save(tag);
                 session.getTransaction().commit();
