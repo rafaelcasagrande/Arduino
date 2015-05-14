@@ -31,7 +31,7 @@ public class OcorrenciaDAO {
             Query query = session.createQuery("From Ocorrencia Where veiculo = :veiculo and ocorrenciaStatus = 'true'");
             query.setParameter("veiculo", ocorrencia.getVeiculo());
             List<Ocorrencia> ocorr = query.list();
-            if(ocorr.size() == 0)
+            if(ocorr.isEmpty())
             {
                 session.save(ocorrencia);
                 session.getTransaction().commit();

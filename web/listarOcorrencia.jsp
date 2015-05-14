@@ -31,7 +31,6 @@
                     <th> Cor </th>
                     <th> Status </th>
                     <th> Início </th>
-                    <th> Término </th>
                     <th> Alterar </th>
                     <th> Excluir </th>
                 </tr>

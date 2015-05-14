@@ -108,9 +108,8 @@ window.onload = listarOcorrencias();
                                 var celCor = row.insertCell(5);
                                 var celStatus = row.insertCell(6);
                                 var celInicio = row.insertCell(7);
-                                var celTermino = row.insertCell(8);
-                                var celAlterar = row.insertCell(9);
-                                var celExcluir = row.insertCell(10);
+                                var celAlterar = row.insertCell(8);
+                                var celExcluir = row.insertCell(9);
 
                                 celCodigo.innerHTML = arrayListOcorrencia[i].ocorrenciaCodigo;
                                 celPlaca.innerHTML = arrayListOcorrencia[i].veiculoPlaca;
@@ -120,7 +119,6 @@ window.onload = listarOcorrencias();
                                 celCor.innerHTML = arrayListOcorrencia[i].veiculoCor;
                                 celStatus.innerHTML = arrayListOcorrencia[i].ocorrenciaStatus;
                                 celInicio.innerHTML = arrayListOcorrencia[i].ocorrenciaInicio;
-                                celTermino.innerHTML = arrayListOcorrencia[i].ocorrenciaTermino;
                                 celAlterar.innerHTML = "<button class='btn btn-link' onclick=alterarOcorrencia(" + i + ")> <span class='glyphicon glyphicon-pencil'></span> </button>";
                                 celExcluir.innerHTML = "<button class='btn btn-link' onclick=excluirOcorrencia(" + i + ")> <span class='glyphicon glyphicon-remove'></span> </button>"; 
                             

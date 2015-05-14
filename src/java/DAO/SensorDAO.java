@@ -29,9 +29,9 @@ public class SensorDAO {
             
             Query query = session.createQuery("From Sensor Where sensorMacAddress = :macAddress");
             query.setParameter("macAddress", sensor.getSensorMacAddress());
-            Sensor sen = (Sensor)query.list().get(0);
+            List<Sensor> sen = query.list();
             
-            if(sen == null)
+            if(sen.isEmpty())
             {
                 session.save(sensor);
                 session.getTransaction().commit();
